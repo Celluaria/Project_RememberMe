@@ -21,10 +21,8 @@ body {
     "Segoe UI",
     Arial,
     sans-serif;
-
   background:
     radial-gradient(circle at top, #273750 0%, #111827 43%, #080c14 100%);
-
   color: #f7f4ee;
 }
 
@@ -49,19 +47,15 @@ button {
 #game {
   width: min(920px, 100%);
   min-height: min(720px, calc(100vh - 36px));
-
   position: relative;
   overflow: hidden;
-
   background:
     linear-gradient(
       rgba(17, 24, 39, 0.91),
       rgba(17, 24, 39, 0.97)
     );
-
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 26px;
-
   box-shadow:
     0 30px 100px rgba(0,0,0,0.45),
     inset 0 1px 0 rgba(255,255,255,0.05);
@@ -85,7 +79,6 @@ button {
     opacity: 0;
     transform: translateY(7px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -127,9 +120,47 @@ button {
   transform: translateY(0);
 }
 
-/* =========================
-   OPENING BLACK SCREEN
-========================= */
+
+/* =============================
+   REAL CHARM
+============================= */
+
+.charm-photo {
+  display: block;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 15px 22px rgba(0,0,0,.38));
+}
+
+.charm-small {
+  width: min(180px, 42vw);
+  max-height: 210px;
+  margin: 0 auto 18px;
+}
+
+.charm-medium {
+  width: min(245px, 58vw);
+  max-height: 300px;
+  margin: 0 auto 22px;
+}
+
+.charm-float {
+  animation: charmFloat 3s ease-in-out infinite;
+}
+
+@keyframes charmFloat {
+  0%,100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+
+/* =============================
+   OPENING
+============================= */
 
 #opening {
   justify-content: center;
@@ -141,20 +172,16 @@ button {
 .opening-box {
   width: min(620px, 100%);
   min-height: 150px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 26px;
-
   border-radius: 22px;
-
   background: rgba(255,255,255,.035);
   border: 1px solid rgba(255,255,255,.07);
-
   font-size: clamp(1.08rem, 3vw, 1.35rem);
   line-height: 1.75;
+  white-space: pre-line;
 }
 
 .opening-box.shake {
@@ -173,16 +200,17 @@ button {
   margin-top: 25px;
 }
 
-/* =========================
+
+/* =============================
    AIRPORT
-========================= */
+============================= */
 
 .airport-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 15px;
-  margin-bottom: 26px;
+  margin-bottom: 18px;
 }
 
 .airport-name {
@@ -197,7 +225,6 @@ button {
 }
 
 .airport-time {
-  font-variant-numeric: tabular-nums;
   opacity: .7;
   text-align: right;
 }
@@ -207,9 +234,7 @@ button {
   min-height: 245px;
   border-radius: 22px;
   overflow: hidden;
-
   border: 1px solid rgba(255,255,255,.1);
-
   background:
     linear-gradient(
       to bottom,
@@ -220,9 +245,8 @@ button {
       #555d68 61%,
       #424955 100%
     );
-
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .window::before,
@@ -256,7 +280,6 @@ button {
   left: 18%;
   font-size: 2rem;
   opacity: .7;
-  transform: rotate(-4deg);
 }
 
 .seat,
@@ -268,7 +291,6 @@ button {
   height: 30px;
   border-radius: 10px;
   background: #252d39;
-  opacity: .9;
 }
 
 .bag,
@@ -285,16 +307,14 @@ button {
   right: 16%;
   bottom: 30px;
   font-size: clamp(4.2rem, 14vw, 6.5rem);
-  filter: drop-shadow(0 10px 12px rgba(0,0,0,.3));
-  animation: yakoFloat 2.6s ease-in-out infinite;
   z-index: 5;
+  animation: yakoFloat 2.6s ease-in-out infinite;
 }
 
 @keyframes yakoFloat {
   0%,100% {
     transform: translateY(0) rotate(-2deg);
   }
-
   50% {
     transform: translateY(-7px) rotate(2deg);
   }
@@ -303,21 +323,10 @@ button {
 .dialogue-box,
 .waiting-dialogue {
   margin-top: auto;
-
   background: rgba(255,255,255,.065);
   border: 1px solid rgba(255,255,255,.1);
   border-radius: 18px;
-
-  padding: 22px;
-  min-height: 150px;
-}
-
-.speaker {
-  font-size: .73rem;
-  text-transform: uppercase;
-  letter-spacing: .18em;
-  opacity: .42;
-  margin-bottom: 10px;
+  padding: 20px;
 }
 
 .dialogue,
@@ -334,9 +343,10 @@ button {
   margin-top: 12px;
 }
 
-/* =========================
-   MATCH GAME
-========================= */
+
+/* =============================
+   MATCH
+============================= */
 
 #matchScene {
   justify-content: center;
@@ -346,11 +356,9 @@ button {
 .charm-thought {
   font-size: clamp(1.05rem, 3vw, 1.25rem);
   line-height: 1.7;
-
-  min-height: 78px;
+  min-height: 70px;
   max-width: 620px;
-
-  margin: 0 auto 18px;
+  margin: 0 auto 16px;
 }
 
 .target-emoji {
@@ -363,35 +371,21 @@ button {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 8px;
-
   width: min(430px, 100%);
   margin: 0 auto;
-
   user-select: none;
 }
 
 .tile {
   aspect-ratio: 1;
-
   border: 1px solid rgba(255,255,255,.11);
   border-radius: 16px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: clamp(1.65rem, 7vw, 2.6rem);
-
   cursor: pointer;
   background: rgba(255,255,255,.07);
-
-  transition:
-    transform .15s ease,
-    background .15s ease;
-}
-
-.tile:hover {
-  background: rgba(255,255,255,.11);
 }
 
 .tile.selected {
@@ -400,9 +394,10 @@ button {
   outline: 2px solid rgba(255,255,255,.55);
 }
 
-/* =========================
+
+/* =============================
    MEMORY
-========================= */
+============================= */
 
 #memoryScene {
   justify-content: center;
@@ -412,34 +407,30 @@ button {
 .memory-card {
   max-width: 650px;
   margin: auto;
-
-  padding: 34px 30px;
-
+  padding: 28px;
   border-radius: 24px;
-
   background: rgba(255,255,255,.065);
   border: 1px solid rgba(255,255,255,.1);
 }
 
 .memory-icon {
-  font-size: 4.5rem;
-  margin-bottom: 20px;
+  font-size: 4rem;
+  margin-bottom: 16px;
 }
 
 .memory-text {
-  min-height: 145px;
-
+  min-height: 125px;
   font-size: clamp(1.05rem, 3vw, 1.3rem);
   line-height: 1.75;
-
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* =========================
+
+/* =============================
    REMEMBER PUZZLE
-========================= */
+============================= */
 
 #rememberScene {
   justify-content: center;
@@ -447,170 +438,213 @@ button {
 }
 
 .remember-card {
-  max-width: 700px;
+  max-width: 720px;
   width: 100%;
-
   margin: auto;
-  padding: 32px 28px;
-
+  padding: 26px 22px;
   border-radius: 24px;
-
-  background: rgba(255,255,255,.065);
+  background: rgba(255,255,255,.055);
   border: 1px solid rgba(255,255,255,.1);
 }
 
-.back-charm {
-  width: 180px;
-  min-height: 210px;
-
-  margin: 0 auto 28px;
-  padding: 26px 18px;
-
-  border-radius: 48px;
-  border: 3px dashed rgba(255,255,255,.72);
-
-  background:
-    linear-gradient(
-      145deg,
-      #ead9c9,
-      #c9a98e
-    );
-
-  color: #272a31;
-
+.back-charm-stage {
+  width: min(360px, 82vw);
+  height: 390px;
+  margin: 0 auto 15px;
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  gap: 17px;
-
-  box-shadow:
-    0 15px 45px rgba(0,0,0,.35),
-    inset 0 0 0 8px rgba(255,255,255,.08);
 }
 
-.back-icons {
-  font-size: 2.8rem;
+.back-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition:
+    opacity .8s ease,
+    transform .8s ease,
+    filter .8s ease;
+  filter:
+    drop-shadow(0 15px 24px rgba(0,0,0,.35));
 }
 
-.mystery-stitches {
-  width: 110px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  opacity: .55;
+#backBlank {
+  opacity: 1;
 }
 
-.stitch-line {
-  height: 3px;
-  border-radius: 999px;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #655346 0 8px,
-      transparent 8px 13px
-    );
+#backText {
+  opacity: 0;
 }
 
-.remember-dialogue {
-  max-width: 590px;
-  margin: 0 auto 24px;
-  line-height: 1.75;
-  font-size: clamp(1.02rem, 3vw, 1.23rem);
+#backFull {
+  opacity: 0;
+}
+
+.back-charm-stage.text-revealed #backBlank {
+  opacity: 0;
+}
+
+.back-charm-stage.text-revealed #backText {
+  opacity: 1;
+}
+
+.back-charm-stage.complete #backText,
+.back-charm-stage.complete #backBlank {
+  opacity: 0;
+}
+
+.back-charm-stage.complete #backFull {
+  opacity: 1;
+  transform: scale(1.035);
+  filter:
+    drop-shadow(0 0 20px rgba(255,217,153,.35))
+    drop-shadow(0 15px 24px rgba(0,0,0,.35));
+}
+
+
+/* user types directly "on" the charm */
+
+.remember-input-wrap {
+  position: absolute;
+  z-index: 10;
+
+  left: 50%;
+  top: 55%;
+
+  transform: translate(-50%, -50%);
+
+  width: 55%;
+
+  transition: opacity .5s ease;
+}
+
+.remember-input-wrap.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .password-input {
-  width: min(430px, 100%);
-  margin: 10px auto 22px;
+  width: 100%;
 
-  padding: 15px 18px;
+  border: 0;
+  border-bottom:
+    2px solid
+    rgba(255,255,255,.8);
 
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.2);
+  padding: 7px 5px;
+
+  background:
+    rgba(40,25,55,.18);
 
   outline: none;
 
-  background: rgba(255,255,255,.06);
   color: white;
 
   text-align: center;
-  letter-spacing: .08em;
 
-  font-size: 1.1rem;
+  font-size:
+    clamp(.9rem, 3.5vw, 1.15rem);
+
+  letter-spacing: .05em;
+
+  border-radius: 5px 5px 0 0;
 }
 
-.password-input:focus {
-  border-color: rgba(255,255,255,.55);
-  background: rgba(255,255,255,.09);
+.password-input::placeholder {
+  color: rgba(255,255,255,.65);
 }
 
-.emoji-question {
-  margin-top: 24px;
-  margin-bottom: 12px;
-  font-size: 1rem;
-  opacity: .85;
+
+/* emoji selection appears ON charm */
+
+.emoji-puzzle {
+  display: none;
+
+  position: absolute;
+
+  z-index: 11;
+
+  left: 50%;
+  top: 70%;
+
+  transform:
+    translate(-50%, -50%);
+
+  width: 70%;
+}
+
+.emoji-puzzle.show {
+  display: block;
+  animation: sceneFade .5s ease;
 }
 
 .emoji-slots {
   display: flex;
   justify-content: center;
-  gap: 14px;
-  margin-bottom: 18px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .emoji-slot {
-  width: 72px;
-  height: 72px;
+  width: 58px;
+  height: 58px;
 
-  border-radius: 18px;
+  border-radius: 50%;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
-  font-size: 2.4rem;
+  background:
+    rgba(50,28,65,.35);
 
-  border: 1px solid rgba(255,255,255,.2);
-  background: rgba(255,255,255,.05);
+  border:
+    1px dashed
+    rgba(255,255,255,.7);
+
+  font-size: 2rem;
 }
 
 .emoji-options {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  justify-content: center;
+  gap: 7px;
 }
 
 .emoji-choice {
-  width: 58px;
-  height: 58px;
+  width: 47px;
+  height: 47px;
 
   border: 0;
-  border-radius: 15px;
+  border-radius: 12px;
 
-  font-size: 2rem;
   cursor: pointer;
 
-  background: rgba(255,255,255,.08);
-  color: white;
+  font-size: 1.65rem;
+
+  background:
+    rgba(17,24,39,.82);
 }
 
-.emoji-choice:hover {
-  transform: scale(1.06);
+.remember-dialogue {
+  min-height: 90px;
+  line-height: 1.65;
+  font-size: clamp(.98rem, 3vw, 1.18rem);
 }
 
 .answer-feedback {
-  min-height: 30px;
-  margin-top: 16px;
-  opacity: .7;
-  font-size: .92rem;
+  min-height: 28px;
+  margin-top: 8px;
+  opacity: .75;
 }
 
-/* =========================
+
+/* =============================
    COMPLETE RECALL
-========================= */
+============================= */
 
 #completeRecallScene {
   justify-content: center;
@@ -620,29 +654,22 @@ button {
 .complete-card {
   max-width: 650px;
   margin: auto;
-
-  padding: 38px 30px;
-
+  padding: 30px;
   border-radius: 26px;
-
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.1);
 }
 
-.complete-symbols {
-  font-size: 3.5rem;
-  margin-bottom: 25px;
-}
-
 .complete-text {
-  min-height: 180px;
+  min-height: 160px;
   font-size: clamp(1.08rem, 3vw, 1.3rem);
   line-height: 1.8;
 }
 
-/* =========================
-   WARMTH GAME
-========================= */
+
+/* =============================
+   WARMTH
+============================= */
 
 #warmthScene {
   justify-content: center;
@@ -652,23 +679,18 @@ button {
 .warmth-text {
   max-width: 650px;
   margin: 0 auto 20px;
-
   font-size: clamp(1.05rem, 3vw, 1.3rem);
   line-height: 1.75;
-  min-height: 95px;
+  min-height: 75px;
 }
 
 #warmthField {
   width: min(650px, 100%);
-  height: 390px;
-
+  height: 410px;
   position: relative;
-
   margin: 0 auto;
-
   border-radius: 26px;
   overflow: hidden;
-
   background:
     radial-gradient(
       circle at center,
@@ -676,46 +698,34 @@ button {
       rgba(255,255,255,.025) 50%,
       rgba(0,0,0,.05) 100%
     );
-
   border: 1px solid rgba(255,255,255,.08);
 }
 
-.warm-charm {
+.warm-charm-photo {
   position: absolute;
-
   left: 50%;
   top: 50%;
+  width: min(210px, 50vw);
+  max-height: 280px;
 
-  transform: translate(-50%, -50%);
+  transform:
+    translate(-50%, -50%);
 
-  width: 105px;
-  height: 128px;
+  object-fit: contain;
 
-  border-radius: 40px;
-  border: 2px dashed rgba(255,255,255,.65);
-
-  background:
-    linear-gradient(
-      145deg,
-      #ead9c9,
-      #c9a98e
-    );
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 2.5rem;
+  filter:
+    drop-shadow(0 14px 20px rgba(0,0,0,.4));
 
   transition:
-    box-shadow .6s ease,
+    filter .6s ease,
     transform .6s ease;
 }
 
-.warm-charm.glowing {
-  box-shadow:
-    0 0 25px rgba(255,221,156,.5),
-    0 0 75px rgba(255,206,128,.28);
+.warm-charm-photo.glowing {
+  filter:
+    drop-shadow(0 0 15px rgba(255,224,164,.8))
+    drop-shadow(0 0 40px rgba(255,203,122,.55))
+    drop-shadow(0 15px 20px rgba(0,0,0,.4));
 
   transform:
     translate(-50%, -50%)
@@ -725,12 +735,9 @@ button {
 .warm-orb {
   width: 46px;
   height: 46px;
-
   position: absolute;
-
   border: 0;
   border-radius: 50%;
-
   background:
     radial-gradient(
       circle,
@@ -739,19 +746,15 @@ button {
       rgba(255,191,109,.22) 68%,
       transparent 72%
     );
-
   box-shadow:
     0 0 24px
     rgba(255,213,137,.45);
-
   cursor: pointer;
-
   animation:
     orbFloat
     2.7s
     ease-in-out
     infinite;
-
   transition:
     transform .4s ease,
     opacity .4s ease;
@@ -769,9 +772,10 @@ button {
   }
 }
 
-/* =========================
+
+/* =============================
    MAGIC
-========================= */
+============================= */
 
 #magicScene {
   justify-content: center;
@@ -781,16 +785,22 @@ button {
 
 .magic-core {
   position: relative;
-
-  width: 220px;
-  height: 220px;
-
-  margin: 0 auto 30px;
+  width: 280px;
+  height: 300px;
+  margin: 0 auto 18px;
 }
 
 .magic-ring {
   position: absolute;
-  inset: 0;
+
+  width: 210px;
+  height: 210px;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
 
   border-radius: 50%;
 
@@ -806,18 +816,22 @@ button {
 }
 
 .magic-ring:nth-child(2) {
-  inset: 25px;
+  width: 170px;
+  height: 170px;
   animation-delay: .4s;
 }
 
 .magic-ring:nth-child(3) {
-  inset: 50px;
+  width: 130px;
+  height: 130px;
   animation-delay: .8s;
 }
 
 @keyframes ringPulse {
   0% {
-    transform: scale(.65);
+    transform:
+      translate(-50%, -50%)
+      scale(.65);
     opacity: 0;
   }
 
@@ -826,39 +840,41 @@ button {
   }
 
   100% {
-    transform: scale(1.2);
+    transform:
+      translate(-50%, -50%)
+      scale(1.25);
     opacity: 0;
   }
 }
 
-.magic-center {
+.magic-charm {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 50%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 180px;
+  max-height: 250px;
 
-  font-size: 4rem;
+  transform:
+    translate(-50%, -50%);
+
+  object-fit: contain;
 
   filter:
-    drop-shadow(
-      0 0 24px
-      rgba(255,220,151,.7)
-    );
+    drop-shadow(0 0 22px rgba(255,220,151,.7));
 }
 
 .magic-text {
   min-height: 100px;
   max-width: 600px;
-
   font-size: clamp(1.05rem, 3vw, 1.3rem);
   line-height: 1.75;
 }
 
-/* =========================
+
+/* =============================
    GIFT
-========================= */
+============================= */
 
 #giftScene {
   justify-content: center;
@@ -875,16 +891,13 @@ button {
   font-size: clamp(1.05rem, 3vw, 1.28rem);
   line-height: 1.8;
   margin-bottom: 28px;
-  min-height: 80px;
 }
 
 .gift-card {
   width: min(430px, 100%);
   min-height: 245px;
-
   margin: 0 auto;
   padding: 30px 25px;
-
   border-radius: 28px;
 
   display: flex;
@@ -901,32 +914,9 @@ button {
 
   color: #292723;
 
-  border: 1px solid rgba(255,255,255,.7);
-
   box-shadow:
     0 25px 65px rgba(0,0,0,.35),
     0 0 40px rgba(255,216,153,.18);
-
-  animation:
-    giftArrival .9s cubic-bezier(.2,.8,.2,1);
-}
-
-@keyframes giftArrival {
-  from {
-    opacity: 0;
-    transform:
-      translateY(40px)
-      scale(.82)
-      rotate(-3deg);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      translateY(0)
-      scale(1)
-      rotate(0);
-  }
 }
 
 .gift-card-small {
@@ -955,13 +945,8 @@ button {
 .placeholder-tag {
   margin-top: 20px;
   padding: 7px 12px;
-
   border-radius: 999px;
-
-  border:
-    1px dashed
-    rgba(40,40,40,.35);
-
+  border: 1px dashed rgba(40,40,40,.35);
   font-size: .72rem;
   opacity: .65;
 }
@@ -978,11 +963,12 @@ button {
   font-weight: 700;
 }
 
-/* =========================
-   MOBILE
-========================= */
 
-@media (max-width: 600px) {
+/* =============================
+   MOBILE
+============================= */
+
+@media (max-width:600px) {
 
   body {
     padding: 0;
@@ -996,17 +982,12 @@ button {
   }
 
   .scene {
-    padding: 22px 18px;
+    padding: 20px 16px;
   }
 
   .window,
   .waiting-window {
-    min-height: 215px;
-  }
-
-  .yako,
-  .waiting-yako {
-    right: 14%;
+    min-height: 205px;
   }
 
   .seat,
@@ -1014,30 +995,20 @@ button {
     width: 160px;
   }
 
-  .dialogue-box,
-  .waiting-dialogue {
-    padding: 18px;
+  .back-charm-stage {
+    height: 355px;
   }
 
-  .tile {
-    border-radius: 13px;
-  }
-
-  .memory-card,
-  .remember-card,
-  .complete-card {
-    padding: 24px 18px;
+  .remember-card {
+    padding: 20px 12px;
   }
 
   #warmthField {
-    height: 360px;
+    height: 370px;
   }
 
-  .emoji-slot {
-    width: 64px;
-    height: 64px;
-  }
 }
+
 </style>
 </head>
 
@@ -1053,9 +1024,6 @@ button {
   <div
     id="openingBox"
     class="opening-box">
-
-    ...
-
   </div>
 
   <div class="opening-controls">
@@ -1063,9 +1031,7 @@ button {
     <button
       id="openingNext"
       class="soft-btn">
-
       ...
-
     </button>
 
   </div>
@@ -1080,7 +1046,6 @@ button {
   <div class="airport-header">
 
     <div>
-
       <div class="airport-name">
         XIAMEN
       </div>
@@ -1088,18 +1053,12 @@ button {
       <div class="airport-sub">
         Gaoqi International Airport
       </div>
-
     </div>
 
     <div class="airport-time">
-
       Morning
       <br>
-
-      <small>
-        Transit
-      </small>
-
+      <small>Transit</small>
     </div>
 
   </div>
@@ -1124,11 +1083,14 @@ button {
   </div>
 
 
-  <div class="dialogue-box">
+  <img
+    src="assets/charm-front.png"
+    class="charm-photo charm-small charm-float"
+    alt="The little charm"
+  >
 
-    <div class="speaker">
-      Me
-    </div>
+
+  <div class="dialogue-box">
 
     <div
       id="airportDialogue"
@@ -1140,9 +1102,7 @@ button {
       <button
         id="airportNext"
         class="soft-btn">
-
         ...
-
       </button>
 
     </div>
@@ -1155,6 +1115,12 @@ button {
 <!-- MATCH -->
 
 <section id="matchScene" class="scene">
+
+  <img
+    src="assets/charm-front.png"
+    class="charm-photo charm-small charm-float"
+    alt=""
+  >
 
   <div
     id="matchThought"
@@ -1172,6 +1138,12 @@ button {
 
   <div class="memory-card">
 
+    <img
+      src="assets/charm-front.png"
+      class="charm-photo charm-small"
+      alt=""
+    >
+
     <div
       id="memoryIcon"
       class="memory-icon">
@@ -1185,9 +1157,7 @@ button {
     <button
       id="memoryNext"
       class="primary-btn">
-
       ...
-
     </button>
 
   </div>
@@ -1201,23 +1171,134 @@ button {
 
   <div class="remember-card">
 
-    <div class="back-charm">
 
-      <div class="back-icons">
-        ?　?
+    <div
+      id="backCharmStage"
+      class="back-charm-stage">
+
+
+      <!-- BLANK BACK -->
+
+      <img
+        id="backBlank"
+        class="back-layer"
+        src="assets/charm-back-blank.png"
+        alt=""
+      >
+
+
+      <!-- TEXT ONLY BACK -->
+
+      <img
+        id="backText"
+        class="back-layer"
+        src="assets/charm-back-text.png"
+        alt=""
+      >
+
+
+      <!-- COMPLETE BACK -->
+
+      <img
+        id="backFull"
+        class="back-layer"
+        src="assets/charm-back-full.png"
+        alt=""
+      >
+
+
+      <!-- USER TYPES ON CHARM -->
+
+      <div
+        id="rememberInputWrap"
+        class="remember-input-wrap">
+
+        <input
+          id="rememberInput"
+          class="password-input"
+          type="text"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="type here..."
+        >
+
       </div>
 
-      <div class="mystery-stitches">
 
-        <div class="stitch-line"></div>
-        <div class="stitch-line"></div>
+      <!-- EMOJI PUZZLE -->
+
+      <div
+        id="emojiPuzzle"
+        class="emoji-puzzle">
+
+
+        <div class="emoji-slots">
+
+          <div
+            id="emojiSlot1"
+            class="emoji-slot">
+            ?
+          </div>
+
+          <div
+            id="emojiSlot2"
+            class="emoji-slot">
+            ?
+          </div>
+
+        </div>
+
+
+        <div class="emoji-options">
+
+          <button
+            class="emoji-choice"
+            data-emoji="🐙">
+            🐙
+          </button>
+
+          <button
+            class="emoji-choice"
+            data-emoji="🐰">
+            🐰
+          </button>
+
+          <button
+            class="emoji-choice"
+            data-emoji="🐱">
+            🐱
+          </button>
+
+          <button
+            class="emoji-choice"
+            data-emoji="🐻">
+            🐻
+          </button>
+
+          <button
+            class="emoji-choice"
+            data-emoji="🐶">
+            🐶
+          </button>
+
+          <button
+            class="emoji-choice"
+            data-emoji="🐧">
+            🐧
+          </button>
+
+        </div>
 
       </div>
 
     </div>
 
 
-    <div class="remember-dialogue">
+    <div
+      id="rememberDialogue"
+      class="remember-dialogue">
 
       Something still feels incomplete.
 
@@ -1227,11 +1308,7 @@ button {
 
       <br><br>
 
-      Wait...
-
-      <br>
-
-      It's on my back!
+      Wait... It's on my back!
 
       <br><br>
 
@@ -1244,87 +1321,18 @@ button {
     </div>
 
 
-    <input
-      id="rememberInput"
-      class="password-input"
-      type="text"
-      autocomplete="off"
-      placeholder="What does it say?"
-    >
-
-
-    <div class="emoji-question">
-
-      And these two little ones...
-
-      <br>
-
-      who are they?
-
-    </div>
-
-
-    <div class="emoji-slots">
-
-      <div
-        id="emojiSlot1"
-        class="emoji-slot">
-
-        ?
-
-      </div>
-
-      <div
-        id="emojiSlot2"
-        class="emoji-slot">
-
-        ?
-
-      </div>
-
-    </div>
-
-
-    <div class="emoji-options">
-
-      <button class="emoji-choice" data-emoji="🐙">
-        🐙
-      </button>
-
-      <button class="emoji-choice" data-emoji="🐇">
-        🐇
-      </button>
-
-      <button class="emoji-choice" data-emoji="🐱">
-        🐱
-      </button>
-
-      <button class="emoji-choice" data-emoji="🐻">
-        🐻
-      </button>
-
-      <button class="emoji-choice" data-emoji="🐶">
-        🐶
-      </button>
-
-      <button class="emoji-choice" data-emoji="🐧">
-        🐧
-      </button>
-
-    </div>
-
-
     <div
       id="answerFeedback"
       class="answer-feedback">
     </div>
+
 
   </div>
 
 </section>
 
 
-<!-- COMPLETE RECALL -->
+<!-- COMPLETE -->
 
 <section
   id="completeRecallScene"
@@ -1332,11 +1340,11 @@ button {
 
   <div class="complete-card">
 
-    <div class="complete-symbols">
-
-      🐇　🐙
-
-    </div>
+    <img
+      src="assets/charm-front.png"
+      class="charm-photo charm-medium charm-float"
+      alt=""
+    >
 
     <div
       id="completeRecallText"
@@ -1346,9 +1354,7 @@ button {
     <button
       id="completeRecallNext"
       class="primary-btn">
-
       ...
-
     </button>
 
   </div>
@@ -1375,11 +1381,14 @@ button {
   </div>
 
 
-  <div class="waiting-dialogue">
+  <img
+    src="assets/charm-front.png"
+    class="charm-photo charm-small charm-float"
+    alt=""
+  >
 
-    <div class="speaker">
-      Me
-    </div>
+
+  <div class="waiting-dialogue">
 
     <div id="waitingText"></div>
 
@@ -1388,9 +1397,7 @@ button {
       <button
         id="waitingNext"
         class="soft-btn">
-
         ...
-
       </button>
 
     </div>
@@ -1407,21 +1414,17 @@ button {
   <div
     id="warmthText"
     class="warmth-text">
-
-    Warm...
-
   </div>
 
 
   <div id="warmthField">
 
-    <div
+    <img
       id="warmCharm"
-      class="warm-charm">
-
-      🧵
-
-    </div>
+      class="warm-charm-photo"
+      src="assets/charm-front.png"
+      alt=""
+    >
 
   </div>
 
@@ -1438,9 +1441,11 @@ button {
     <div class="magic-ring"></div>
     <div class="magic-ring"></div>
 
-    <div class="magic-center">
-      🧵
-    </div>
+    <img
+      src="assets/charm-front.png"
+      class="magic-charm"
+      alt=""
+    >
 
   </div>
 
@@ -1479,20 +1484,13 @@ button {
       </div>
 
       <div class="gift-desc">
-
         One warm drink.
-
         <br>
-
         Pick something you like.
-
       </div>
 
       <div class="placeholder-tag">
-
-        TEST PLACEHOLDER —
-        NOT A REAL VOUCHER
-
+        TEST PLACEHOLDER — NOT A REAL VOUCHER
       </div>
 
     </div>
@@ -1536,7 +1534,8 @@ button {
 
       <br><br>
 
-      The best little octopus in the world. 🐙♡
+      The best little octopus
+      in the world. 🐙♡
 
     </div>
 
@@ -1550,62 +1549,47 @@ button {
 
 <script>
 
-/* ==========================================
+/* =============================
    BASIC
-========================================== */
+============================= */
 
 function showScene(id) {
 
   document
     .querySelectorAll(".scene")
-    .forEach(scene => {
-      scene.classList.remove("active");
-    });
+    .forEach(scene =>
+      scene.classList.remove("active")
+    );
 
   document
     .getElementById(id)
-    .classList
-    .add("active");
+    .classList.add("active");
 }
 
 
 function sleep(ms) {
-
-  return new Promise(
-    resolve =>
-      setTimeout(resolve, ms)
+  return new Promise(resolve =>
+    setTimeout(resolve, ms)
   );
-
 }
 
 
-/* ==========================================
+/* =============================
    OPENING
-========================================== */
+============================= */
 
 const openingLines = [
-
   "Mmm... where am I?\nThe shaking finally stopped...",
-
   "This looks like... an airport?"
-
 ];
-
 
 let openingIndex = 0;
 
-
 const openingBox =
-  document.getElementById(
-    "openingBox"
-  );
-
+  document.getElementById("openingBox");
 
 const openingNext =
-  document.getElementById(
-    "openingNext"
-  );
-
+  document.getElementById("openingNext");
 
 openingBox.textContent =
   openingLines[0];
@@ -1613,23 +1597,15 @@ openingBox.textContent =
 
 function shakeOpening() {
 
-  openingBox.classList.remove(
-    "shake"
-  );
+  openingBox.classList.remove("shake");
 
   void openingBox.offsetWidth;
 
-  openingBox.classList.add(
-    "shake"
-  );
-
+  openingBox.classList.add("shake");
 }
 
 
-setTimeout(
-  shakeOpening,
-  300
-);
+setTimeout(shakeOpening, 300);
 
 
 openingNext.addEventListener(
@@ -1638,37 +1614,26 @@ openingNext.addEventListener(
 
     openingIndex++;
 
-
-    if (
-      openingIndex === 1
-    ) {
+    if (openingIndex === 1) {
 
       openingBox.textContent =
         openingLines[1];
 
       shakeOpening();
 
-      openingNext.textContent =
-        "...";
-
       return;
-
     }
 
-
-    showScene(
-      "airportScene"
-    );
+    showScene("airportScene");
 
     startAirportDialogue();
-
   }
 );
 
 
-/* ==========================================
+/* =============================
    AIRPORT
-========================================== */
+============================= */
 
 const airportLines = [
 
@@ -1692,15 +1657,12 @@ const airportLines = [
 
 ];
 
-
 let airportIndex = 0;
-
 
 const airportDialogue =
   document.getElementById(
     "airportDialogue"
   );
-
 
 const airportNext =
   document.getElementById(
@@ -1714,7 +1676,6 @@ function startAirportDialogue() {
 
   airportDialogue.textContent =
     airportLines[0];
-
 }
 
 
@@ -1724,16 +1685,13 @@ airportNext.addEventListener(
 
     airportIndex++;
 
-
     if (
       airportIndex <
       airportLines.length
     ) {
 
       airportDialogue.textContent =
-        airportLines[
-          airportIndex
-        ];
+        airportLines[airportIndex];
 
     }
 
@@ -1741,47 +1699,44 @@ airportNext.addEventListener(
 
       puzzleIndex = 0;
 
-      showScene(
-        "matchScene"
-      );
+      showScene("matchScene");
 
       createBoard();
-
     }
-
   }
 );
 
 
-/* ==========================================
-   MATCH PUZZLES
-========================================== */
+/* =============================
+   PUZZLES
+============================= */
 
 const puzzleSteps = [
 
   {
-    target: "🐇",
+    target: "🐰",
 
     thought:
       "This feels familiar...\nMaybe this one?",
 
     board: [
-      ["🐇","💾","🧵","✈️","🐙"],
-      ["🧵","🐇","📖","💾","✈️"],
-      ["💾","✈️","🐇","🐇","📖"],
-      ["🐇","📖","🐙","✈️","💾"],
-      ["🐇","💾","🧵","🐙","📖"]
+      ["🐰","💾","🧵","✈️","🐙"],
+      ["🧵","🐰","📖","💾","✈️"],
+      ["💾","✈️","🐰","🐰","📖"],
+      ["🐰","📖","🐙","✈️","💾"],
+      ["🐰","💾","🧵","🐙","📖"]
     ],
 
     memories: [
+
       {
-        icon: "🐇",
+        icon: "🐰",
         text:
           "Yes! That's him!"
       },
 
       {
-        icon: "🐇",
+        icon: "🐰",
         text:
           "He's the one who made me!"
       },
@@ -1797,6 +1752,7 @@ const puzzleSteps = [
         text:
           "he sure talked about you a lot, little octopus!"
       }
+
     ]
   },
 
@@ -1809,13 +1765,14 @@ const puzzleSteps = [
 
     board: [
       ["📖","💾","🐙","✈️","🧵"],
-      ["🐇","💾","🐙","💾","✈️"],
-      ["🐙","📖","💾","🧵","🐇"],
+      ["🐰","💾","🐙","💾","✈️"],
+      ["🐙","📖","💾","🧵","🐰"],
       ["🐙","✈️","🐙","📖","🐙"],
       ["🧵","✈️","🧵","📖","💾"]
     ],
 
     memories: [
+
       {
         icon: "🐙",
         text:
@@ -1833,6 +1790,7 @@ const puzzleSteps = [
         text:
           "it's been stitched deep inside my heart all along!"
       }
+
     ]
   },
 
@@ -1844,14 +1802,15 @@ const puzzleSteps = [
       "Something is playing in my head...\nA melody?",
 
     board: [
-      ["🐙","✈️","🐇","🧵","💾"],
-      ["📖","🐇","📖","🐙","✈️"],
-      ["🐙","✈️","📖","💾","🐇"],
-      ["💾","🐇","🐇","🐙","🐙"],
+      ["🐙","✈️","🐰","🧵","💾"],
+      ["📖","🐰","📖","🐙","✈️"],
+      ["🐙","✈️","📖","💾","🐰"],
+      ["💾","🐰","🐰","🐙","🐙"],
       ["✈️","💾","💾","🧵","🐙"]
     ],
 
     memories: [
+
       {
         icon: "💾",
         text:
@@ -1869,6 +1828,7 @@ const puzzleSteps = [
         text:
           "Every single one carried a memory that belonged only to you and Celluaria."
       }
+
     ]
   },
 
@@ -1881,13 +1841,14 @@ const puzzleSteps = [
 
     board: [
       ["🧵","📖","🐙","🧵","✈️"],
-      ["📖","🐇","💾","📖","🧵"],
-      ["🐇","📖","💾","🧵","🧵"],
-      ["🐙","💾","🐙","🐙","🐇"],
+      ["📖","🐰","💾","📖","🧵"],
+      ["🐰","📖","💾","🧵","🧵"],
+      ["🐙","💾","🐙","🐙","🐰"],
       ["🐙","🧵","🐙","💾","📖"]
     ],
 
     memories: [
+
       {
         icon: "📖",
         text:
@@ -1911,6 +1872,7 @@ const puzzleSteps = [
         text:
           "All those laughs, all those little moments... carefully kept between the pages."
       }
+
     ]
   },
 
@@ -1923,13 +1885,14 @@ const puzzleSteps = [
 
     board: [
       ["💾","🐙","✈️","🧵","📖"],
-      ["💾","🐇","🧵","💾","🐇"],
+      ["💾","🐰","🧵","💾","🐰"],
       ["📖","✈️","💾","✈️","📖"],
       ["🐙","🧵","🧵","🐙","💾"],
-      ["🧵","🐇","📖","💾","🐙"]
+      ["🧵","🐰","📖","💾","🐙"]
     ],
 
     memories: [
+
       {
         icon: "🧵",
         text:
@@ -1959,6 +1922,7 @@ const puzzleSteps = [
         text:
           "taking so much care to make me."
       }
+
     ]
   }
 
@@ -1969,17 +1933,14 @@ const size = 5;
 
 let puzzleIndex = 0;
 let puzzleMemoryIndex = 0;
-
 let board = [];
 let selected = null;
 let boardLocked = false;
-
 
 const boardElement =
   document.getElementById(
     "matchBoard"
   );
-
 
 const matchThought =
   document.getElementById(
@@ -2009,14 +1970,12 @@ function createBoard() {
     `<span class="target-emoji">${step.target}</span>`;
 
   renderBoard();
-
 }
 
 
 function renderBoard() {
 
   boardElement.innerHTML = "";
-
 
   for (
     let row = 0;
@@ -2035,27 +1994,21 @@ function renderBoard() {
           "div"
         );
 
-
       tile.className =
         "tile";
 
-
       tile.textContent =
         board[row][col];
-
 
       if (
         selected &&
         selected.row === row &&
         selected.col === col
       ) {
-
         tile.classList.add(
           "selected"
         );
-
       }
-
 
       tile.addEventListener(
         "click",
@@ -2066,15 +2019,11 @@ function renderBoard() {
           )
       );
 
-
       boardElement.appendChild(
         tile
       );
-
     }
-
   }
-
 }
 
 
@@ -2083,16 +2032,10 @@ function handleTileClick(
   col
 ) {
 
-  if (
-    boardLocked
-  ) {
-    return;
-  }
+  if (boardLocked) return;
 
 
-  if (
-    !selected
-  ) {
+  if (!selected) {
 
     selected = {
       row,
@@ -2102,7 +2045,6 @@ function handleTileClick(
     renderBoard();
 
     return;
-
   }
 
 
@@ -2116,7 +2058,6 @@ function handleTileClick(
     renderBoard();
 
     return;
-
   }
 
 
@@ -2130,9 +2071,7 @@ function handleTileClick(
     );
 
 
-  if (
-    distance !== 1
-  ) {
+  if (distance !== 1) {
 
     selected = {
       row,
@@ -2142,14 +2081,12 @@ function handleTileClick(
     renderBoard();
 
     return;
-
   }
 
 
   const previous = {
     ...selected
   };
-
 
   selected = null;
 
@@ -2166,9 +2103,7 @@ function handleTileClick(
     findMatches();
 
 
-  if (
-    matches.length === 0
-  ) {
+  if (matches.length === 0) {
 
     swapTiles(
       previous.row,
@@ -2180,7 +2115,6 @@ function handleTileClick(
     renderBoard();
 
     return;
-
   }
 
 
@@ -2198,9 +2132,7 @@ function handleTileClick(
     );
 
 
-  if (
-    !containsTarget
-  ) {
+  if (!containsTarget) {
 
     swapTiles(
       previous.row,
@@ -2212,14 +2144,10 @@ function handleTileClick(
     renderBoard();
 
     return;
-
   }
 
 
-  solvePuzzle(
-    matches
-  );
-
+  solvePuzzle(matches);
 }
 
 
@@ -2238,7 +2166,6 @@ function swapTiles(
 
   board[r2][c2] =
     temp;
-
 }
 
 
@@ -2256,7 +2183,6 @@ function findMatches() {
 
     let start = 0;
 
-
     for (
       let col = 1;
       col <= size;
@@ -2268,11 +2194,8 @@ function findMatches() {
         board[row][col] ===
         board[row][start]
       ) {
-
         continue;
-
       }
-
 
       if (
         col - start >= 3
@@ -2287,16 +2210,11 @@ function findMatches() {
           matched.add(
             `${row},${x}`
           );
-
         }
-
       }
 
-
       start = col;
-
     }
-
   }
 
 
@@ -2307,7 +2225,6 @@ function findMatches() {
   ) {
 
     let start = 0;
-
 
     for (
       let row = 1;
@@ -2320,11 +2237,8 @@ function findMatches() {
         board[row][col] ===
         board[start][col]
       ) {
-
         continue;
-
       }
-
 
       if (
         row - start >= 3
@@ -2339,16 +2253,11 @@ function findMatches() {
           matched.add(
             `${y},${col}`
           );
-
         }
-
       }
 
-
       start = row;
-
     }
-
   }
 
 
@@ -2365,9 +2274,7 @@ function findMatches() {
         row,
         col
       };
-
     });
-
 }
 
 
@@ -2376,7 +2283,6 @@ async function solvePuzzle(
 ) {
 
   boardLocked = true;
-
 
   matches.forEach(
     ({row, col}) => {
@@ -2387,41 +2293,31 @@ async function solvePuzzle(
     }
   );
 
-
   renderBoard();
 
-
-  await sleep(
-    550
-  );
-
+  await sleep(550);
 
   puzzleMemoryIndex = 0;
 
   displayPuzzleMemory();
 
-  showScene(
-    "memoryScene"
-  );
-
+  showScene("memoryScene");
 }
 
 
-/* ==========================================
+/* =============================
    MEMORY
-========================================== */
+============================= */
 
 const memoryIcon =
   document.getElementById(
     "memoryIcon"
   );
 
-
 const memoryText =
   document.getElementById(
     "memoryText"
   );
-
 
 const memoryNext =
   document.getElementById(
@@ -2438,14 +2334,11 @@ function displayPuzzleMemory() {
       puzzleMemoryIndex
     ];
 
-
   memoryIcon.textContent =
     item.icon;
 
-
   memoryText.textContent =
     item.text;
-
 }
 
 
@@ -2454,7 +2347,6 @@ memoryNext.addEventListener(
   () => {
 
     puzzleMemoryIndex++;
-
 
     const memories =
       puzzleSteps[
@@ -2470,7 +2362,6 @@ memoryNext.addEventListener(
       displayPuzzleMemory();
 
       return;
-
     }
 
 
@@ -2482,9 +2373,7 @@ memoryNext.addEventListener(
       puzzleSteps.length
     ) {
 
-      showScene(
-        "matchScene"
-      );
+      showScene("matchScene");
 
       createBoard();
 
@@ -2493,66 +2382,179 @@ memoryNext.addEventListener(
     else {
 
       startRememberScene();
-
     }
-
   }
 );
 
 
-/* ==========================================
-   REMEMBER SCENE
-========================================== */
+/* =============================
+   REMEMBER
+============================= */
+
+const backCharmStage =
+  document.getElementById(
+    "backCharmStage"
+  );
+
+const rememberInputWrap =
+  document.getElementById(
+    "rememberInputWrap"
+  );
 
 const rememberInput =
   document.getElementById(
     "rememberInput"
   );
 
+const emojiPuzzle =
+  document.getElementById(
+    "emojiPuzzle"
+  );
 
 const emojiSlot1 =
   document.getElementById(
     "emojiSlot1"
   );
 
-
 const emojiSlot2 =
   document.getElementById(
     "emojiSlot2"
   );
-
 
 const emojiChoices =
   document.querySelectorAll(
     ".emoji-choice"
   );
 
-
 const answerFeedback =
   document.getElementById(
     "answerFeedback"
   );
 
+const rememberDialogue =
+  document.getElementById(
+    "rememberDialogue"
+  );
 
+
+let textUnlocked = false;
 let selectedEmojis = [];
+let rememberFinished = false;
+
+
+function normalizeRememberText(
+  value
+) {
+
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
 
 
 function startRememberScene() {
 
+  textUnlocked = false;
+  rememberFinished = false;
   selectedEmojis = [];
 
   rememberInput.value = "";
+  rememberInput.disabled = false;
+
+  emojiChoices.forEach(
+    button =>
+      button.disabled = false
+  );
 
   emojiSlot1.textContent = "?";
   emojiSlot2.textContent = "?";
 
-  answerFeedback.textContent = "";
+  backCharmStage.className =
+    "back-charm-stage";
 
-  showScene(
-    "rememberScene"
+  rememberInputWrap.classList.remove(
+    "hidden"
   );
 
+  emojiPuzzle.classList.remove(
+    "show"
+  );
+
+  answerFeedback.textContent = "";
+
+  showScene("rememberScene");
+
+
+  setTimeout(
+    () => rememberInput.focus(),
+    500
+  );
 }
+
+
+rememberInput.addEventListener(
+  "input",
+  async () => {
+
+    if (textUnlocked) return;
+
+
+    const answer =
+      normalizeRememberText(
+        rememberInput.value
+      );
+
+
+    if (
+      answer === "remember me"
+    ) {
+
+      textUnlocked = true;
+
+      rememberInput.disabled =
+        true;
+
+
+      answerFeedback.textContent =
+        "...Yes. That's it.";
+
+
+      await sleep(350);
+
+
+      rememberInputWrap.classList.add(
+        "hidden"
+      );
+
+
+      backCharmStage.classList.add(
+        "text-revealed"
+      );
+
+
+      await sleep(900);
+
+
+      rememberDialogue.innerHTML =
+        "The letters...<br><br>" +
+        "They turned into real stitches!<br><br>" +
+        "And these two little ones...<br>" +
+        "who are they?";
+
+
+      answerFeedback.textContent =
+        "";
+
+
+      emojiPuzzle.classList.add(
+        "show"
+      );
+
+    }
+
+  }
+);
 
 
 emojiChoices.forEach(
@@ -2562,8 +2564,12 @@ emojiChoices.forEach(
       "click",
       () => {
 
-        const emoji =
-          button.dataset.emoji;
+        if (
+          !textUnlocked ||
+          rememberFinished
+        ) {
+          return;
+        }
 
 
         if (
@@ -2577,8 +2583,11 @@ emojiChoices.forEach(
 
           emojiSlot2.textContent =
             "?";
-
         }
+
+
+        const emoji =
+          button.dataset.emoji;
 
 
         selectedEmojis.push(
@@ -2592,7 +2601,6 @@ emojiChoices.forEach(
 
           emojiSlot1.textContent =
             selectedEmojis[0];
-
         }
 
 
@@ -2603,118 +2611,94 @@ emojiChoices.forEach(
           emojiSlot2.textContent =
             selectedEmojis[1];
 
+
+          checkEmojiAnswer();
         }
 
-
-        checkRememberPuzzle();
-
       }
     );
-
   }
 );
 
 
-rememberInput.addEventListener(
-  "input",
-  () => {
+async function checkEmojiAnswer() {
 
-    checkRememberPuzzle();
-
-  }
-);
-
-
-function normalizeRememberText(
-  value
-) {
-
-  return value
-    .trim()
-    .toLowerCase()
-    .replace(
-      /\s+/g,
-      " "
-    );
-
-}
+  const correct =
+    selectedEmojis[0] ===
+      "🐰"
+    &&
+    selectedEmojis[1] ===
+      "🐙";
 
 
-function checkRememberPuzzle() {
-
-  const textCorrect =
-    normalizeRememberText(
-      rememberInput.value
-    ) ===
-    "remember me";
-
-
-  const emojiCorrect =
-    selectedEmojis.length === 2 &&
-    selectedEmojis[0] === "🐇" &&
-    selectedEmojis[1] === "🐙";
-
-
-  if (
-    textCorrect &&
-    emojiCorrect
-  ) {
+  if (!correct) {
 
     answerFeedback.textContent =
-      "...That's it!";
+      "Hmm... those don't feel quite right.";
 
 
-    rememberInput.disabled =
-      true;
+    await sleep(650);
 
 
-    emojiChoices.forEach(
-      button => {
+    selectedEmojis = [];
 
-        button.disabled =
-          true;
-
-      }
-    );
-
-
-    setTimeout(
-      startCompleteRecall,
-      900
-    );
-
-
-    return;
-
-  }
-
-
-  if (
-    rememberInput.value.length > 0 &&
-    normalizeRememberText(
-      rememberInput.value
-    ) !==
-    "remember me"
-  ) {
-
-    answerFeedback.textContent =
-      "Hmm... I don't think that's quite right.";
-
-  }
-
-  else {
+    emojiSlot1.textContent = "?";
+    emojiSlot2.textContent = "?";
 
     answerFeedback.textContent =
       "";
 
+    return;
   }
 
+
+  rememberFinished = true;
+
+
+  answerFeedback.textContent =
+    "...That's us.";
+
+
+  emojiChoices.forEach(
+    button =>
+      button.disabled = true
+  );
+
+
+  await sleep(450);
+
+
+  emojiPuzzle.style.opacity =
+    "0";
+
+
+  await sleep(400);
+
+
+  backCharmStage.classList.add(
+    "complete"
+  );
+
+
+  rememberDialogue.innerHTML =
+    "REMEMBER ME.<br><br>" +
+    "🐰 &nbsp;&nbsp; 🐙";
+
+
+  answerFeedback.textContent =
+    "";
+
+
+  await sleep(1600);
+
+
+  startCompleteRecall();
 }
 
 
-/* ==========================================
+/* =============================
    COMPLETE RECALL
-========================================== */
+============================= */
 
 const completeRecallLines = [
 
@@ -2739,15 +2723,12 @@ const completeRecallLines = [
 ];
 
 
-let completeRecallIndex =
-  0;
-
+let completeRecallIndex = 0;
 
 const completeRecallText =
   document.getElementById(
     "completeRecallText"
   );
-
 
 const completeRecallNext =
   document.getElementById(
@@ -2765,7 +2746,6 @@ function startCompleteRecall() {
   showScene(
     "completeRecallScene"
   );
-
 }
 
 
@@ -2774,7 +2754,6 @@ completeRecallNext.addEventListener(
   () => {
 
     completeRecallIndex++;
-
 
     if (
       completeRecallIndex <
@@ -2791,16 +2770,14 @@ completeRecallNext.addEventListener(
     else {
 
       startWaitingScene();
-
     }
-
   }
 );
 
 
-/* ==========================================
+/* =============================
    WAITING
-========================================== */
+============================= */
 
 const waitingLines = [
 
@@ -2825,15 +2802,12 @@ const waitingLines = [
 ];
 
 
-let waitingIndex =
-  0;
-
+let waitingIndex = 0;
 
 const waitingText =
   document.getElementById(
     "waitingText"
   );
-
 
 const waitingNext =
   document.getElementById(
@@ -2851,7 +2825,6 @@ function startWaitingScene() {
   showScene(
     "waitingScene"
   );
-
 }
 
 
@@ -2860,7 +2833,6 @@ waitingNext.addEventListener(
   () => {
 
     waitingIndex++;
-
 
     if (
       waitingIndex <
@@ -2877,28 +2849,24 @@ waitingNext.addEventListener(
     else {
 
       startWarmthScene();
-
     }
-
   }
 );
 
 
-/* ==========================================
-   WARMTH GAME
-========================================== */
+/* =============================
+   WARMTH
+============================= */
 
 const warmthField =
   document.getElementById(
     "warmthField"
   );
 
-
 const warmthText =
   document.getElementById(
     "warmthText"
   );
-
 
 const warmCharm =
   document.getElementById(
@@ -2907,33 +2875,24 @@ const warmCharm =
 
 
 const orbPositions = [
-
-  [13, 16],
-  [72, 14],
-  [11, 69],
-  [76, 70],
-  [47, 10]
-
+  [13,16],
+  [72,14],
+  [11,69],
+  [76,70],
+  [47,10]
 ];
 
 
 const warmthLines = [
-
   "Warm...",
-
   "♡",
-
   "Another one!",
-
   "Hehe...",
-
   "Almost!"
-
 ];
 
 
-let collectedWarmth =
-  0;
+let collectedWarmth = 0;
 
 
 function startWarmthScene() {
@@ -2942,14 +2901,11 @@ function startWarmthScene() {
     "warmthScene"
   );
 
-
   collectedWarmth = 0;
-
 
   warmCharm.classList.remove(
     "glowing"
   );
-
 
   warmthText.textContent =
     "There they are...";
@@ -2972,65 +2928,42 @@ function startWarmthScene() {
           "button"
         );
 
-
       orb.className =
         "warm-orb";
-
 
       orb.style.left =
         position[0] + "%";
 
-
       orb.style.top =
         position[1] + "%";
-
 
       orb.style.animationDelay =
         `${index * .23}s`;
 
-
-      orb.setAttribute(
-        "aria-label",
-        "Warm light"
-      );
-
-
       orb.addEventListener(
         "click",
-        () => {
-
-          collectOrb(
-            orb
-          );
-
-        },
+        () =>
+          collectOrb(orb),
         {
           once: true
         }
       );
 
-
       warmthField.appendChild(
         orb
       );
-
     }
   );
-
 }
 
 
-function collectOrb(
-  orb
-) {
+function collectOrb(orb) {
 
   orb.classList.add(
     "collected"
   );
 
-
   collectedWarmth++;
-
 
   warmthText.textContent =
     warmthLines[
@@ -3045,7 +2978,6 @@ function collectOrb(
     warmCharm.classList.add(
       "glowing"
     );
-
   }
 
 
@@ -3057,20 +2989,17 @@ function collectOrb(
     warmthText.textContent =
       "Got them all!";
 
-
     setTimeout(
       startMagicScene,
       900
     );
-
   }
-
 }
 
 
-/* ==========================================
+/* =============================
    MAGIC
-========================================== */
+============================= */
 
 const magicText =
   document.getElementById(
@@ -3121,29 +3050,23 @@ async function startMagicScene() {
     magicText.textContent =
       magicLines[i];
 
-
     await sleep(
       i >= 7
         ? 1000
         : 850
     );
-
   }
 
 
-  await sleep(
-    700
-  );
-
+  await sleep(700);
 
   showGift();
-
 }
 
 
-/* ==========================================
+/* =============================
    GIFT
-========================================== */
+============================= */
 
 const giftThought =
   document.getElementById(
@@ -3157,10 +3080,8 @@ function showGift() {
     "giftScene"
   );
 
-
   giftThought.textContent =
     "A little delivery from far, far away.";
-
 }
 
 </script>
