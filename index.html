@@ -10,7 +10,8 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       min-height: 100%;
       font-family:
@@ -67,7 +68,7 @@
       min-height: inherit;
       padding: 34px;
       position: relative;
-      animation: sceneFade 0.65s ease;
+      animation: sceneFade 0.55s ease;
     }
 
     .scene.active {
@@ -87,9 +88,49 @@
       }
     }
 
-    /* ------------------------------------------------
+    /* -----------------------------------
+       GENERAL BUTTONS
+    ----------------------------------- */
+
+    .primary-btn,
+    .soft-btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      transition:
+        transform 0.15s ease,
+        opacity 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .primary-btn {
+      padding: 14px 26px;
+      background: #f4e7dc;
+      color: #202632;
+      font-weight: 700;
+      min-width: 150px;
+    }
+
+    .soft-btn {
+      padding: 12px 20px;
+      background: rgba(255,255,255,0.09);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .primary-btn:hover,
+    .soft-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary-btn:active,
+    .soft-btn:active {
+      transform: translateY(0);
+    }
+
+    /* -----------------------------------
        OPENING
-    ------------------------------------------------ */
+    ----------------------------------- */
 
     #opening {
       align-items: center;
@@ -143,11 +184,11 @@
       align-items: center;
       justify-content: center;
       font-size: 3rem;
-      filter: saturate(0.85);
     }
 
     @keyframes sway {
-      0%, 100% {
+      0%,
+      100% {
         transform: rotate(-2deg) translateY(0);
       }
 
@@ -164,45 +205,9 @@
       margin: 0 auto 24px;
     }
 
-    .primary-btn,
-    .soft-btn {
-      border: 0;
-      cursor: pointer;
-      border-radius: 999px;
-      transition:
-        transform 0.15s ease,
-        opacity 0.15s ease,
-        background 0.15s ease;
-    }
-
-    .primary-btn {
-      padding: 14px 26px;
-      background: #f4e7dc;
-      color: #202632;
-      font-weight: 700;
-      min-width: 150px;
-    }
-
-    .primary-btn:hover,
-    .soft-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .primary-btn:active,
-    .soft-btn:active {
-      transform: translateY(0);
-    }
-
-    .soft-btn {
-      padding: 12px 20px;
-      background: rgba(255,255,255,0.09);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    /* ------------------------------------------------
+    /* -----------------------------------
        AIRPORT
-    ------------------------------------------------ */
+    ----------------------------------- */
 
     .airport-header {
       display: flex;
@@ -291,7 +296,8 @@
     }
 
     @keyframes yakoFloat {
-      0%, 100% {
+      0%,
+      100% {
         transform: translateY(0) rotate(-2deg);
       }
 
@@ -347,9 +353,9 @@
       margin-top: 12px;
     }
 
-    /* ------------------------------------------------
-       MATCH-3
-    ------------------------------------------------ */
+    /* -----------------------------------
+       MATCH GAME
+    ----------------------------------- */
 
     #matchScene {
       justify-content: center;
@@ -369,10 +375,17 @@
       max-width: 580px;
     }
 
-    .match-status {
+    .target-line {
       text-align: center;
-      margin-bottom: 12px;
-      font-weight: 700;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      opacity: 0.72;
+    }
+
+    .target-emoji {
+      font-size: 1.7rem;
+      vertical-align: middle;
+      margin-left: 5px;
     }
 
     #matchBoard {
@@ -414,16 +427,6 @@
       outline: 2px solid rgba(255,255,255,0.55);
     }
 
-    .tile.matched {
-      animation: pop 0.35s ease;
-    }
-
-    @keyframes pop {
-      50% {
-        transform: scale(1.18);
-      }
-    }
-
     .hint {
       max-width: 520px;
       margin: 0 auto;
@@ -433,9 +436,9 @@
       line-height: 1.5;
     }
 
-    /* ------------------------------------------------
-       MEMORY SCENE
-    ------------------------------------------------ */
+    /* -----------------------------------
+       MEMORY
+    ----------------------------------- */
 
     #memoryScene {
       justify-content: center;
@@ -463,16 +466,107 @@
       line-height: 1.75;
     }
 
-    /* ------------------------------------------------
-       PLACEHOLDER END
-    ------------------------------------------------ */
+    /* -----------------------------------
+       REMEMBER ME
+    ----------------------------------- */
 
-    #placeholderScene {
+    #rememberScene {
       justify-content: center;
       text-align: center;
     }
 
-    .placeholder-card {
+    .remember-card {
+      max-width: 680px;
+      margin: auto;
+      padding: 34px;
+
+      border-radius: 24px;
+      background: rgba(255,255,255,0.065);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .back-charm {
+      width: 180px;
+      min-height: 210px;
+      margin: 0 auto 28px;
+      padding: 26px 18px;
+
+      border-radius: 48px;
+      border: 3px dashed rgba(255,255,255,0.72);
+
+      background:
+        linear-gradient(145deg, #e9d8c7, #c9a98f);
+
+      color: #272a31;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      gap: 14px;
+
+      box-shadow:
+        0 15px 45px rgba(0,0,0,0.35),
+        inset 0 0 0 8px rgba(255,255,255,0.08);
+    }
+
+    .back-icons {
+      font-size: 2.7rem;
+    }
+
+    .back-text {
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      font-size: 0.82rem;
+    }
+
+    .word-puzzle {
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      letter-spacing: 0.13em;
+      margin: 26px 0 20px;
+      font-weight: 800;
+    }
+
+    .answer-input {
+      width: min(380px, 100%);
+      padding: 14px 18px;
+
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+
+      background: rgba(255,255,255,0.08);
+      color: white;
+
+      outline: none;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .answer-input:focus {
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .answer-feedback {
+      min-height: 28px;
+      margin-top: 12px;
+      opacity: 0.7;
+    }
+
+    .button-row {
+      margin-top: 18px;
+    }
+
+    /* -----------------------------------
+       PLACEHOLDER NEXT
+    ----------------------------------- */
+
+    #nextScene {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .next-card {
       max-width: 650px;
       margin: auto;
       padding: 34px;
@@ -482,17 +576,14 @@
       border-radius: 24px;
     }
 
-    .placeholder-icons {
+    .next-icons {
       font-size: 3rem;
-      letter-spacing: 0.14em;
       margin-bottom: 22px;
     }
 
-    .dev-note {
-      opacity: 0.55;
-      line-height: 1.6;
-      font-size: 0.92rem;
-    }
+    /* -----------------------------------
+       MOBILE
+    ----------------------------------- */
 
     @media (max-width: 600px) {
       body {
@@ -529,6 +620,12 @@
       .tile {
         border-radius: 13px;
       }
+
+      .memory-card,
+      .remember-card,
+      .next-card {
+        padding: 24px 18px;
+      }
     }
   </style>
 </head>
@@ -537,9 +634,7 @@
 
   <main id="game">
 
-    <!-- =========================
-         SCENE 1: OPENING
-    ========================== -->
+    <!-- OPENING -->
 
     <section id="opening" class="scene active">
 
@@ -562,9 +657,7 @@
     </section>
 
 
-    <!-- =========================
-         SCENE 2: AIRPORT
-    ========================== -->
+    <!-- AIRPORT -->
 
     <section id="airportScene" class="scene">
 
@@ -615,38 +708,34 @@
     </section>
 
 
-    <!-- =========================
-         SCENE 3: MATCH GAME
-    ========================== -->
+    <!-- STORY MATCH GAME -->
 
     <section id="matchScene" class="scene">
 
       <h2 class="section-title">
-        Untangle the memories
+        Untangle a memory
       </h2>
 
       <p class="section-subtitle">
-        The journey shook everything around a little.
-        Help the charm put a few familiar things back into place.
+        Something familiar is hiding in the mess.
       </p>
 
-      <div id="matchStatus" class="match-status">
-        Memories restored: 0 / 5
+      <div class="target-line">
+        Find the memory:
+        <span id="targetEmoji" class="target-emoji">🐇</span>
       </div>
 
       <div id="matchBoard"></div>
 
       <div class="hint">
-        Select one symbol, then select a neighbouring symbol to swap them.
-        Match three or more identical symbols.
+        Select one symbol, then a neighbouring symbol to swap them.
+        Only one memory is ready to be restored.
       </div>
 
     </section>
 
 
-    <!-- =========================
-         SCENE 4: MEMORY
-    ========================== -->
+    <!-- MEMORY LINE -->
 
     <section id="memoryScene" class="scene">
 
@@ -667,35 +756,87 @@
     </section>
 
 
-    <!-- =========================
-         TEMPORARY END OF VERSION 1
-    ========================== -->
+    <!-- REMEMBER ME PUZZLE -->
 
-    <section id="placeholderScene" class="scene">
+    <section id="rememberScene" class="scene">
 
-      <div class="placeholder-card">
+      <div class="remember-card">
 
-        <div class="placeholder-icons">
-          🐙 🐇 🧵
+        <div class="back-charm">
+
+          <div class="back-icons">
+            🐙　🐇
+          </div>
+
+          <div class="back-text">
+            REMEMBER ME
+          </div>
+
+        </div>
+
+        <div class="memory-text">
+
+          There's writing on my back.
+
+          <br><br>
+
+          Maybe the real me knows what it says.
+
+        </div>
+
+        <div class="word-puzzle">
+          R _ M _ M B _ R&nbsp;&nbsp; M _
+        </div>
+
+        <input
+          id="rememberInput"
+          class="answer-input"
+          type="text"
+          placeholder="Type the words here..."
+          autocomplete="off"
+        />
+
+        <div id="answerFeedback" class="answer-feedback"></div>
+
+        <div class="button-row">
+          <button id="rememberSubmit" class="primary-btn">
+            Check
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NEXT PLACEHOLDER -->
+
+    <section id="nextScene" class="scene">
+
+      <div class="next-card">
+
+        <div class="next-icons">
+          🐙 ♡ 🐇
         </div>
 
         <h2>
-          Something is written on the other side...
+          Remember Me
         </h2>
 
-        <p style="line-height:1.7;">
-          The little charm has remembered enough to notice
-          something important about itself.
+        <p style="line-height:1.75;">
+          Oh.
+          <br><br>
+          So that's what little bunny stitched onto me.
         </p>
 
-        <p style="font-size:1.4rem; letter-spacing:.18em;">
-          R _ M _ M B _ R&nbsp;&nbsp; M _
+        <p style="line-height:1.75; opacity:.7;">
+          I don't think I understand everything yet.
+          <br>
+          But that's okay.
         </p>
 
-        <p class="dev-note">
-          This is where the next part of the game will begin:
-          the real charm, the words on its back, and
-          the meaning of “Remember Me”.
+        <p style="line-height:1.75;">
+          I'm travelling with Yako now anyway.
         </p>
 
       </div>
@@ -707,9 +848,9 @@
 
 <script>
 
-/* ===================================================
-   BASIC SCENE CONTROL
-=================================================== */
+/* =========================================
+   SCENE CONTROL
+========================================= */
 
 function showScene(id) {
 
@@ -722,9 +863,9 @@ function showScene(id) {
 }
 
 
-/* ===================================================
+/* =========================================
    OPENING
-=================================================== */
+========================================= */
 
 const openingLines = [
   "...",
@@ -738,8 +879,12 @@ const openingLines = [
 
 let openingIndex = 0;
 
-const openingText = document.getElementById("openingText");
-const openingButton = document.getElementById("openingButton");
+const openingText =
+  document.getElementById("openingText");
+
+const openingButton =
+  document.getElementById("openingButton");
+
 
 openingButton.addEventListener("click", () => {
 
@@ -747,8 +892,11 @@ openingButton.addEventListener("click", () => {
 
   if (openingIndex < openingLines.length) {
 
-    openingText.textContent = openingLines[openingIndex];
-    openingButton.textContent = "Continue";
+    openingText.textContent =
+      openingLines[openingIndex];
+
+    openingButton.textContent =
+      "Continue";
 
   } else {
 
@@ -760,9 +908,9 @@ openingButton.addEventListener("click", () => {
 });
 
 
-/* ===================================================
+/* =========================================
    AIRPORT DIALOGUE
-=================================================== */
+========================================= */
 
 const airportLines = [
 
@@ -798,34 +946,53 @@ const airportLines = [
 
   "Funny.",
 
-  "I think I actually did."
+  "I think I actually did.",
+
+  "...",
+
+  "Something inside me feels a little tangled.",
+
+  "Maybe the journey shook some things loose."
 
 ];
 
 let airportDialogueIndex = 0;
 
-const airportDialogue = document.getElementById("airportDialogue");
-const airportNext = document.getElementById("airportNext");
+const airportDialogue =
+  document.getElementById("airportDialogue");
+
+const airportNext =
+  document.getElementById("airportNext");
+
 
 function startAirportDialogue() {
 
   airportDialogueIndex = 0;
-  airportDialogue.textContent = airportLines[0];
+
+  airportDialogue.textContent =
+    airportLines[0];
 
 }
+
 
 airportNext.addEventListener("click", () => {
 
   airportDialogueIndex++;
 
-  if (airportDialogueIndex < airportLines.length) {
+  if (
+    airportDialogueIndex <
+    airportLines.length
+  ) {
 
     airportDialogue.textContent =
       airportLines[airportDialogueIndex];
 
   } else {
 
+    puzzleIndex = 0;
+
     showScene("matchScene");
+
     createBoard();
 
   }
@@ -833,72 +1000,117 @@ airportNext.addEventListener("click", () => {
 });
 
 
-/* ===================================================
-   SIMPLE MATCH-3 GAME
-=================================================== */
+/* =========================================
+   STORY MATCH PUZZLES
+========================================= */
 
-const symbols = [
-  "🐙",
-  "🐇",
-  "🧵",
-  "✈️",
-  "☁️",
-  "💌"
+const puzzleSteps = [
+
+  {
+    target: "🐇",
+
+    board: [
+      ["🐇","💾","🧵","✈️","🐙"],
+      ["🧵","🐇","📓","💾","✈️"],
+      ["💾","✈️","🐇","🐇","📓"],
+      ["🐇","📓","🐙","✈️","💾"],
+      ["🐇","💾","🧵","🐙","📓"]
+    ],
+
+    line:
+      "Little bunny... I remember this one."
+  },
+
+  {
+    target: "🐙",
+
+    board: [
+      ["📓","💾","🐙","✈️","🧵"],
+      ["🐇","💾","🐙","💾","✈️"],
+      ["🐙","📓","💾","🧵","🐇"],
+      ["🐙","✈️","🐙","📓","🐙"],
+      ["🧵","✈️","🧵","📓","💾"]
+    ],
+
+    line:
+      "Yako... So that's the little octopus he kept talking about."
+  },
+
+  {
+    target: "🧵",
+
+    board: [
+      ["💾","🐙","✈️","🧵","📓"],
+      ["💾","🐇","🧵","💾","🐇"],
+      ["📓","✈️","💾","✈️","📓"],
+      ["🐙","🧵","🧵","🐙","💾"],
+      ["🧵","🐇","📓","💾","🐙"]
+    ],
+
+    line:
+      "Thread... stitches... Oh. That's me."
+  },
+
+  {
+    target: "📓",
+
+    board: [
+      ["💾","📓","🐇","📓","💾"],
+      ["🐇","🐙","🐇","💾","📓"],
+      ["✈️","🧵","✈️","🐙","🐇"],
+      ["💾","🐙","✈️","🐙","✈️"],
+      ["✈️","🐇","🐇","🧵","🧵"]
+    ],
+
+    line:
+      "There was a notebook before me, wasn't there?"
+  },
+
+  {
+    target: "💾",
+
+    board: [
+      ["🐙","✈️","🐇","🧵","💾"],
+      ["📓","🐇","📓","🐙","✈️"],
+      ["🐙","✈️","📓","💾","🐇"],
+      ["💾","🐇","🐇","🐙","🐙"],
+      ["✈️","💾","💾","🧵","🐙"]
+    ],
+
+    line:
+      "And a little USB drive carrying something ahead of me, too."
+  }
+
 ];
+
 
 const size = 5;
 
+let puzzleIndex = 0;
 let board = [];
 let selected = null;
-let matchCount = 0;
 let boardLocked = false;
 
 const boardElement =
   document.getElementById("matchBoard");
 
-const matchStatus =
-  document.getElementById("matchStatus");
-
-
-function randomSymbol() {
-
-  return symbols[
-    Math.floor(Math.random() * symbols.length)
-  ];
-
-}
+const targetEmoji =
+  document.getElementById("targetEmoji");
 
 
 function createBoard() {
 
-  matchCount = 0;
+  selected = null;
+  boardLocked = false;
 
-  updateMatchStatus();
+  const step =
+    puzzleSteps[puzzleIndex];
 
-  board = [];
+  board =
+    step.board.map(row => [...row]);
 
-  for (let row = 0; row < size; row++) {
-
-    const currentRow = [];
-
-    for (let col = 0; col < size; col++) {
-
-      currentRow.push(randomSymbol());
-
-    }
-
-    board.push(currentRow);
-
-  }
-
-  /* Remove accidental starting matches */
-  while (findMatches().length > 0) {
-
-    board = board.map(row =>
-      row.map(() => randomSymbol())
-    );
-
-  }
+  targetEmoji.textContent =
+    step.target;
 
   renderBoard();
 
@@ -909,31 +1121,40 @@ function renderBoard() {
 
   boardElement.innerHTML = "";
 
-  for (let row = 0; row < size; row++) {
+  for (
+    let row = 0;
+    row < size;
+    row++
+  ) {
 
-    for (let col = 0; col < size; col++) {
+    for (
+      let col = 0;
+      col < size;
+      col++
+    ) {
 
-      const tile = document.createElement("div");
+      const tile =
+        document.createElement("div");
 
       tile.className = "tile";
-      tile.textContent = board[row][col];
 
-      tile.dataset.row = row;
-      tile.dataset.col = col;
+      tile.textContent =
+        board[row][col];
 
       if (
         selected &&
         selected.row === row &&
         selected.col === col
       ) {
+
         tile.classList.add("selected");
+
       }
 
-      tile.addEventListener("click", () => {
-
-        handleTileClick(row, col);
-
-      });
+      tile.addEventListener(
+        "click",
+        () => handleTileClick(row, col)
+      );
 
       boardElement.appendChild(tile);
 
@@ -946,17 +1167,24 @@ function renderBoard() {
 
 function handleTileClick(row, col) {
 
-  if (boardLocked) return;
+  if (boardLocked) {
+    return;
+  }
+
 
   if (!selected) {
 
-    selected = { row, col };
+    selected = {
+      row,
+      col
+    };
 
     renderBoard();
 
     return;
 
   }
+
 
   if (
     selected.row === row &&
@@ -971,13 +1199,18 @@ function handleTileClick(row, col) {
 
   }
 
+
   const distance =
     Math.abs(selected.row - row) +
     Math.abs(selected.col - col);
 
+
   if (distance !== 1) {
 
-    selected = { row, col };
+    selected = {
+      row,
+      col
+    };
 
     renderBoard();
 
@@ -985,45 +1218,95 @@ function handleTileClick(row, col) {
 
   }
 
-  const oldSelected = selected;
+
+  const previous = {
+    ...selected
+  };
 
   selected = null;
 
+
   swapTiles(
-    oldSelected.row,
-    oldSelected.col,
+    previous.row,
+    previous.col,
     row,
     col
   );
 
-  const matches = findMatches();
 
-  if (matches.length === 0) {
+  const matches =
+    findMatches();
+
+
+  if (
+    matches.length === 0
+  ) {
 
     swapTiles(
-      oldSelected.row,
-      oldSelected.col,
+      previous.row,
+      previous.col,
       row,
       col
     );
 
     renderBoard();
 
-  } else {
-
-    resolveMatches();
+    return;
 
   }
+
+
+  const matchedSymbols =
+    new Set(
+      matches.map(
+        ({row, col}) =>
+          board[row][col]
+      )
+    );
+
+
+  const target =
+    puzzleSteps[puzzleIndex].target;
+
+
+  if (
+    !matchedSymbols.has(target)
+  ) {
+
+    swapTiles(
+      previous.row,
+      previous.col,
+      row,
+      col
+    );
+
+    renderBoard();
+
+    return;
+
+  }
+
+
+  solvePuzzle(matches);
 
 }
 
 
-function swapTiles(r1, c1, r2, c2) {
+function swapTiles(
+  r1,
+  c1,
+  r2,
+  c2
+) {
 
-  const temp = board[r1][c1];
+  const temp =
+    board[r1][c1];
 
-  board[r1][c1] = board[r2][c2];
-  board[r2][c2] = temp;
+  board[r1][c1] =
+    board[r2][c2];
+
+  board[r2][c2] =
+    temp;
 
 }
 
@@ -1034,189 +1317,194 @@ function findMatches() {
     new Set();
 
 
-  /* Horizontal */
+  /* horizontal */
 
-  for (let row = 0; row < size; row++) {
+  for (
+    let row = 0;
+    row < size;
+    row++
+  ) {
 
-    let runStart = 0;
+    let start = 0;
 
-    for (let col = 1; col <= size; col++) {
+    for (
+      let col = 1;
+      col <= size;
+      col++
+    ) {
 
       if (
         col < size &&
         board[row][col] ===
-        board[row][runStart]
+        board[row][start]
       ) {
 
         continue;
 
       }
 
-      const length = col - runStart;
+      const length =
+        col - start;
 
-      if (length >= 3) {
+      if (
+        length >= 3
+      ) {
 
         for (
-          let x = runStart;
+          let x = start;
           x < col;
           x++
         ) {
 
-          matched.add(`${row},${x}`);
+          matched.add(
+            `${row},${x}`
+          );
 
         }
 
       }
 
-      runStart = col;
+      start = col;
 
     }
 
   }
 
 
-  /* Vertical */
+  /* vertical */
 
-  for (let col = 0; col < size; col++) {
+  for (
+    let col = 0;
+    col < size;
+    col++
+  ) {
 
-    let runStart = 0;
+    let start = 0;
 
-    for (let row = 1; row <= size; row++) {
+    for (
+      let row = 1;
+      row <= size;
+      row++
+    ) {
 
       if (
         row < size &&
         board[row][col] ===
-        board[runStart][col]
+        board[start][col]
       ) {
 
         continue;
 
       }
 
-      const length = row - runStart;
+      const length =
+        row - start;
 
-      if (length >= 3) {
+      if (
+        length >= 3
+      ) {
 
         for (
-          let y = runStart;
+          let y = start;
           y < row;
           y++
         ) {
 
-          matched.add(`${y},${col}`);
+          matched.add(
+            `${y},${col}`
+          );
 
         }
 
       }
 
-      runStart = row;
+      start = row;
 
     }
 
   }
 
-  return Array.from(matched).map(item => {
 
-    const [row, col] =
-      item.split(",").map(Number);
+  return Array
+    .from(matched)
+    .map(item => {
 
-    return { row, col };
+      const [row, col] =
+        item
+          .split(",")
+          .map(Number);
 
-  });
-
-}
-
-
-async function resolveMatches() {
-
-  boardLocked = true;
-
-  let chainOccurred = false;
-
-  while (true) {
-
-    const matches = findMatches();
-
-    if (matches.length === 0) break;
-
-    chainOccurred = true;
-
-    matchCount++;
-
-    updateMatchStatus();
-
-    matches.forEach(({row, col}) => {
-
-      board[row][col] = null;
+      return {
+        row,
+        col
+      };
 
     });
 
-    renderBoard();
-
-    await sleep(240);
-
-    dropTiles();
-
-    renderBoard();
-
-    await sleep(240);
-
-  }
-
-  boardLocked = false;
-
-  if (
-    chainOccurred &&
-    matchCount >= 5
-  ) {
-
-    setTimeout(() => {
-      startMemoryScene();
-    }, 500);
-
-  }
-
 }
 
 
-function dropTiles() {
+async function solvePuzzle(matches) {
 
-  for (let col = 0; col < size; col++) {
+  boardLocked = true;
 
-    const column = [];
 
-    for (let row = size - 1; row >= 0; row--) {
-
-      if (board[row][col] !== null) {
-
-        column.push(board[row][col]);
-
-      }
-
-    }
-
-    while (column.length < size) {
-
-      column.push(randomSymbol());
-
-    }
-
-    for (let row = size - 1; row >= 0; row--) {
+  matches.forEach(
+    ({row, col}) => {
 
       board[row][col] =
-        column[size - 1 - row];
+        "✨";
 
     }
+  );
 
-  }
+
+  renderBoard();
+
+  await sleep(500);
+
+  showPuzzleMemory();
 
 }
 
 
-function updateMatchStatus() {
+function showPuzzleMemory() {
 
-  matchStatus.textContent =
-    `Memories restored: ${Math.min(matchCount,5)} / 5`;
+  const step =
+    puzzleSteps[puzzleIndex];
+
+  memoryIcon.textContent =
+    step.target;
+
+  memoryText.textContent =
+    step.line;
+
+  memoryNext.dataset.mode =
+    "puzzle";
+
+  showScene("memoryScene");
+
+}
+
+
+function continuePuzzleStory() {
+
+  puzzleIndex++;
+
+  if (
+    puzzleIndex <
+    puzzleSteps.length
+  ) {
+
+    showScene("matchScene");
+
+    createBoard();
+
+  } else {
+
+    startFinalMemorySequence();
+
+  }
 
 }
 
@@ -1230,11 +1518,29 @@ function sleep(ms) {
 }
 
 
-/* ===================================================
+/* =========================================
    MEMORY SCENE
-=================================================== */
+========================================= */
 
 const memoryLines = [
+
+  {
+    icon: "🧵",
+    text:
+      "That's strange..."
+  },
+
+  {
+    icon: "💭",
+    text:
+      "I think I remember a little more now."
+  },
+
+  {
+    icon: "🐙",
+    text:
+      "Yako."
+  },
 
   {
     icon: "🐇",
@@ -1245,65 +1551,11 @@ const memoryLines = [
   {
     icon: "🧵",
     text:
-      "I remember that part."
+      "And me."
   },
 
   {
-    icon: "🐇",
-    text:
-      "His hands kept moving while he was making me..."
-  },
-
-  {
-    icon: "💭",
-    text:
-      "...and he kept talking."
-  },
-
-  {
-    icon: "🐙",
-    text:
-      "About someone called Yako."
-  },
-
-  {
-    icon: "📓",
-    text:
-      "Apparently there was a notebook before me, too."
-  },
-
-  {
-    icon: "💾",
-    text:
-      "And a little USB drive carrying things I don't even know about."
-  },
-
-  {
-    icon: "🐇",
-    text:
-      "Seems like little bunny has been sending pieces of himself ahead for quite a while."
-  },
-
-  {
-    icon: "🧵",
-    text:
-      "And now there's me."
-  },
-
-  {
-    icon: "🐙",
-    text:
-      "So..."
-  },
-
-  {
-    icon: "🐙",
-    text:
-      "I suppose I'm travelling with her now."
-  },
-
-  {
-    icon: "🧵",
+    icon: "❔",
     text:
       "...Wait."
   },
@@ -1315,6 +1567,7 @@ const memoryLines = [
   }
 
 ];
+
 
 let memoryIndex = 0;
 
@@ -1328,13 +1581,16 @@ const memoryNext =
   document.getElementById("memoryNext");
 
 
-function startMemoryScene() {
-
-  showScene("memoryScene");
+function startFinalMemorySequence() {
 
   memoryIndex = 0;
 
+  memoryNext.dataset.mode =
+    "story";
+
   displayMemoryLine();
+
+  showScene("memoryScene");
 
 }
 
@@ -1352,20 +1608,115 @@ function displayMemoryLine() {
 
 memoryNext.addEventListener("click", () => {
 
+  const mode =
+    memoryNext.dataset.mode;
+
+
+  if (
+    mode === "puzzle"
+  ) {
+
+    continuePuzzleStory();
+
+    return;
+
+  }
+
+
   memoryIndex++;
 
-  if (memoryIndex <
-      memoryLines.length) {
+
+  if (
+    memoryIndex <
+    memoryLines.length
+  ) {
 
     displayMemoryLine();
 
   } else {
 
-    showScene("placeholderScene");
+    showScene("rememberScene");
 
   }
 
 });
+
+
+/* =========================================
+   REMEMBER ME PUZZLE
+========================================= */
+
+const rememberInput =
+  document.getElementById("rememberInput");
+
+const rememberSubmit =
+  document.getElementById("rememberSubmit");
+
+const answerFeedback =
+  document.getElementById("answerFeedback");
+
+
+function checkRememberAnswer() {
+
+  const answer =
+    rememberInput
+      .value
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, " ");
+
+  if (
+    answer === "remember me"
+  ) {
+
+    answerFeedback.textContent =
+      "That's it.";
+
+    rememberInput.disabled =
+      true;
+
+    rememberSubmit.disabled =
+      true;
+
+    rememberSubmit.style.opacity =
+      "0.5";
+
+    setTimeout(() => {
+
+      showScene("nextScene");
+
+    }, 850);
+
+  } else {
+
+    answerFeedback.textContent =
+      "Not quite... Maybe look at the real charm.";
+
+  }
+
+}
+
+
+rememberSubmit.addEventListener(
+  "click",
+  checkRememberAnswer
+);
+
+
+rememberInput.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      checkRememberAnswer();
+
+    }
+
+  }
+);
 
 </script>
 
