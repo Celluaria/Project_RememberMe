@@ -21,15 +21,15 @@
         Arial,
         sans-serif;
       background:
-        radial-gradient(circle at top, #25334c 0%, #111827 42%, #090d16 100%);
+        radial-gradient(circle at top, #273750 0%, #111827 43%, #080c14 100%);
       color: #f7f4ee;
     }
 
     body {
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 18px;
       overflow-x: hidden;
     }
@@ -51,8 +51,8 @@
 
       background:
         linear-gradient(
-          rgba(17, 24, 39, 0.9),
-          rgba(17, 24, 39, 0.96)
+          rgba(17, 24, 39, 0.91),
+          rgba(17, 24, 39, 0.97)
         );
 
       border: 1px solid rgba(255,255,255,0.12);
@@ -68,7 +68,7 @@
       min-height: inherit;
       padding: 34px;
       position: relative;
-      animation: sceneFade 0.55s ease;
+      animation: sceneFade 0.5s ease;
     }
 
     .scene.active {
@@ -79,7 +79,7 @@
     @keyframes sceneFade {
       from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(7px);
       }
 
       to {
@@ -100,11 +100,11 @@
     }
 
     .primary-btn {
-      padding: 14px 26px;
-      background: #f4e7dc;
+      padding: 14px 27px;
+      background: #f3e6dc;
       color: #202632;
       font-weight: 700;
-      min-width: 150px;
+      min-width: 142px;
     }
 
     .soft-btn {
@@ -124,32 +124,19 @@
       transform: translateY(0);
     }
 
-    /* OPENING */
-
-    #opening {
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .tiny-label {
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      opacity: 0.55;
-      font-size: 0.72rem;
-      margin-bottom: 18px;
-    }
+    /* =========================
+       CHARM
+    ========================= */
 
     .charm {
-      width: 130px;
+      width: 132px;
       height: 160px;
       margin: 15px auto 34px;
-
       border-radius: 44% 44% 40% 40%;
       border: 3px dashed rgba(255,255,255,0.72);
 
       background:
-        linear-gradient(145deg, #e9d8c7, #c9a98f);
+        linear-gradient(145deg, #ead9c9, #c9a98e);
 
       box-shadow:
         0 15px 45px rgba(0,0,0,0.4),
@@ -191,6 +178,24 @@
       }
     }
 
+    /* =========================
+       OPENING
+    ========================= */
+
+    #opening {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .tiny-label {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      opacity: 0.5;
+      font-size: 0.72rem;
+      margin-bottom: 18px;
+    }
+
     .opening-text {
       min-height: 112px;
       max-width: 560px;
@@ -199,7 +204,9 @@
       margin: 0 auto 24px;
     }
 
-    /* AIRPORT */
+    /* =========================
+       AIRPORT
+    ========================= */
 
     .airport-header {
       display: flex;
@@ -235,10 +242,10 @@
       background:
         linear-gradient(
           to bottom,
-          #8199ad 0%,
-          #a8bac8 46%,
-          #c5c8c5 47%,
-          #a4a7a5 60%,
+          #829aac 0%,
+          #a9bac7 46%,
+          #c8cac5 47%,
+          #a5a8a5 60%,
           #555d68 61%,
           #424955 100%
         );
@@ -277,6 +284,24 @@
       transform: rotate(-4deg);
     }
 
+    .seat {
+      position: absolute;
+      right: 8%;
+      bottom: 15px;
+      width: 210px;
+      height: 30px;
+      border-radius: 10px;
+      background: #252d39;
+      opacity: 0.9;
+    }
+
+    .bag {
+      position: absolute;
+      right: 7%;
+      bottom: 42px;
+      font-size: 2.5rem;
+    }
+
     .yako {
       position: absolute;
       right: 16%;
@@ -298,24 +323,6 @@
       }
     }
 
-    .seat {
-      position: absolute;
-      right: 8%;
-      bottom: 15px;
-      width: 210px;
-      height: 30px;
-      border-radius: 10px;
-      background: #252d39;
-      opacity: 0.9;
-    }
-
-    .bag {
-      position: absolute;
-      right: 7%;
-      bottom: 42px;
-      font-size: 2.5rem;
-    }
-
     .dialogue-box {
       margin-top: auto;
       background: rgba(255,255,255,0.065);
@@ -326,10 +333,10 @@
     }
 
     .speaker {
-      font-size: 0.75rem;
+      font-size: 0.73rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      opacity: 0.5;
+      opacity: 0.42;
       margin-bottom: 10px;
     }
 
@@ -345,37 +352,27 @@
       margin-top: 12px;
     }
 
-    /* MATCH GAME */
+    /* =========================
+       MATCH GAME
+    ========================= */
 
     #matchScene {
       justify-content: center;
+      text-align: center;
     }
 
-    .section-title {
-      text-align: center;
-      font-size: clamp(1.4rem, 4vw, 2rem);
-      margin: 0 0 6px;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      opacity: 0.65;
-      line-height: 1.5;
-      margin: 0 auto 22px;
-      max-width: 580px;
-    }
-
-    .target-line {
-      text-align: center;
-      margin-bottom: 14px;
-      font-size: 0.95rem;
-      opacity: 0.72;
+    .charm-thought {
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
+      line-height: 1.7;
+      min-height: 78px;
+      max-width: 620px;
+      margin: 0 auto 18px;
     }
 
     .target-emoji {
-      font-size: 1.7rem;
-      vertical-align: middle;
-      margin-left: 5px;
+      display: block;
+      font-size: 2.5rem;
+      margin-top: 6px;
     }
 
     #matchBoard {
@@ -383,7 +380,7 @@
       grid-template-columns: repeat(5, 1fr);
       gap: 8px;
       width: min(430px, 100%);
-      margin: 0 auto 20px;
+      margin: 0 auto;
       user-select: none;
     }
 
@@ -417,16 +414,9 @@
       outline: 2px solid rgba(255,255,255,0.55);
     }
 
-    .hint {
-      max-width: 520px;
-      margin: 0 auto;
-      text-align: center;
-      opacity: 0.52;
-      font-size: 0.86rem;
-      line-height: 1.5;
-    }
-
-    /* MEMORY */
+    /* =========================
+       MEMORY
+    ========================= */
 
     #memoryScene {
       justify-content: center;
@@ -436,7 +426,7 @@
     .memory-card {
       max-width: 650px;
       margin: auto;
-      padding: 32px;
+      padding: 34px 30px;
 
       border-radius: 24px;
       background: rgba(255,255,255,0.065);
@@ -449,12 +439,17 @@
     }
 
     .memory-text {
-      min-height: 150px;
+      min-height: 145px;
       font-size: clamp(1.05rem, 3vw, 1.3rem);
       line-height: 1.75;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* REMEMBER ME */
+    /* =========================
+       REMEMBER PUZZLE
+    ========================= */
 
     #rememberScene {
       justify-content: center;
@@ -462,9 +457,10 @@
     }
 
     .remember-card {
-      max-width: 680px;
+      max-width: 700px;
+      width: 100%;
       margin: auto;
-      padding: 34px;
+      padding: 32px 28px;
 
       border-radius: 24px;
       background: rgba(255,255,255,0.065);
@@ -481,7 +477,7 @@
       border: 3px dashed rgba(255,255,255,0.72);
 
       background:
-        linear-gradient(145deg, #e9d8c7, #c9a98f);
+        linear-gradient(145deg, #ead9c9, #c9a98e);
 
       color: #272a31;
 
@@ -490,7 +486,7 @@
       align-items: center;
       justify-content: center;
 
-      gap: 14px;
+      gap: 17px;
 
       box-shadow:
         0 15px 45px rgba(0,0,0,0.35),
@@ -498,59 +494,132 @@
     }
 
     .back-icons {
-      font-size: 2.7rem;
+      font-size: 2.8rem;
     }
 
-    .back-text {
+    .mystery-stitches {
+      width: 110px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      opacity: 0.55;
+    }
+
+    .stitch-line {
+      height: 3px;
+      border-radius: 999px;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #655346 0 8px,
+          transparent 8px 13px
+        );
+    }
+
+    .remember-dialogue {
+      max-width: 570px;
+      margin: 0 auto 26px;
+      line-height: 1.75;
+      font-size: clamp(1.02rem, 3vw, 1.25rem);
+    }
+
+    .letter-puzzle {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin: 28px auto 18px;
       font-weight: 800;
-      letter-spacing: 0.16em;
-      font-size: 0.82rem;
     }
 
-    .word-puzzle {
-      font-size: clamp(1.3rem, 5vw, 2rem);
-      letter-spacing: 0.13em;
-      margin: 26px 0 20px;
+    .word-group {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      margin: 5px 9px;
+    }
+
+    .fixed-letter,
+    .letter-box {
+      width: 31px;
+      height: 44px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: clamp(1.35rem, 5vw, 1.85rem);
       font-weight: 800;
     }
 
-    .answer-input {
-      width: min(380px, 100%);
-      padding: 14px 18px;
-
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.14);
-
-      background: rgba(255,255,255,0.08);
-      color: white;
-
+    .letter-box {
+      border: 0;
+      border-bottom: 2px solid rgba(255,255,255,0.62);
+      border-radius: 0;
       outline: none;
+
+      background: transparent;
+      color: white;
+      text-transform: uppercase;
       text-align: center;
-      font-size: 1rem;
+
+      padding: 0;
+      caret-color: white;
     }
 
-    .answer-input:focus {
-      border-color: rgba(255,255,255,0.4);
+    .letter-box:focus {
+      border-bottom-color: #fff;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .letter-box.correct {
+      border-bottom-color: rgba(255,255,255,0);
+      animation: letterGlow 0.6s ease;
+    }
+
+    .letter-box.wrong {
+      animation: shake 0.28s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    @keyframes letterGlow {
+      0% {
+        text-shadow: none;
+      }
+
+      50% {
+        text-shadow:
+          0 0 10px white,
+          0 0 22px rgba(255,255,255,0.7);
+      }
+
+      100% {
+        text-shadow: none;
+      }
     }
 
     .answer-feedback {
-      min-height: 28px;
-      margin-top: 12px;
-      opacity: 0.7;
+      min-height: 32px;
+      opacity: 0.65;
+      font-size: 0.9rem;
     }
 
-    .button-row {
-      margin-top: 18px;
-    }
+    /* =========================
+       REVEAL
+    ========================= */
 
-    /* NEXT */
-
-    #nextScene {
+    #revealScene {
       justify-content: center;
       text-align: center;
     }
 
-    .next-card {
+    .reveal-card {
       max-width: 650px;
       margin: auto;
       padding: 34px;
@@ -560,12 +629,36 @@
       border-radius: 24px;
     }
 
-    .next-icons {
-      font-size: 3rem;
-      margin-bottom: 22px;
+    .reveal-title {
+      letter-spacing: 0.15em;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      margin: 10px 0 28px;
+      animation: softGlow 2s ease-in-out infinite;
     }
 
+    @keyframes softGlow {
+      0%,
+      100% {
+        text-shadow: 0 0 0 rgba(255,255,255,0);
+      }
+
+      50% {
+        text-shadow: 0 0 24px rgba(255,255,255,0.4);
+      }
+    }
+
+    .reveal-text {
+      min-height: 180px;
+      line-height: 1.8;
+      font-size: clamp(1.02rem, 3vw, 1.25rem);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
     @media (max-width: 600px) {
+
       body {
         padding: 0;
       }
@@ -603,243 +696,338 @@
 
       .memory-card,
       .remember-card,
-      .next-card {
+      .reveal-card {
         padding: 24px 18px;
       }
+
+      .fixed-letter,
+      .letter-box {
+        width: 27px;
+        height: 40px;
+      }
+
+      .word-group {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
     }
+
   </style>
 </head>
 
 <body>
 
-  <main id="game">
+<main id="game">
 
-    <section id="opening" class="scene active">
+  <!-- OPENING -->
 
-      <div class="tiny-label">
-        Project Remember Me
+  <section id="opening" class="scene active">
+
+    <div class="tiny-label">
+      Project Remember Me
+    </div>
+
+    <div class="charm">
+      <div class="charm-face">🧵</div>
+    </div>
+
+    <div id="openingText" class="opening-text">
+      ...
+    </div>
+
+    <button id="openingButton" class="primary-btn">
+      Wake up
+    </button>
+
+  </section>
+
+
+  <!-- AIRPORT -->
+
+  <section id="airportScene" class="scene">
+
+    <div class="airport-header">
+
+      <div>
+        <div class="airport-name">
+          XIAMEN
+        </div>
+
+        <div class="airport-sub">
+          Gaoqi International Airport
+        </div>
       </div>
 
-      <div class="charm">
-        <div class="charm-face">🧵</div>
+      <div class="airport-time">
+        10:20 AM<br>
+        <small>Transit</small>
       </div>
 
-      <div id="openingText" class="opening-text">
+    </div>
+
+    <div class="window">
+
+      <div class="plane">✈️</div>
+      <div class="seat"></div>
+      <div class="bag">🧳</div>
+      <div class="yako">🐙</div>
+
+    </div>
+
+    <div class="dialogue-box">
+
+      <div class="speaker">
+        Me
+      </div>
+
+      <div
+        id="airportDialogue"
+        class="dialogue">
+      </div>
+
+      <div class="dialogue-controls">
+        <button
+          id="airportNext"
+          class="soft-btn">
+          ...
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MATCH -->
+
+  <section id="matchScene" class="scene">
+
+    <div id="matchThought" class="charm-thought">
+      Something feels familiar...
+      <span id="targetEmoji" class="target-emoji">🐇</span>
+    </div>
+
+    <div id="matchBoard"></div>
+
+  </section>
+
+
+  <!-- MEMORY -->
+
+  <section id="memoryScene" class="scene">
+
+    <div class="memory-card">
+
+      <div
+        id="memoryIcon"
+        class="memory-icon">
+        🐇
+      </div>
+
+      <div
+        id="memoryText"
+        class="memory-text">
+      </div>
+
+      <button
+        id="memoryNext"
+        class="primary-btn">
         ...
-      </div>
-
-      <button id="openingButton" class="primary-btn">
-        Wake up
       </button>
 
-    </section>
+    </div>
+
+  </section>
 
 
-    <section id="airportScene" class="scene">
+  <!-- REMEMBER ME -->
 
-      <div class="airport-header">
+  <section id="rememberScene" class="scene">
 
-        <div>
-          <div class="airport-name">
-            XIAMEN
-          </div>
+    <div class="remember-card">
 
-          <div class="airport-sub">
-            Gaoqi International Airport
-          </div>
+      <div class="back-charm">
+
+        <div class="back-icons">
+          🐙　🐇
         </div>
 
-        <div class="airport-time">
-          10:20 AM<br>
-          <small>Transit</small>
-        </div>
-
-      </div>
-
-      <div class="window">
-
-        <div class="plane">✈️</div>
-        <div class="seat"></div>
-        <div class="bag">🧳</div>
-        <div class="yako">🐙</div>
-
-      </div>
-
-      <div class="dialogue-box">
-
-        <div class="speaker">
-          Little Charm
-        </div>
-
-        <div id="airportDialogue" class="dialogue"></div>
-
-        <div class="dialogue-controls">
-          <button id="airportNext" class="soft-btn">
-            Continue
-          </button>
+        <div class="mystery-stitches">
+          <div class="stitch-line"></div>
+          <div class="stitch-line"></div>
         </div>
 
       </div>
 
-    </section>
+      <div class="remember-dialogue">
 
+        ...Huh?
 
-    <section id="matchScene" class="scene">
+        <br><br>
 
-      <h2 class="section-title">
-        Untangle a memory
-      </h2>
+        There's something stitched on my back.
 
-      <p class="section-subtitle">
-        Something familiar is hiding in the mess.
-      </p>
+        <br><br>
 
-      <div class="target-line">
-        Find the memory:
-        <span id="targetEmoji" class="target-emoji">🐇</span>
-      </div>
+        I can feel the letters,
+        but I can't quite read them.
 
-      <div id="matchBoard"></div>
+        <br>
 
-      <div class="hint">
-        Select one symbol, then a neighbouring symbol to swap them.
-        Only one memory is ready to be restored.
-      </div>
-
-    </section>
-
-
-    <section id="memoryScene" class="scene">
-
-      <div class="memory-card">
-
-        <div id="memoryIcon" class="memory-icon">
-          🐇
-        </div>
-
-        <div id="memoryText" class="memory-text"></div>
-
-        <button id="memoryNext" class="primary-btn">
-          Continue
-        </button>
+        Maybe the real me can.
 
       </div>
 
-    </section>
 
+      <div class="letter-puzzle">
 
-    <section id="rememberScene" class="scene">
+        <div class="word-group">
 
-      <div class="remember-card">
+          <span class="fixed-letter">R</span>
 
-        <div class="back-charm">
+          <input
+            class="letter-box missing-letter"
+            maxlength="1"
+            inputmode="text"
+            autocomplete="off"
+            data-answer="E"
+            aria-label="Missing letter"
+          />
 
-          <div class="back-icons">
-            🐙　🐇
-          </div>
+          <span class="fixed-letter">M</span>
 
-          <div class="back-text">
-            REMEMBER ME
-          </div>
+          <input
+            class="letter-box missing-letter"
+            maxlength="1"
+            inputmode="text"
+            autocomplete="off"
+            data-answer="E"
+            aria-label="Missing letter"
+          />
+
+          <span class="fixed-letter">M</span>
+
+          <span class="fixed-letter">B</span>
+
+          <input
+            class="letter-box missing-letter"
+            maxlength="1"
+            inputmode="text"
+            autocomplete="off"
+            data-answer="E"
+            aria-label="Missing letter"
+          />
+
+          <span class="fixed-letter">R</span>
 
         </div>
 
-        <div class="memory-text">
 
-          There's writing on my back.
+        <div class="word-group">
 
-          <br><br>
+          <span class="fixed-letter">M</span>
 
-          Maybe the real me knows what it says.
+          <input
+            class="letter-box missing-letter"
+            maxlength="1"
+            inputmode="text"
+            autocomplete="off"
+            data-answer="E"
+            aria-label="Missing letter"
+          />
 
-        </div>
-
-        <div class="word-puzzle">
-          R _ M _ M B _ R&nbsp;&nbsp; M _
-        </div>
-
-        <input
-          id="rememberInput"
-          class="answer-input"
-          type="text"
-          placeholder="Type the words here..."
-          autocomplete="off"
-        />
-
-        <div id="answerFeedback" class="answer-feedback"></div>
-
-        <div class="button-row">
-          <button id="rememberSubmit" class="primary-btn">
-            Check
-          </button>
         </div>
 
       </div>
 
-    </section>
-
-
-    <section id="nextScene" class="scene">
-
-      <div class="next-card">
-
-        <div class="next-icons">
-          🐙 ♡ 🐇
-        </div>
-
-        <h2>
-          Remember Me
-        </h2>
-
-        <p style="line-height:1.75;">
-          Oh.
-          <br><br>
-          So that's what little bunny stitched onto me.
-        </p>
-
-        <p style="line-height:1.75; opacity:.7;">
-          I don't think I understand everything yet.
-          <br>
-          But that's okay.
-        </p>
-
-        <p style="line-height:1.75;">
-          I'm travelling with Yako now anyway.
-        </p>
-
+      <div
+        id="answerFeedback"
+        class="answer-feedback">
       </div>
 
-    </section>
+    </div>
 
-  </main>
+  </section>
+
+
+  <!-- REVEAL -->
+
+  <section id="revealScene" class="scene">
+
+    <div class="reveal-card">
+
+      <div style="font-size:3rem;">
+        🐙　🐇
+      </div>
+
+      <div class="reveal-title">
+        REMEMBER ME
+      </div>
+
+      <div
+        id="revealText"
+        class="reveal-text">
+      </div>
+
+      <button
+        id="revealNext"
+        class="primary-btn">
+        ...
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
 
 
 <script>
 
+/* ======================================================
+   SCENE CONTROL
+====================================================== */
+
 function showScene(id) {
 
-  document.querySelectorAll(".scene").forEach(scene => {
-    scene.classList.remove("active");
-  });
+  document
+    .querySelectorAll(".scene")
+    .forEach(scene => {
+      scene.classList.remove("active");
+    });
 
-  document.getElementById(id).classList.add("active");
+  document
+    .getElementById(id)
+    .classList.add("active");
 
 }
 
 
-/* OPENING */
+/* ======================================================
+   OPENING
+====================================================== */
 
 const openingLines = [
+
   "...",
+
   "...ugh.",
+
   "Why is everything still moving?",
+
   "Wait.",
+
   "It's not moving anymore.",
+
   "So...",
+
   "Where am I?"
+
 ];
 
+
 let openingIndex = 0;
+
 
 const openingText =
   document.getElementById("openingText");
@@ -848,29 +1036,40 @@ const openingButton =
   document.getElementById("openingButton");
 
 
-openingButton.addEventListener("click", () => {
+openingButton.addEventListener(
+  "click",
+  () => {
 
-  openingIndex++;
+    openingIndex++;
 
-  if (openingIndex < openingLines.length) {
+    if (
+      openingIndex <
+      openingLines.length
+    ) {
 
-    openingText.textContent =
-      openingLines[openingIndex];
+      openingText.textContent =
+        openingLines[openingIndex];
 
-    openingButton.textContent =
-      "Continue";
+      openingButton.textContent =
+        "...";
 
-  } else {
+    }
 
-    showScene("airportScene");
-    startAirportDialogue();
+    else {
+
+      showScene("airportScene");
+
+      startAirportDialogue();
+
+    }
 
   }
+);
 
-});
 
-
-/* AIRPORT */
+/* ======================================================
+   AIRPORT DIALOGUE
+====================================================== */
 
 const airportLines = [
 
@@ -878,7 +1077,9 @@ const airportLines = [
 
   "An airport?",
 
-  "Oh. That explains the shaking.",
+  "Oh.",
+
+  "That explains the shaking.",
 
   "...",
 
@@ -896,7 +1097,7 @@ const airportLines = [
 
   "Yako?",
 
-  "The Yako that little bunny kept talking about while making me?",
+  "The Yako that Celluaria kept talking about while making me?",
 
   "...",
 
@@ -910,13 +1111,15 @@ const airportLines = [
 
   "...",
 
-  "Something inside me feels a little tangled.",
+  "Something inside me feels all tangled up.",
 
   "Maybe the journey shook some things loose."
 
 ];
 
+
 let airportDialogueIndex = 0;
+
 
 const airportDialogue =
   document.getElementById("airportDialogue");
@@ -935,108 +1138,253 @@ function startAirportDialogue() {
 }
 
 
-airportNext.addEventListener("click", () => {
+airportNext.addEventListener(
+  "click",
+  () => {
 
-  airportDialogueIndex++;
+    airportDialogueIndex++;
 
-  if (
-    airportDialogueIndex <
-    airportLines.length
-  ) {
+    if (
+      airportDialogueIndex <
+      airportLines.length
+    ) {
 
-    airportDialogue.textContent =
-      airportLines[airportDialogueIndex];
+      airportDialogue.textContent =
+        airportLines[
+          airportDialogueIndex
+        ];
 
-  } else {
+    }
 
-    puzzleIndex = 0;
+    else {
 
-    showScene("matchScene");
+      puzzleIndex = 0;
 
-    createBoard();
+      showScene("matchScene");
+
+      createBoard();
+
+    }
 
   }
+);
 
-});
 
-
-/* STORY MATCH PUZZLES */
+/* ======================================================
+   STORY MATCH PUZZLES
+====================================================== */
 
 const puzzleSteps = [
 
   {
     target: "🐇",
 
+    thought:
+      "Something feels familiar...\nIs that...?",
+
     board: [
+
       ["🐇","💾","🧵","✈️","🐙"],
       ["🧵","🐇","📓","💾","✈️"],
       ["💾","✈️","🐇","🐇","📓"],
       ["🐇","📓","🐙","✈️","💾"],
       ["🐇","💾","🧵","🐙","📓"]
+
     ],
 
-    line:
-      "Little bunny... I remember this one."
+    memories: [
+
+      {
+        icon: "🐇",
+        text:
+          "Celluaria..."
+      },
+
+      {
+        icon: "🐇",
+        text:
+          "I remember him."
+      },
+
+      {
+        icon: "🧵",
+        text:
+          "His hands kept moving while he was making me."
+      },
+
+      {
+        icon: "💭",
+        text:
+          "And he talked. A lot."
+      }
+
+    ]
   },
+
 
   {
     target: "🐙",
 
+    thought:
+      "Wait...\nThere's another one.",
+
     board: [
+
       ["📓","💾","🐙","✈️","🧵"],
       ["🐇","💾","🐙","💾","✈️"],
       ["🐙","📓","💾","🧵","🐇"],
       ["🐙","✈️","🐙","📓","🐙"],
       ["🧵","✈️","🧵","📓","💾"]
+
     ],
 
-    line:
-      "Yako... So that's the little octopus he kept talking about."
+    memories: [
+
+      {
+        icon: "🐙",
+        text:
+          "Yako."
+      },
+
+      {
+        icon: "🐙",
+        text:
+          "That's the name I heard so many times."
+      },
+
+      {
+        icon: "🐙",
+        text:
+          "So the little octopus really is her."
+      }
+
+    ]
   },
+
 
   {
     target: "🧵",
 
+    thought:
+      "And this one...\nWhy does it feel so close?",
+
     board: [
+
       ["💾","🐙","✈️","🧵","📓"],
       ["💾","🐇","🧵","💾","🐇"],
       ["📓","✈️","💾","✈️","📓"],
       ["🐙","🧵","🧵","🐙","💾"],
       ["🧵","🐇","📓","💾","🐙"]
+
     ],
 
-    line:
-      "Thread... stitches... Oh. That's me."
+    memories: [
+
+      {
+        icon: "🧵",
+        text:
+          "Thread..."
+      },
+
+      {
+        icon: "🧵",
+        text:
+          "Stitches..."
+      },
+
+      {
+        icon: "🧵",
+        text:
+          "Oh."
+      },
+
+      {
+        icon: "🧵",
+        text:
+          "That's me."
+      }
+
+    ]
   },
+
 
   {
     target: "📓",
 
+    thought:
+      "Hm...\nI think something came before me.",
+
     board: [
+
       ["🧵","📓","🐙","🧵","✈️"],
       ["📓","🐇","💾","📓","🧵"],
       ["🐇","📓","💾","🧵","🧵"],
       ["🐙","💾","🐙","🐙","🐇"],
       ["🐙","🧵","🐙","💾","📓"]
+
     ],
 
-    line:
-      "There was a notebook before me, wasn't there?"
+    memories: [
+
+      {
+        icon: "📓",
+        text:
+          "A notebook..."
+      },
+
+      {
+        icon: "📓",
+        text:
+          "So I wasn't the first thing Celluaria sent along with her."
+      },
+
+      {
+        icon: "📓",
+        text:
+          "I suppose that makes the notebook my senior."
+      }
+
+    ]
   },
+
 
   {
     target: "💾",
 
+    thought:
+      "And there's one more thing hiding in here...",
+
     board: [
+
       ["🐙","✈️","🐇","🧵","💾"],
       ["📓","🐇","📓","🐙","✈️"],
       ["🐙","✈️","📓","💾","🐇"],
       ["💾","🐇","🐇","🐙","🐙"],
       ["✈️","💾","💾","🧵","🐙"]
+
     ],
 
-    line:
-      "And a little USB drive carrying something ahead of me, too."
+    memories: [
+
+      {
+        icon: "💾",
+        text:
+          "A little USB drive."
+      },
+
+      {
+        icon: "💾",
+        text:
+          "Apparently it carried things ahead before I did."
+      },
+
+      {
+        icon: "🧵",
+        text:
+          "Celluaria has been sending little pieces of himself along for a while, hasn't he?"
+      }
+
+    ]
   }
 
 ];
@@ -1045,9 +1393,15 @@ const puzzleSteps = [
 const size = 5;
 
 let puzzleIndex = 0;
+
 let board = [];
+
 let selected = null;
+
 let boardLocked = false;
+
+let puzzleMemoryIndex = 0;
+
 
 const boardElement =
   document.getElementById("matchBoard");
@@ -1055,20 +1409,28 @@ const boardElement =
 const targetEmoji =
   document.getElementById("targetEmoji");
 
+const matchThought =
+  document.getElementById("matchThought");
+
 
 function createBoard() {
 
   selected = null;
+
   boardLocked = false;
 
   const step =
     puzzleSteps[puzzleIndex];
 
   board =
-    step.board.map(row => [...row]);
+    step.board.map(
+      row => [...row]
+    );
 
-  targetEmoji.textContent =
-    step.target;
+  matchThought.innerHTML =
+    step.thought
+      .replace(/\n/g, "<br>") +
+    `<span class="target-emoji">${step.target}</span>`;
 
   renderBoard();
 
@@ -1094,10 +1456,12 @@ function renderBoard() {
       const tile =
         document.createElement("div");
 
-      tile.className = "tile";
+      tile.className =
+        "tile";
 
       tile.textContent =
         board[row][col];
+
 
       if (
         selected &&
@@ -1105,16 +1469,26 @@ function renderBoard() {
         selected.col === col
       ) {
 
-        tile.classList.add("selected");
+        tile.classList.add(
+          "selected"
+        );
 
       }
 
+
       tile.addEventListener(
         "click",
-        () => handleTileClick(row, col)
+        () =>
+          handleTileClick(
+            row,
+            col
+          )
       );
 
-      boardElement.appendChild(tile);
+
+      boardElement.appendChild(
+        tile
+      );
 
     }
 
@@ -1123,7 +1497,10 @@ function renderBoard() {
 }
 
 
-function handleTileClick(row, col) {
+function handleTileClick(
+  row,
+  col
+) {
 
   if (boardLocked) {
     return;
@@ -1159,11 +1536,17 @@ function handleTileClick(row, col) {
 
 
   const distance =
-    Math.abs(selected.row - row) +
-    Math.abs(selected.col - col);
+    Math.abs(
+      selected.row - row
+    ) +
+    Math.abs(
+      selected.col - col
+    );
 
 
-  if (distance !== 1) {
+  if (
+    distance !== 1
+  ) {
 
     selected = {
       row,
@@ -1180,6 +1563,7 @@ function handleTileClick(row, col) {
   const previous = {
     ...selected
   };
+
 
   selected = null;
 
@@ -1214,22 +1598,21 @@ function handleTileClick(row, col) {
   }
 
 
-  const matchedSymbols =
-    new Set(
-      matches.map(
-        ({row, col}) =>
-          board[row][col]
-      )
+  const target =
+    puzzleSteps[
+      puzzleIndex
+    ].target;
+
+
+  const containsTarget =
+    matches.some(
+      ({row, col}) =>
+        board[row][col] ===
+        target
     );
 
 
-  const target =
-    puzzleSteps[puzzleIndex].target;
-
-
-  if (
-    !matchedSymbols.has(target)
-  ) {
+  if (!containsTarget) {
 
     swapTiles(
       previous.row,
@@ -1275,6 +1658,8 @@ function findMatches() {
     new Set();
 
 
+  /* Horizontal */
+
   for (
     let row = 0;
     row < size;
@@ -1282,6 +1667,7 @@ function findMatches() {
   ) {
 
     let start = 0;
+
 
     for (
       let col = 1;
@@ -1299,8 +1685,10 @@ function findMatches() {
 
       }
 
+
       const length =
         col - start;
+
 
       if (
         length >= 3
@@ -1320,12 +1708,15 @@ function findMatches() {
 
       }
 
+
       start = col;
 
     }
 
   }
 
+
+  /* Vertical */
 
   for (
     let col = 0;
@@ -1334,6 +1725,7 @@ function findMatches() {
   ) {
 
     let start = 0;
+
 
     for (
       let row = 1;
@@ -1351,8 +1743,10 @@ function findMatches() {
 
       }
 
+
       const length =
         row - start;
+
 
       if (
         length >= 3
@@ -1371,6 +1765,7 @@ function findMatches() {
         }
 
       }
+
 
       start = row;
 
@@ -1398,7 +1793,9 @@ function findMatches() {
 }
 
 
-async function solvePuzzle(matches) {
+async function solvePuzzle(
+  matches
+) {
 
   boardLocked = true;
 
@@ -1415,66 +1812,83 @@ async function solvePuzzle(matches) {
 
   renderBoard();
 
-  await sleep(500);
 
-  showPuzzleMemory();
+  await sleep(550);
+
+
+  startPuzzleMemory();
 
 }
 
 
-function showPuzzleMemory() {
+function startPuzzleMemory() {
 
-  const step =
-    puzzleSteps[puzzleIndex];
-
-  memoryIcon.textContent =
-    step.target;
-
-  memoryText.textContent =
-    step.line;
+  puzzleMemoryIndex = 0;
 
   memoryNext.dataset.mode =
     "puzzle";
 
-  showScene("memoryScene");
+  displayPuzzleMemory();
+
+  showScene(
+    "memoryScene"
+  );
 
 }
 
 
-function continuePuzzleStory() {
+function displayPuzzleMemory() {
 
-  puzzleIndex++;
+  const item =
+    puzzleSteps[
+      puzzleIndex
+    ].memories[
+      puzzleMemoryIndex
+    ];
 
-  if (
-    puzzleIndex <
-    puzzleSteps.length
-  ) {
+  memoryIcon.textContent =
+    item.icon;
 
-    showScene("matchScene");
-
-    createBoard();
-
-  } else {
-
-    startFinalMemorySequence();
-
-  }
+  memoryText.textContent =
+    item.text;
 
 }
 
 
 function sleep(ms) {
 
-  return new Promise(resolve =>
-    setTimeout(resolve, ms)
+  return new Promise(
+    resolve =>
+      setTimeout(
+        resolve,
+        ms
+      )
   );
 
 }
 
 
-/* MEMORY */
+/* ======================================================
+   MEMORY SCENE
+====================================================== */
 
-const memoryLines = [
+const memoryIcon =
+  document.getElementById(
+    "memoryIcon"
+  );
+
+const memoryText =
+  document.getElementById(
+    "memoryText"
+  );
+
+const memoryNext =
+  document.getElementById(
+    "memoryNext"
+  );
+
+
+const finalMemoryLines = [
 
   {
     icon: "🧵",
@@ -1485,7 +1899,7 @@ const memoryLines = [
   {
     icon: "💭",
     text:
-      "I think I remember a little more now."
+      "Things feel a little clearer now."
   },
 
   {
@@ -1497,13 +1911,19 @@ const memoryLines = [
   {
     icon: "🐇",
     text:
-      "Little bunny."
+      "Celluaria."
   },
 
   {
     icon: "🧵",
     text:
       "And me."
+  },
+
+  {
+    icon: "💭",
+    text:
+      "So that's why all of those things felt familiar."
   },
 
   {
@@ -1521,147 +1941,418 @@ const memoryLines = [
 ];
 
 
-let memoryIndex = 0;
-
-const memoryIcon =
-  document.getElementById("memoryIcon");
-
-const memoryText =
-  document.getElementById("memoryText");
-
-const memoryNext =
-  document.getElementById("memoryNext");
+let finalMemoryIndex = 0;
 
 
-function startFinalMemorySequence() {
-
-  memoryIndex = 0;
-
-  memoryNext.dataset.mode =
-    "story";
-
-  displayMemoryLine();
-
-  showScene("memoryScene");
-
-}
-
-
-function displayMemoryLine() {
-
-  memoryIcon.textContent =
-    memoryLines[memoryIndex].icon;
-
-  memoryText.textContent =
-    memoryLines[memoryIndex].text;
-
-}
-
-
-memoryNext.addEventListener("click", () => {
-
-  const mode =
-    memoryNext.dataset.mode;
-
-
-  if (
-    mode === "puzzle"
-  ) {
-
-    continuePuzzleStory();
-
-    return;
-
-  }
-
-
-  memoryIndex++;
-
-
-  if (
-    memoryIndex <
-    memoryLines.length
-  ) {
-
-    displayMemoryLine();
-
-  } else {
-
-    showScene("rememberScene");
-
-  }
-
-});
-
-
-/* REMEMBER ME */
-
-const rememberInput =
-  document.getElementById("rememberInput");
-
-const rememberSubmit =
-  document.getElementById("rememberSubmit");
-
-const answerFeedback =
-  document.getElementById("answerFeedback");
-
-
-function checkRememberAnswer() {
-
-  const answer =
-    rememberInput
-      .value
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, " ");
-
-  if (
-    answer === "remember me"
-  ) {
-
-    answerFeedback.textContent =
-      "That's it.";
-
-    rememberInput.disabled =
-      true;
-
-    rememberSubmit.disabled =
-      true;
-
-    rememberSubmit.style.opacity =
-      "0.5";
-
-    setTimeout(() => {
-
-      showScene("nextScene");
-
-    }, 850);
-
-  } else {
-
-    answerFeedback.textContent =
-      "Not quite... Maybe look at the real charm.";
-
-  }
-
-}
-
-
-rememberSubmit.addEventListener(
+memoryNext.addEventListener(
   "click",
-  checkRememberAnswer
+  () => {
+
+    if (
+      memoryNext.dataset.mode ===
+      "puzzle"
+    ) {
+
+      puzzleMemoryIndex++;
+
+
+      const memories =
+        puzzleSteps[
+          puzzleIndex
+        ].memories;
+
+
+      if (
+        puzzleMemoryIndex <
+        memories.length
+      ) {
+
+        displayPuzzleMemory();
+
+      }
+
+      else {
+
+        puzzleIndex++;
+
+
+        if (
+          puzzleIndex <
+          puzzleSteps.length
+        ) {
+
+          showScene(
+            "matchScene"
+          );
+
+          createBoard();
+
+        }
+
+        else {
+
+          startFinalMemory();
+
+        }
+
+      }
+
+
+      return;
+
+    }
+
+
+    finalMemoryIndex++;
+
+
+    if (
+      finalMemoryIndex <
+      finalMemoryLines.length
+    ) {
+
+      displayFinalMemory();
+
+    }
+
+    else {
+
+      showScene(
+        "rememberScene"
+      );
+
+      setTimeout(
+        () => {
+
+          const first =
+            document.querySelector(
+              ".missing-letter"
+            );
+
+          if (first) {
+            first.focus();
+          }
+
+        },
+        400
+      );
+
+    }
+
+  }
 );
 
 
-rememberInput.addEventListener(
-  "keydown",
-  event => {
+function startFinalMemory() {
+
+  finalMemoryIndex = 0;
+
+  memoryNext.dataset.mode =
+    "final";
+
+  displayFinalMemory();
+
+  showScene(
+    "memoryScene"
+  );
+
+}
+
+
+function displayFinalMemory() {
+
+  const line =
+    finalMemoryLines[
+      finalMemoryIndex
+    ];
+
+  memoryIcon.textContent =
+    line.icon;
+
+  memoryText.textContent =
+    line.text;
+
+}
+
+
+/* ======================================================
+   REMEMBER ME LETTER PUZZLE
+====================================================== */
+
+const letterBoxes =
+  Array.from(
+    document.querySelectorAll(
+      ".missing-letter"
+    )
+  );
+
+
+const answerFeedback =
+  document.getElementById(
+    "answerFeedback"
+  );
+
+
+let rememberSolved =
+  false;
+
+
+letterBoxes.forEach(
+  (box, index) => {
+
+    box.addEventListener(
+      "input",
+      () => {
+
+        if (
+          rememberSolved
+        ) {
+          return;
+        }
+
+
+        let value =
+          box.value
+            .replace(
+              /[^a-zA-Z]/g,
+              ""
+            )
+            .slice(0, 1)
+            .toUpperCase();
+
+
+        box.value =
+          value;
+
+
+        if (!value) {
+          return;
+        }
+
+
+        const expected =
+          box.dataset.answer;
+
+
+        if (
+          value !== expected
+        ) {
+
+          box.classList.remove(
+            "wrong"
+          );
+
+          void box.offsetWidth;
+
+          box.classList.add(
+            "wrong"
+          );
+
+
+          answerFeedback.textContent =
+            "Hmm... that doesn't feel right.";
+
+
+          setTimeout(
+            () => {
+
+              box.value = "";
+
+              box.classList.remove(
+                "wrong"
+              );
+
+            },
+            280
+          );
+
+
+          return;
+
+        }
+
+
+        box.classList.add(
+          "correct"
+        );
+
+
+        answerFeedback.textContent =
+          "";
+
+
+        if (
+          index <
+          letterBoxes.length - 1
+        ) {
+
+          letterBoxes[
+            index + 1
+          ].focus();
+
+        }
+
+
+        checkLetterPuzzle();
+
+      }
+    );
+
+
+    box.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Backspace" &&
+          box.value === "" &&
+          index > 0
+        ) {
+
+          letterBoxes[
+            index - 1
+          ].focus();
+
+        }
+
+      }
+    );
+
+  }
+);
+
+
+function checkLetterPuzzle() {
+
+  const solved =
+    letterBoxes.every(
+      box =>
+        box.value
+          .toUpperCase() ===
+        box.dataset.answer
+    );
+
+
+  if (!solved) {
+    return;
+  }
+
+
+  rememberSolved =
+    true;
+
+
+  letterBoxes.forEach(
+    box => {
+
+      box.disabled =
+        true;
+
+    }
+  );
+
+
+  answerFeedback.textContent =
+    "...Oh.";
+
+
+  setTimeout(
+    () => {
+
+      startRevealScene();
+
+    },
+    1200
+  );
+
+}
+
+
+/* ======================================================
+   REVEAL
+====================================================== */
+
+const revealLines = [
+
+  "So that's what it says.",
+
+  "REMEMBER ME.",
+
+  "...",
+
+  "🐙 must be Yako.",
+
+  "And 🐇 must be Celluaria.",
+
+  "\"Remember me\"...",
+
+  "Hm.",
+
+  "Maybe I don't need to understand exactly what that means yet.",
+
+  "I'm going with her anyway."
+
+];
+
+
+let revealIndex = 0;
+
+
+const revealText =
+  document.getElementById(
+    "revealText"
+  );
+
+const revealNext =
+  document.getElementById(
+    "revealNext"
+  );
+
+
+function startRevealScene() {
+
+  revealIndex = 0;
+
+  revealText.textContent =
+    revealLines[0];
+
+  showScene(
+    "revealScene"
+  );
+
+}
+
+
+revealNext.addEventListener(
+  "click",
+  () => {
+
+    revealIndex++;
+
 
     if (
-      event.key === "Enter"
+      revealIndex <
+      revealLines.length
     ) {
 
-      checkRememberAnswer();
+      revealText.textContent =
+        revealLines[
+          revealIndex
+        ];
+
+    }
+
+    else {
+
+      revealText.innerHTML =
+        `
+        I think that's enough remembering for now.
+        <br><br>
+        I should look after Yako for a little while.
+        `;
+
+      revealNext.style.display =
+        "none";
 
     }
 
