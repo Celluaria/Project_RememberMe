@@ -10,7 +10,7 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>Project Remember Me</title>
+<title>What the Thread Remembers</title>
 
 <style>
 
@@ -994,9 +994,6 @@ button {
     rgba(255,255,255,.65);
 }
 
-
-/* moved down one emoji length */
-
 .emoji-puzzle {
 
   display: none;
@@ -1516,7 +1513,204 @@ button {
   text-align: center;
 
   overflow-y: auto;
+
+  isolation: isolate;
 }
+
+
+/* ========================================
+   v15 EARTH BACKGROUND
+======================================== */
+
+.earth-background {
+
+  position: absolute;
+
+  z-index: 0;
+
+  left: 50%;
+
+  top: 50%;
+
+  width:
+    min(
+      900px,
+      145vw
+    );
+
+  height: auto;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+    scale(.96);
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transition:
+    opacity 2.2s ease,
+    transform 2.2s ease;
+
+  filter:
+    drop-shadow(
+      0 0 35px
+      rgba(157,205,255,.10)
+    );
+}
+
+
+#giftScene.earth-active
+.earth-background {
+
+  opacity: .32;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+    scale(1);
+}
+
+
+/* globe */
+
+.earth-outline {
+
+  fill:
+    rgba(80,130,175,.025);
+
+  stroke:
+    rgba(190,220,255,.55);
+
+  stroke-width: 1.5;
+}
+
+
+.earth-grid {
+
+  fill: none;
+
+  stroke:
+    rgba(190,220,255,.27);
+
+  stroke-width: 1;
+}
+
+
+.earth-land {
+
+  fill:
+    rgba(183,215,237,.12);
+
+  stroke:
+    rgba(210,231,246,.18);
+
+  stroke-width: 1;
+}
+
+
+/* travel paths */
+
+.love-path {
+
+  fill: none;
+
+  stroke:
+    rgba(255,215,226,.30);
+
+  stroke-width: 1.5;
+
+  stroke-dasharray:
+    5 7;
+}
+
+
+.city-dot {
+
+  fill:
+    rgba(255,236,210,.9);
+
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(255,224,185,.75)
+    );
+}
+
+
+.city-label {
+
+  fill:
+    rgba(255,255,255,.82);
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  letter-spacing: .02em;
+}
+
+
+.city-emoji {
+
+  font-size: 20px;
+}
+
+
+.flying-heart {
+
+  fill: #fff3f6;
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  filter:
+    drop-shadow(
+      0 0 6px
+      rgba(255,185,205,.9)
+    )
+    drop-shadow(
+      0 0 14px
+      rgba(255,185,205,.45)
+    );
+}
+
+
+/* subtle breathing glow */
+
+.earth-glow {
+
+  fill:
+    rgba(134,188,230,.035);
+
+  animation:
+    earthBreath
+    5s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes earthBreath {
+
+  0%,
+  100% {
+    opacity: .45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+}
+
+
 
 .gift-wrap {
 
@@ -1525,6 +1719,10 @@ button {
   width: 100%;
 
   margin: auto;
+
+  position: relative;
+
+  z-index: 2;
 }
 
 .gift-thought {
@@ -1539,6 +1737,10 @@ button {
   line-height: 1.8;
 
   margin-bottom: 24px;
+
+  text-shadow:
+    0 2px 12px
+    rgba(0,0,0,.8);
 }
 
 .gift-card {
@@ -1570,8 +1772,8 @@ button {
   background:
     linear-gradient(
       145deg,
-      #f3eee4,
-      #dcd2bc
+      rgba(243,238,228,.97),
+      rgba(220,210,188,.97)
     );
 
   color: #292723;
@@ -1700,7 +1902,13 @@ button {
   border-radius: 26px;
 
   background:
-    rgba(255,255,255,.07);
+    rgba(14,22,34,.78);
+
+  backdrop-filter:
+    blur(8px);
+
+  -webkit-backdrop-filter:
+    blur(8px);
 
   border:
     1px solid
@@ -1708,7 +1916,7 @@ button {
 
   box-shadow:
     0 20px 60px
-    rgba(0,0,0,.22);
+    rgba(0,0,0,.28);
 }
 
 .voucher-sparkle {
@@ -1814,13 +2022,6 @@ button {
     rgba(0,0,0,.28);
 }
 
-
-/*
-  Important:
-  no filter / blur / transparency
-  on the actual voucher image.
-*/
-
 .voucher-image {
 
   display: block;
@@ -1912,6 +2113,10 @@ button {
     );
 
   line-height: 1.85;
+
+  text-shadow:
+    0 2px 12px
+    rgba(0,0,0,.9);
 }
 
 .final-line {
@@ -1928,6 +2133,10 @@ button {
   font-weight: 700;
 
   padding-bottom: 15px;
+
+  text-shadow:
+    0 2px 12px
+    rgba(0,0,0,.9);
 }
 
 
@@ -1939,7 +2148,6 @@ button {
 (max-width: 600px) {
 
   body {
-
     padding: 0;
   }
 
@@ -2007,6 +2215,28 @@ button {
     padding: 9px;
   }
 
+  .earth-background {
+
+    width: 150vw;
+
+    top: 51%;
+  }
+
+  .city-label {
+
+    font-size: 13px;
+  }
+
+  .city-emoji {
+
+    font-size: 18px;
+  }
+
+  .flying-heart {
+
+    font-size: 22px;
+  }
+
 }
 
 
@@ -2050,9 +2280,7 @@ button {
 <main id="game">
 
 
-<!-- ======================================
-     OPENING
-====================================== -->
+<!-- OPENING -->
 
 <section
   id="opening"
@@ -2078,9 +2306,7 @@ button {
 
 
 
-<!-- ======================================
-     AIRPORT
-====================================== -->
+<!-- AIRPORT -->
 
 <section
   id="airportScene"
@@ -2169,9 +2395,7 @@ button {
 
 
 
-<!-- ======================================
-     MATCH
-====================================== -->
+<!-- MATCH -->
 
 <section
   id="matchScene"
@@ -2199,9 +2423,7 @@ button {
 
 
 
-<!-- ======================================
-     MEMORY
-====================================== -->
+<!-- MEMORY -->
 
 <section
   id="memoryScene"
@@ -2241,9 +2463,7 @@ button {
 
 
 
-<!-- ======================================
-     REMEMBER PUZZLE
-====================================== -->
+<!-- REMEMBER -->
 
 <section
   id="rememberScene"
@@ -2252,12 +2472,10 @@ button {
 
   <div class="remember-card">
 
-
     <div
       id="backCharmStage"
       class="back-charm-stage"
     >
-
 
       <img
         id="backBlank"
@@ -2266,7 +2484,6 @@ button {
         alt=""
       >
 
-
       <img
         id="backText"
         class="back-layer"
@@ -2274,14 +2491,12 @@ button {
         alt=""
       >
 
-
       <img
         id="backFull"
         class="back-layer"
         src="assets/charm-back-full.png"
         alt=""
       >
-
 
       <div
         id="rememberInputWrap"
@@ -2306,7 +2521,6 @@ button {
         id="emojiPuzzle"
         class="emoji-puzzle"
       >
-
 
         <div class="emoji-slots">
 
@@ -2403,16 +2617,13 @@ button {
       class="answer-feedback">
     </div>
 
-
   </div>
 
 </section>
 
 
 
-<!-- ======================================
-     COMPLETE RECALL
-====================================== -->
+<!-- COMPLETE RECALL -->
 
 <section
   id="completeRecallScene"
@@ -2448,9 +2659,7 @@ button {
 
 
 
-<!-- ======================================
-     WAITING
-====================================== -->
+<!-- WAITING -->
 
 <section
   id="waitingScene"
@@ -2505,9 +2714,7 @@ button {
 
 
 
-<!-- ======================================
-     WARMTH
-====================================== -->
+<!-- WARMTH -->
 
 <section
   id="warmthScene"
@@ -2535,9 +2742,7 @@ button {
 
 
 
-<!-- ======================================
-     MAGIC
-====================================== -->
+<!-- MAGIC -->
 
 <section
   id="magicScene"
@@ -2574,14 +2779,336 @@ button {
 
 
 
-<!-- ======================================
-     GIFT
-====================================== -->
+<!-- GIFT -->
 
 <section
   id="giftScene"
   class="scene"
 >
+
+
+  <!-- ====================================
+       v15 EARTH / LOVE BACKGROUND
+  ===================================== -->
+
+  <svg
+    class="earth-background"
+    viewBox="0 0 900 720"
+    aria-hidden="true"
+  >
+
+    <defs>
+
+      <radialGradient
+        id="earthGlow"
+        cx="50%"
+        cy="45%"
+        r="55%"
+      >
+
+        <stop
+          offset="0%"
+          stop-color="#a6d5ff"
+          stop-opacity=".13"
+        />
+
+        <stop
+          offset="75%"
+          stop-color="#6b9eca"
+          stop-opacity=".03"
+        />
+
+        <stop
+          offset="100%"
+          stop-color="#6b9eca"
+          stop-opacity="0"
+        />
+
+      </radialGradient>
+
+    </defs>
+
+
+    <!-- soft halo -->
+
+    <circle
+      class="earth-glow"
+      cx="450"
+      cy="350"
+      r="315"
+      fill="url(#earthGlow)"
+    />
+
+
+    <!-- globe -->
+
+    <circle
+      class="earth-outline"
+      cx="450"
+      cy="350"
+      r="260"
+    />
+
+
+    <!-- latitude -->
+
+    <ellipse
+      class="earth-grid"
+      cx="450"
+      cy="350"
+      rx="260"
+      ry="82"
+    />
+
+    <ellipse
+      class="earth-grid"
+      cx="450"
+      cy="350"
+      rx="260"
+      ry="165"
+    />
+
+
+    <!-- longitude -->
+
+    <ellipse
+      class="earth-grid"
+      cx="450"
+      cy="350"
+      rx="90"
+      ry="260"
+    />
+
+    <ellipse
+      class="earth-grid"
+      cx="450"
+      cy="350"
+      rx="170"
+      ry="260"
+    />
+
+
+    <!-- simple decorative continents -->
+
+    <path
+      class="earth-land"
+      d="
+        M275 221
+        C245 240 229 271 234 301
+        C241 323 259 327 276 341
+        C292 354 287 380 304 391
+        C322 403 341 385 352 363
+        C365 337 351 316 367 294
+        C382 274 374 251 353 238
+        C329 224 307 209 275 221
+        Z
+      "
+    />
+
+
+    <path
+      class="earth-land"
+      d="
+        M505 205
+        C540 190 575 198 601 219
+        C630 240 647 267 645 298
+        C643 323 619 332 602 345
+        C585 359 598 386 579 401
+        C558 416 530 405 517 384
+        C505 364 509 338 488 324
+        C466 310 458 284 470 258
+        C478 238 488 216 505 205
+        Z
+      "
+    />
+
+
+    <path
+      class="earth-land"
+      d="
+        M526 408
+        C552 397 578 406 588 429
+        C597 448 586 467 570 479
+        C553 492 526 489 513 470
+        C501 451 503 420 526 408
+        Z
+      "
+    />
+
+
+    <!-- LOVE PATHS -->
+
+    <path
+      id="beijingToVancouver"
+      class="love-path"
+      d="
+        M595 287
+        C520 174
+        359 151
+        285 270
+      "
+    />
+
+
+    <path
+      id="vancouverToBeijing"
+      class="love-path"
+      d="
+        M285 289
+        C367 406
+        515 416
+        595 306
+      "
+    />
+
+
+    <!-- Beijing -->
+
+    <circle
+      class="city-dot"
+      cx="595"
+      cy="296"
+      r="5"
+    />
+
+    <text
+      class="city-emoji"
+      x="610"
+      y="286"
+    >
+      🐰
+    </text>
+
+    <text
+      class="city-label"
+      x="610"
+      y="307"
+    >
+      Beijing
+    </text>
+
+
+    <!-- Vancouver -->
+
+    <circle
+      class="city-dot"
+      cx="285"
+      cy="279"
+      r="5"
+    />
+
+    <text
+      class="city-emoji"
+      x="246"
+      y="262"
+    >
+      🐙
+    </text>
+
+    <text
+      class="city-label"
+      x="205"
+      y="287"
+    >
+      Vancouver
+    </text>
+
+
+    <!-- HEART:
+         Beijing -> Vancouver -->
+
+    <text
+      class="flying-heart"
+      x="-12"
+      y="8"
+    >
+      ♡
+
+      <animateMotion
+        dur="7s"
+        repeatCount="indefinite"
+        begin="0s"
+      >
+
+        <mpath
+          href="#beijingToVancouver"
+        />
+
+      </animateMotion>
+
+
+      <animate
+        attributeName="opacity"
+        values="
+          0;
+          1;
+          1;
+          1;
+          0
+        "
+        keyTimes="
+          0;
+          .08;
+          .5;
+          .92;
+          1
+        "
+        dur="7s"
+        repeatCount="indefinite"
+      />
+
+    </text>
+
+
+    <!-- HEART:
+         Vancouver -> Beijing -->
+
+    <text
+      class="flying-heart"
+      x="-12"
+      y="8"
+    >
+      ♡
+
+      <animateMotion
+        dur="7.5s"
+        repeatCount="indefinite"
+        begin="1.2s"
+      >
+
+        <mpath
+          href="#vancouverToBeijing"
+        />
+
+      </animateMotion>
+
+
+      <animate
+        attributeName="opacity"
+        values="
+          0;
+          1;
+          1;
+          1;
+          0
+        "
+        keyTimes="
+          0;
+          .08;
+          .5;
+          .92;
+          1
+        "
+        dur="7.5s"
+        begin="1.2s"
+        repeatCount="indefinite"
+      />
+
+    </text>
+
+  </svg>
+
+
 
   <div class="gift-wrap">
 
@@ -2591,8 +3118,6 @@ button {
       class="gift-thought">
     </div>
 
-
-    <!-- FIRST GIFT CARD -->
 
     <div
       id="giftCard"
@@ -2640,8 +3165,6 @@ button {
 
 
 
-    <!-- REAL VOUCHER -->
-
     <div id="giftReveal">
 
       <div class="voucher-panel">
@@ -2654,9 +3177,7 @@ button {
 
         <div class="voucher-title">
 
-          I found it!
-
-          🧋
+          I found it! 🧋
 
         </div>
 
@@ -2664,54 +3185,39 @@ button {
         <div class="voucher-subtitle">
 
           A little treat is waiting
-          for you at the airport.
+          for you.
 
         </div>
 
 
-
-        <!-- LOCATION -->
-
         <div class="location-card">
 
           <div class="location-label">
-
-            WHERE TO FIND IT
-
+            WHERE TO USE IT
           </div>
 
 
           <div class="location-name">
 
-            KOI Thé
-
-            <br>
-
-            KOI Thé（高崎T3机场店）
+            Any KOI Thé store
 
           </div>
 
 
           <div class="location-detail">
 
-            Xiamen Gaoqi
-            International Airport
+            Just find a KOI Thé
+            that's convenient for you.
 
-            <br>
+            <br><br>
 
-            Terminal 3 · Level 1
-
-            <br>
-
-            T3-D-3
+            Show this code to the staff
+            and let them scan it.
 
           </div>
 
         </div>
 
-
-
-        <!-- QR -->
 
         <div class="qr-shell">
 
@@ -2725,11 +3231,10 @@ button {
         </div>
 
 
-
         <div class="scan-note">
 
-          Show this code to the staff
-          and let them scan it.
+          Use it whenever you find
+          a KOI Thé you like. 🧋
 
           <br><br>
 
@@ -2737,7 +3242,6 @@ button {
           to your phone first.
 
         </div>
-
 
 
         <div class="save-row">
@@ -2763,9 +3267,7 @@ button {
 
         </div>
 
-
       </div>
-
 
 
       <div class="ending-line">
@@ -2818,9 +3320,7 @@ button {
 
       </div>
 
-
     </div>
-
 
   </div>
 
@@ -2840,9 +3340,7 @@ button {
 function showScene(id) {
 
   document
-    .querySelectorAll(
-      ".scene"
-    )
+    .querySelectorAll(".scene")
     .forEach(
       scene =>
         scene.classList.remove(
@@ -3064,7 +3562,6 @@ airportNext
 
 const puzzleSteps = [
 
-
   {
 
     target: "🐰",
@@ -3089,45 +3586,28 @@ const puzzleSteps = [
     memories: [
 
       {
-
         icon: "🐰",
-
-        text:
-          "Yes! That's him!"
-
+        text: "Yes! That's him!"
       },
 
       {
-
         icon: "🐰",
-
-        text:
-          "He's the one who made me!"
-
+        text: "He's the one who made me!"
       },
 
       {
-
         icon: "🧵",
-
-        text:
-          "And while he was stitching me together..."
-
+        text: "And while he was stitching me together..."
       },
 
       {
-
         icon: "🐙",
-
-        text:
-          "he sure talked about you a lot, little octopus!"
-
+        text: "he sure talked about you a lot, little octopus!"
       }
 
     ]
 
   },
-
 
 
   {
@@ -3154,36 +3634,23 @@ const puzzleSteps = [
     memories: [
 
       {
-
         icon: "🐙",
-
-        text:
-          "Little octopus... Yako."
-
+        text: "Little octopus... Yako."
       },
 
       {
-
         icon: "♡",
-
-        text:
-          "That name..."
-
+        text: "That name..."
       },
 
       {
-
         icon: "🐙",
-
-        text:
-          "it's been stitched deep inside my heart all along!"
-
+        text: "it's been stitched deep inside my heart all along!"
       }
 
     ]
 
   },
-
 
 
   {
@@ -3210,36 +3677,23 @@ const puzzleSteps = [
     memories: [
 
       {
-
         icon: "💾",
-
-        text:
-          "I can almost hear a melody..."
-
+        text: "I can almost hear a melody..."
       },
 
       {
-
         icon: "🎵",
-
-        text:
-          "This little drive was filled with songs for you."
-
+        text: "This little drive was filled with songs for you."
       },
 
       {
-
         icon: "♡",
-
-        text:
-          "Every single one carried a memory that belonged only to you and Celluaria."
-
+        text: "Every single one carried a memory that belonged only to you and Celluaria."
       }
 
     ]
 
   },
-
 
 
   {
@@ -3266,45 +3720,28 @@ const puzzleSteps = [
     memories: [
 
       {
-
         icon: "📖",
-
-        text:
-          "One page... two pages..."
-
+        text: "One page... two pages..."
       },
 
       {
-
         icon: "📖",
-
-        text:
-          "So many words. So many photos!"
-
+        text: "So many words. So many photos!"
       },
 
       {
-
         icon: "👣",
-
-        text:
-          "Every step you took together is in here."
-
+        text: "Every step you took together is in here."
       },
 
       {
-
         icon: "♡",
-
-        text:
-          "All those laughs, all those little moments... carefully kept between the pages."
-
+        text: "All those laughs, all those little moments... carefully kept between the pages."
       }
 
     ]
 
   },
-
 
 
   {
@@ -3331,48 +3768,28 @@ const puzzleSteps = [
     memories: [
 
       {
-
         icon: "🧵",
-
-        text:
-          "Ah! I remember!"
-
+        text: "Ah! I remember!"
       },
 
       {
-
         icon: "🧵",
-
-        text:
-          "The feeling of needle and thread passing through the fabric..."
-
+        text: "The feeling of needle and thread passing through the fabric..."
       },
 
       {
-
         icon: "🪡",
-
-        text:
-          "stitch by stitch..."
-
+        text: "stitch by stitch..."
       },
 
       {
-
         icon: "🤲",
-
-        text:
-          "There were a pair of hands..."
-
+        text: "There were a pair of hands..."
       },
 
       {
-
         icon: "♡",
-
-        text:
-          "taking so much care to make me."
-
+        text: "taking so much care to make me."
       }
 
     ]
@@ -3911,12 +4328,6 @@ function displayPuzzleMemory() {
 
 }
 
-
-/*
-  IMPORTANT:
-  There is only ONE listener
-  for memoryNext.
-*/
 
 memoryNext
   .addEventListener(
@@ -4828,6 +5239,86 @@ const magicLines = [
 
 
 
+function getMagicReadingTime(
+  text
+) {
+
+
+  if (
+    text === "..."
+  ) {
+
+    return 1800;
+
+  }
+
+
+  if (
+    text === "✨"
+  ) {
+
+    return 1800;
+
+  }
+
+
+  if (
+    text === "Hehe..."
+  ) {
+
+    return 2000;
+
+  }
+
+
+  if (
+    text === "Okay..."
+  ) {
+
+    return 2000;
+
+  }
+
+
+  if (
+    text === "Ding!"
+  ) {
+
+    return 1800;
+
+  }
+
+
+  if (
+    text === "Magic complete!"
+  ) {
+
+    return 2300;
+
+  }
+
+
+  const calculatedTime =
+
+    1700 +
+    text.length * 32;
+
+
+  return Math.min(
+
+    Math.max(
+      calculatedTime,
+      2200
+    ),
+
+    4200
+
+  );
+
+}
+
+
+
 async function startMagicScene() {
 
 
@@ -4848,20 +5339,16 @@ async function startMagicScene() {
 
 
     await sleep(
-
-      i >= 7
-
-        ? 2200
-
-        : 1800
-
+      getMagicReadingTime(
+        magicLines[i]
+      )
     );
 
   }
 
 
   await sleep(
-    900
+    1000
   );
 
 
@@ -4874,6 +5361,12 @@ async function startMagicScene() {
 /* ========================================
    GIFT
 ======================================== */
+
+const giftScene =
+  document.getElementById(
+    "giftScene"
+  );
+
 
 const giftThought =
   document.getElementById(
@@ -4915,6 +5408,13 @@ const voucherImage =
 function showGift() {
 
 
+  giftScene
+    .classList
+    .remove(
+      "earth-active"
+    );
+
+
   giftReveal.classList.remove(
     "visible"
   );
@@ -4928,8 +5428,15 @@ function showGift() {
     "flex";
 
 
-  giftThought.textContent =
+  revealGiftButton.disabled =
+    false;
 
+
+  revealGiftButton.textContent =
+    "Reveal my magic ✨";
+
+
+  giftThought.textContent =
     "I think I actually made something...";
 
 
@@ -4977,9 +5484,17 @@ revealGiftButton
 
 
       /*
-        force browser layout
-        so animation always plays
+        v15:
+        Earth slowly appears
+        when the real gift is revealed.
       */
+
+      giftScene
+        .classList
+        .add(
+          "earth-active"
+        );
+
 
       void giftReveal.offsetWidth;
 
@@ -4992,7 +5507,6 @@ revealGiftButton
 
 
       giftThought.textContent =
-
         "Hehe... it worked!";
 
 
@@ -5022,17 +5536,12 @@ revealGiftButton
 saveVoucherButton
   .addEventListener(
     "click",
-    async () => {
+    () => {
 
 
       const imageURL =
         voucherImage.src;
 
-
-      /*
-        First try the normal
-        HTML download method.
-      */
 
       const link =
         document.createElement(
@@ -5059,14 +5568,6 @@ saveVoucherButton
 
       link.remove();
 
-
-      /*
-        iPhone / some in-app browsers
-        may ignore the download attribute.
-        In that case, the image itself is
-        still directly accessible by
-        tapping/holding it.
-      */
 
       saveVoucherButton.textContent =
         "Saved / Opened ✓";
