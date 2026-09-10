@@ -97,7 +97,6 @@ button {
   border: 0;
   cursor: pointer;
   border-radius: 999px;
-
   transition:
     transform .15s ease,
     background .15s ease;
@@ -128,114 +127,60 @@ button {
   transform: translateY(0);
 }
 
+/* =========================
+   OPENING BLACK SCREEN
+========================= */
 
-/* ===============================
-   CHARM
-================================ */
-
-.charm {
-  width: 132px;
-  height: 160px;
-  margin: 15px auto 34px;
-
-  border-radius: 44% 44% 40% 40%;
-  border: 3px dashed rgba(255,255,255,.72);
-
-  background:
-    linear-gradient(145deg, #ead9c9, #c9a98e);
-
-  box-shadow:
-    0 15px 45px rgba(0,0,0,.4),
-    inset 0 0 0 8px rgba(255,255,255,.08);
-
-  position: relative;
-
-  animation:
-    sway 3.2s ease-in-out infinite;
+#opening {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #05070b;
 }
 
-.charm::before {
-  content: "";
-
-  position: absolute;
-
-  width: 38px;
-  height: 28px;
-
-  border-radius: 50%;
-  border: 5px solid #b6a18f;
-
-  top: -31px;
-  left: 50%;
-
-  transform: translateX(-50%);
-}
-
-.charm-face {
-  position: absolute;
-  inset: 0;
+.opening-box {
+  width: min(620px, 100%);
+  min-height: 150px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 3rem;
+  padding: 26px;
+
+  border-radius: 22px;
+
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.07);
+
+  font-size: clamp(1.08rem, 3vw, 1.35rem);
+  line-height: 1.75;
 }
 
-@keyframes sway {
-  0%,
-  100% {
-    transform:
-      rotate(-2deg)
-      translateY(0);
-  }
-
-  50% {
-    transform:
-      rotate(2deg)
-      translateY(-5px);
-  }
+.opening-box.shake {
+  animation: textShake .42s ease;
 }
 
-
-/* ===============================
-   OPENING
-================================ */
-
-#opening {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+@keyframes textShake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(3px); }
 }
 
-.tiny-label {
-  text-transform: uppercase;
-  letter-spacing: .22em;
-  opacity: .5;
-  font-size: .72rem;
-  margin-bottom: 18px;
+.opening-controls {
+  margin-top: 25px;
 }
 
-.opening-text {
-  min-height: 112px;
-  max-width: 560px;
-
-  font-size: clamp(1.05rem, 3vw, 1.35rem);
-  line-height: 1.7;
-
-  margin: 0 auto 24px;
-}
-
-
-/* ===============================
+/* =========================
    AIRPORT
-================================ */
+========================= */
 
 .airport-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-
   gap: 15px;
   margin-bottom: 26px;
 }
@@ -257,9 +202,9 @@ button {
   text-align: right;
 }
 
-.window {
+.window,
+.waiting-window {
   min-height: 245px;
-
   border-radius: 22px;
   overflow: hidden;
 
@@ -281,20 +226,24 @@ button {
 }
 
 .window::before,
-.window::after {
+.window::after,
+.waiting-window::before,
+.waiting-window::after {
   content: "";
   position: absolute;
   background: rgba(25,34,45,.5);
 }
 
-.window::before {
+.window::before,
+.waiting-window::before {
   width: 8px;
   top: 0;
   bottom: 0;
   left: 50%;
 }
 
-.window::after {
+.window::after,
+.waiting-window::after {
   height: 8px;
   left: 0;
   right: 0;
@@ -310,74 +259,55 @@ button {
   transform: rotate(-4deg);
 }
 
-.seat {
+.seat,
+.waiting-seat {
   position: absolute;
   right: 8%;
   bottom: 15px;
-
   width: 210px;
   height: 30px;
-
   border-radius: 10px;
   background: #252d39;
   opacity: .9;
 }
 
-.bag {
+.bag,
+.waiting-bag {
   position: absolute;
   right: 7%;
   bottom: 42px;
   font-size: 2.5rem;
 }
 
-.yako {
+.yako,
+.waiting-yako {
   position: absolute;
   right: 16%;
   bottom: 30px;
-
   font-size: clamp(4.2rem, 14vw, 6.5rem);
-
-  filter:
-    drop-shadow(
-      0 10px 12px
-      rgba(0,0,0,.3)
-    );
-
-  animation:
-    yakoFloat
-    2.6s
-    ease-in-out
-    infinite;
-
+  filter: drop-shadow(0 10px 12px rgba(0,0,0,.3));
+  animation: yakoFloat 2.6s ease-in-out infinite;
   z-index: 5;
 }
 
 @keyframes yakoFloat {
-  0%,
-  100% {
-    transform:
-      translateY(0)
-      rotate(-2deg);
+  0%,100% {
+    transform: translateY(0) rotate(-2deg);
   }
 
   50% {
-    transform:
-      translateY(-7px)
-      rotate(2deg);
+    transform: translateY(-7px) rotate(2deg);
   }
 }
 
-.dialogue-box {
+.dialogue-box,
+.waiting-dialogue {
   margin-top: auto;
 
-  background:
-    rgba(255,255,255,.065);
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
-
+  background: rgba(255,255,255,.065);
+  border: 1px solid rgba(255,255,255,.1);
   border-radius: 18px;
+
   padding: 22px;
   min-height: 150px;
 }
@@ -390,22 +320,23 @@ button {
   margin-bottom: 10px;
 }
 
-.dialogue {
+.dialogue,
+#waitingText {
   font-size: clamp(1rem, 2.8vw, 1.25rem);
   line-height: 1.65;
   min-height: 65px;
 }
 
-.dialogue-controls {
+.dialogue-controls,
+.waiting-controls {
   display: flex;
   justify-content: flex-end;
   margin-top: 12px;
 }
 
-
-/* ===============================
+/* =========================
    MATCH GAME
-================================ */
+========================= */
 
 #matchScene {
   justify-content: center;
@@ -431,7 +362,6 @@ button {
 #matchBoard {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-
   gap: 8px;
 
   width: min(430px, 100%);
@@ -443,27 +373,17 @@ button {
 .tile {
   aspect-ratio: 1;
 
-  border:
-    1px solid
-    rgba(255,255,255,.11);
-
+  border: 1px solid rgba(255,255,255,.11);
   border-radius: 16px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size:
-    clamp(
-      1.65rem,
-      7vw,
-      2.6rem
-    );
+  font-size: clamp(1.65rem, 7vw, 2.6rem);
 
   cursor: pointer;
-
-  background:
-    rgba(255,255,255,.07);
+  background: rgba(255,255,255,.07);
 
   transition:
     transform .15s ease,
@@ -471,26 +391,18 @@ button {
 }
 
 .tile:hover {
-  background:
-    rgba(255,255,255,.11);
+  background: rgba(255,255,255,.11);
 }
 
 .tile.selected {
-  background:
-    rgba(255,255,255,.2);
-
-  transform:
-    scale(.92);
-
-  outline:
-    2px solid
-    rgba(255,255,255,.55);
+  background: rgba(255,255,255,.2);
+  transform: scale(.92);
+  outline: 2px solid rgba(255,255,255,.55);
 }
 
-
-/* ===============================
+/* =========================
    MEMORY
-================================ */
+========================= */
 
 #memoryScene {
   justify-content: center;
@@ -505,12 +417,8 @@ button {
 
   border-radius: 24px;
 
-  background:
-    rgba(255,255,255,.065);
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
+  background: rgba(255,255,255,.065);
+  border: 1px solid rgba(255,255,255,.1);
 }
 
 .memory-icon {
@@ -521,13 +429,7 @@ button {
 .memory-text {
   min-height: 145px;
 
-  font-size:
-    clamp(
-      1.05rem,
-      3vw,
-      1.3rem
-    );
-
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
   line-height: 1.75;
 
   display: flex;
@@ -535,10 +437,9 @@ button {
   align-items: center;
 }
 
-
-/* ===============================
-   REMEMBER
-================================ */
+/* =========================
+   REMEMBER PUZZLE
+========================= */
 
 #rememberScene {
   justify-content: center;
@@ -554,12 +455,8 @@ button {
 
   border-radius: 24px;
 
-  background:
-    rgba(255,255,255,.065);
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
+  background: rgba(255,255,255,.065);
+  border: 1px solid rgba(255,255,255,.1);
 }
 
 .back-charm {
@@ -570,10 +467,7 @@ button {
   padding: 26px 18px;
 
   border-radius: 48px;
-
-  border:
-    3px dashed
-    rgba(255,255,255,.72);
+  border: 3px dashed rgba(255,255,255,.72);
 
   background:
     linear-gradient(
@@ -602,11 +496,9 @@ button {
 
 .mystery-stitches {
   width: 110px;
-
   display: flex;
   flex-direction: column;
   gap: 7px;
-
   opacity: .55;
 }
 
@@ -623,304 +515,134 @@ button {
 }
 
 .remember-dialogue {
-  max-width: 570px;
-
-  margin: 0 auto 26px;
-
+  max-width: 590px;
+  margin: 0 auto 24px;
   line-height: 1.75;
-
-  font-size:
-    clamp(
-      1.02rem,
-      3vw,
-      1.25rem
-    );
+  font-size: clamp(1.02rem, 3vw, 1.23rem);
 }
 
-.letter-puzzle {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  flex-wrap: wrap;
+.password-input {
+  width: min(430px, 100%);
+  margin: 10px auto 22px;
 
-  gap: 4px;
+  padding: 15px 18px;
 
-  margin: 28px auto 18px;
-  font-weight: 800;
-}
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.2);
 
-.word-group {
-  display: flex;
-  align-items: flex-end;
-  gap: 4px;
-  margin: 5px 9px;
-}
-
-.fixed-letter,
-.letter-box {
-  width: 31px;
-  height: 44px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size:
-    clamp(
-      1.35rem,
-      5vw,
-      1.85rem
-    );
-
-  font-weight: 800;
-}
-
-.letter-box {
-  border: 0;
-
-  border-bottom:
-    2px solid
-    rgba(255,255,255,.62);
-
-  border-radius: 0;
   outline: none;
 
-  background: transparent;
+  background: rgba(255,255,255,.06);
   color: white;
 
-  text-transform: uppercase;
   text-align: center;
+  letter-spacing: .08em;
 
-  padding: 0;
-  caret-color: white;
+  font-size: 1.1rem;
 }
 
-.letter-box:focus {
-  border-bottom-color: white;
-  background: rgba(255,255,255,.04);
+.password-input:focus {
+  border-color: rgba(255,255,255,.55);
+  background: rgba(255,255,255,.09);
 }
 
-.letter-box.correct {
-  border-bottom-color: transparent;
-
-  animation:
-    letterGlow
-    .6s ease;
+.emoji-question {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  opacity: .85;
 }
 
-.letter-box.wrong {
-  animation:
-    shake
-    .28s ease;
+.emoji-slots {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 18px;
 }
 
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
+.emoji-slot {
+  width: 72px;
+  height: 72px;
 
-  25% {
-    transform: translateX(-5px);
-  }
+  border-radius: 18px;
 
-  75% {
-    transform: translateX(5px);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2.4rem;
+
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.05);
 }
 
-@keyframes letterGlow {
-  50% {
-    text-shadow:
-      0 0 10px white,
-      0 0 22px rgba(255,255,255,.7);
-  }
+.emoji-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.emoji-choice {
+  width: 58px;
+  height: 58px;
+
+  border: 0;
+  border-radius: 15px;
+
+  font-size: 2rem;
+  cursor: pointer;
+
+  background: rgba(255,255,255,.08);
+  color: white;
+}
+
+.emoji-choice:hover {
+  transform: scale(1.06);
 }
 
 .answer-feedback {
-  min-height: 32px;
-  opacity: .65;
-  font-size: .9rem;
+  min-height: 30px;
+  margin-top: 16px;
+  opacity: .7;
+  font-size: .92rem;
 }
 
+/* =========================
+   COMPLETE RECALL
+========================= */
 
-/* ===============================
-   REVEAL
-================================ */
-
-#revealScene {
+#completeRecallScene {
   justify-content: center;
   text-align: center;
 }
 
-.reveal-card {
+.complete-card {
   max-width: 650px;
   margin: auto;
-  padding: 34px;
 
-  background:
-    rgba(255,255,255,.06);
+  padding: 38px 30px;
 
-  border:
-    1px solid
-    rgba(255,255,255,.1);
+  border-radius: 26px;
 
-  border-radius: 24px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
 }
 
-.reveal-title {
-  letter-spacing: .15em;
-
-  font-size:
-    clamp(
-      1.6rem,
-      5vw,
-      2.4rem
-    );
-
-  margin: 10px 0 28px;
-
-  animation:
-    softGlow
-    2s ease-in-out
-    infinite;
+.complete-symbols {
+  font-size: 3.5rem;
+  margin-bottom: 25px;
 }
 
-@keyframes softGlow {
-  50% {
-    text-shadow:
-      0 0 24px
-      rgba(255,255,255,.4);
-  }
-}
-
-.reveal-text {
+.complete-text {
   min-height: 180px;
+  font-size: clamp(1.08rem, 3vw, 1.3rem);
   line-height: 1.8;
-
-  font-size:
-    clamp(
-      1.02rem,
-      3vw,
-      1.25rem
-    );
 }
 
-
-/* ===============================
-   WAITING
-================================ */
-
-#waitingScene {
-  justify-content: center;
-}
-
-.waiting-window {
-  position: relative;
-
-  width: 100%;
-  min-height: 340px;
-
-  border-radius: 24px;
-  overflow: hidden;
-
-  background:
-    linear-gradient(
-      180deg,
-      #53697d 0%,
-      #7b8994 38%,
-      #414954 39%,
-      #202733 100%
-    );
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
-
-  margin-bottom: 22px;
-}
-
-.waiting-yako {
-  position: absolute;
-
-  bottom: 42px;
-  right: 20%;
-
-  font-size:
-    clamp(
-      4rem,
-      14vw,
-      7rem
-    );
-
-  animation:
-    sleepyFloat
-    3.6s
-    ease-in-out
-    infinite;
-}
-
-.waiting-bag {
-  position: absolute;
-  right: 10%;
-  bottom: 45px;
-  font-size: 2.6rem;
-}
-
-.waiting-seat {
-  position: absolute;
-
-  right: 9%;
-  bottom: 27px;
-
-  width: 230px;
-  height: 27px;
-
-  border-radius: 9px;
-
-  background: #151b23;
-}
-
-@keyframes sleepyFloat {
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-.waiting-dialogue {
-  padding: 22px 24px;
-
-  border-radius: 20px;
-
-  background:
-    rgba(255,255,255,.06);
-
-  border:
-    1px solid
-    rgba(255,255,255,.09);
-
-  font-size:
-    clamp(
-      1.02rem,
-      3vw,
-      1.25rem
-    );
-
-  line-height: 1.75;
-  min-height: 135px;
-}
-
-.waiting-controls {
-  margin-top: 16px;
-
-  display: flex;
-  justify-content: flex-end;
-}
-
-
-/* ===============================
-   WARMTH
-================================ */
+/* =========================
+   WARMTH GAME
+========================= */
 
 #warmthScene {
   justify-content: center;
@@ -928,19 +650,12 @@ button {
 }
 
 .warmth-text {
-  max-width: 600px;
-
+  max-width: 650px;
   margin: 0 auto 20px;
 
-  font-size:
-    clamp(
-      1.05rem,
-      3vw,
-      1.3rem
-    );
-
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
   line-height: 1.75;
-  min-height: 92px;
+  min-height: 95px;
 }
 
 #warmthField {
@@ -962,9 +677,7 @@ button {
       rgba(0,0,0,.05) 100%
     );
 
-  border:
-    1px solid
-    rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.08);
 }
 
 .warm-charm {
@@ -973,17 +686,13 @@ button {
   left: 50%;
   top: 50%;
 
-  transform:
-    translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 
   width: 105px;
   height: 128px;
 
   border-radius: 40px;
-
-  border:
-    2px dashed
-    rgba(255,255,255,.65);
+  border: 2px dashed rgba(255,255,255,.65);
 
   background:
     linear-gradient(
@@ -1060,10 +769,9 @@ button {
   }
 }
 
-
-/* ===============================
+/* =========================
    MAGIC
-================================ */
+========================= */
 
 #magicScene {
   justify-content: center;
@@ -1142,22 +850,15 @@ button {
 
 .magic-text {
   min-height: 100px;
-  max-width: 570px;
+  max-width: 600px;
 
-  font-size:
-    clamp(
-      1.05rem,
-      3vw,
-      1.3rem
-    );
-
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
   line-height: 1.75;
 }
 
-
-/* ===============================
+/* =========================
    GIFT
-================================ */
+========================= */
 
 #giftScene {
   justify-content: center;
@@ -1165,19 +866,13 @@ button {
 }
 
 .gift-wrap {
-  max-width: 620px;
+  max-width: 650px;
   width: 100%;
   margin: auto;
 }
 
 .gift-thought {
-  font-size:
-    clamp(
-      1.05rem,
-      3vw,
-      1.28rem
-    );
-
+  font-size: clamp(1.05rem, 3vw, 1.28rem);
   line-height: 1.8;
   margin-bottom: 28px;
   min-height: 80px;
@@ -1194,7 +889,6 @@ button {
 
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
 
@@ -1207,24 +901,19 @@ button {
 
   color: #292723;
 
-  border:
-    1px solid
-    rgba(255,255,255,.7);
+  border: 1px solid rgba(255,255,255,.7);
 
   box-shadow:
     0 25px 65px rgba(0,0,0,.35),
     0 0 40px rgba(255,216,153,.18);
 
   animation:
-    giftArrival
-    .9s
-    cubic-bezier(.2,.8,.2,1);
+    giftArrival .9s cubic-bezier(.2,.8,.2,1);
 }
 
 @keyframes giftArrival {
   from {
     opacity: 0;
-
     transform:
       translateY(40px)
       scale(.82)
@@ -1233,7 +922,6 @@ button {
 
   to {
     opacity: 1;
-
     transform:
       translateY(0)
       scale(1)
@@ -1254,13 +942,7 @@ button {
 }
 
 .gift-name {
-  font-size:
-    clamp(
-      1.45rem,
-      5vw,
-      2rem
-    );
-
+  font-size: clamp(1.45rem, 5vw, 2rem);
   font-weight: 800;
   margin-bottom: 8px;
 }
@@ -1285,38 +967,20 @@ button {
 }
 
 .ending-line {
-  margin-top: 30px;
-
-  font-size:
-    clamp(
-      1rem,
-      3vw,
-      1.2rem
-    );
-
-  line-height: 1.8;
+  margin-top: 28px;
+  font-size: clamp(1rem, 3vw, 1.18rem);
+  line-height: 1.85;
 }
 
-.ending-heart {
-  display: inline-block;
-
-  animation:
-    heartBeat
-    1.8s
-    ease-in-out
-    infinite;
+.final-line {
+  margin-top: 22px;
+  font-size: clamp(1.15rem, 3.5vw, 1.4rem);
+  font-weight: 700;
 }
 
-@keyframes heartBeat {
-  50% {
-    transform: scale(1.16);
-  }
-}
-
-
-/* ===============================
+/* =========================
    MOBILE
-================================ */
+========================= */
 
 @media (max-width: 600px) {
 
@@ -1327,7 +991,6 @@ button {
   #game {
     width: 100%;
     min-height: 100vh;
-
     border: 0;
     border-radius: 0;
   }
@@ -1336,19 +999,23 @@ button {
     padding: 22px 18px;
   }
 
-  .window {
+  .window,
+  .waiting-window {
     min-height: 215px;
   }
 
-  .yako {
+  .yako,
+  .waiting-yako {
     right: 14%;
   }
 
-  .seat {
+  .seat,
+  .waiting-seat {
     width: 160px;
   }
 
-  .dialogue-box {
+  .dialogue-box,
+  .waiting-dialogue {
     padding: 18px;
   }
 
@@ -1358,23 +1025,17 @@ button {
 
   .memory-card,
   .remember-card,
-  .reveal-card {
+  .complete-card {
     padding: 24px 18px;
-  }
-
-  .fixed-letter,
-  .letter-box {
-    width: 27px;
-    height: 40px;
-  }
-
-  .word-group {
-    margin-left: 5px;
-    margin-right: 5px;
   }
 
   #warmthField {
     height: 360px;
+  }
+
+  .emoji-slot {
+    width: 64px;
+    height: 64px;
   }
 }
 </style>
@@ -1385,44 +1046,34 @@ button {
 <main id="game">
 
 
-<!-- ===============================
-     OPENING
-================================ -->
+<!-- OPENING -->
 
 <section id="opening" class="scene active">
 
-  <div class="tiny-label">
-    Project Remember Me
-  </div>
-
-  <div class="charm">
-    <div class="charm-face">
-      🧵
-    </div>
-  </div>
-
   <div
-    id="openingText"
-    class="opening-text">
+    id="openingBox"
+    class="opening-box">
 
     ...
 
   </div>
 
-  <button
-    id="openingButton"
-    class="primary-btn">
+  <div class="opening-controls">
 
-    Wake up
+    <button
+      id="openingNext"
+      class="soft-btn">
 
-  </button>
+      ...
+
+    </button>
+
+  </div>
 
 </section>
 
 
-<!-- ===============================
-     AIRPORT
-================================ -->
+<!-- AIRPORT -->
 
 <section id="airportScene" class="scene">
 
@@ -1442,13 +1093,17 @@ button {
 
     <div class="airport-time">
 
-      10:20 AM
+      Morning
       <br>
-      <small>Transit</small>
+
+      <small>
+        Transit
+      </small>
 
     </div>
 
   </div>
+
 
   <div class="window">
 
@@ -1467,6 +1122,7 @@ button {
     </div>
 
   </div>
+
 
   <div class="dialogue-box">
 
@@ -1496,9 +1152,7 @@ button {
 </section>
 
 
-<!-- ===============================
-     MATCH
-================================ -->
+<!-- MATCH -->
 
 <section id="matchScene" class="scene">
 
@@ -1512,9 +1166,7 @@ button {
 </section>
 
 
-<!-- ===============================
-     MEMORY
-================================ -->
+<!-- MEMORY -->
 
 <section id="memoryScene" class="scene">
 
@@ -1523,9 +1175,6 @@ button {
     <div
       id="memoryIcon"
       class="memory-icon">
-
-      🐇
-
     </div>
 
     <div
@@ -1546,9 +1195,7 @@ button {
 </section>
 
 
-<!-- ===============================
-     REMEMBER
-================================ -->
+<!-- REMEMBER -->
 
 <section id="rememberScene" class="scene">
 
@@ -1557,7 +1204,7 @@ button {
     <div class="back-charm">
 
       <div class="back-icons">
-        🐙　🐇
+        ?　?
       </div>
 
       <div class="mystery-stitches">
@@ -1569,90 +1216,103 @@ button {
 
     </div>
 
+
     <div class="remember-dialogue">
 
-      ...Huh?
+      Something still feels incomplete.
 
       <br><br>
 
-      There's something stitched on my back.
+      I can feel one last, important mark hidden somewhere on me.
 
       <br><br>
 
-      I can feel the letters,
-      but I can't quite read them.
+      Wait...
 
       <br>
 
-      Maybe the real me can.
+      It's on my back!
+
+      <br><br>
+
+      Yako, could you take a look at the real me?
+
+      <br>
+
+      What did Celluaria leave there?
 
     </div>
 
 
-    <div class="letter-puzzle">
+    <input
+      id="rememberInput"
+      class="password-input"
+      type="text"
+      autocomplete="off"
+      placeholder="What does it say?"
+    >
 
-      <div class="word-group">
 
-        <span class="fixed-letter">
-          R
-        </span>
+    <div class="emoji-question">
 
-        <input
-          class="letter-box missing-letter"
-          maxlength="1"
-          autocomplete="off"
-          data-answer="E"
-        >
+      And these two little ones...
 
-        <span class="fixed-letter">
-          M
-        </span>
+      <br>
 
-        <input
-          class="letter-box missing-letter"
-          maxlength="1"
-          autocomplete="off"
-          data-answer="E"
-        >
+      who are they?
 
-        <span class="fixed-letter">
-          M
-        </span>
+    </div>
 
-        <span class="fixed-letter">
-          B
-        </span>
 
-        <input
-          class="letter-box missing-letter"
-          maxlength="1"
-          autocomplete="off"
-          data-answer="E"
-        >
+    <div class="emoji-slots">
 
-        <span class="fixed-letter">
-          R
-        </span>
+      <div
+        id="emojiSlot1"
+        class="emoji-slot">
+
+        ?
 
       </div>
 
+      <div
+        id="emojiSlot2"
+        class="emoji-slot">
 
-      <div class="word-group">
-
-        <span class="fixed-letter">
-          M
-        </span>
-
-        <input
-          class="letter-box missing-letter"
-          maxlength="1"
-          autocomplete="off"
-          data-answer="E"
-        >
+        ?
 
       </div>
 
     </div>
+
+
+    <div class="emoji-options">
+
+      <button class="emoji-choice" data-emoji="🐙">
+        🐙
+      </button>
+
+      <button class="emoji-choice" data-emoji="🐇">
+        🐇
+      </button>
+
+      <button class="emoji-choice" data-emoji="🐱">
+        🐱
+      </button>
+
+      <button class="emoji-choice" data-emoji="🐻">
+        🐻
+      </button>
+
+      <button class="emoji-choice" data-emoji="🐶">
+        🐶
+      </button>
+
+      <button class="emoji-choice" data-emoji="🐧">
+        🐧
+      </button>
+
+    </div>
+
 
     <div
       id="answerFeedback"
@@ -1664,29 +1324,27 @@ button {
 </section>
 
 
-<!-- ===============================
-     REVEAL
-================================ -->
+<!-- COMPLETE RECALL -->
 
-<section id="revealScene" class="scene">
+<section
+  id="completeRecallScene"
+  class="scene">
 
-  <div class="reveal-card">
+  <div class="complete-card">
 
-    <div style="font-size:3rem;">
-      🐙　🐇
-    </div>
+    <div class="complete-symbols">
 
-    <div class="reveal-title">
-      REMEMBER ME
+      🐇　🐙
+
     </div>
 
     <div
-      id="revealText"
-      class="reveal-text">
+      id="completeRecallText"
+      class="complete-text">
     </div>
 
     <button
-      id="revealNext"
+      id="completeRecallNext"
       class="primary-btn">
 
       ...
@@ -1698,9 +1356,7 @@ button {
 </section>
 
 
-<!-- ===============================
-     WAITING
-================================ -->
+<!-- WAITING -->
 
 <section id="waitingScene" class="scene">
 
@@ -1717,6 +1373,7 @@ button {
     </div>
 
   </div>
+
 
   <div class="waiting-dialogue">
 
@@ -1743,9 +1400,7 @@ button {
 </section>
 
 
-<!-- ===============================
-     WARMTH
-================================ -->
+<!-- WARMTH -->
 
 <section id="warmthScene" class="scene">
 
@@ -1753,9 +1408,10 @@ button {
     id="warmthText"
     class="warmth-text">
 
-    There's something warm inside me...
+    Warm...
 
   </div>
+
 
   <div id="warmthField">
 
@@ -1772,9 +1428,7 @@ button {
 </section>
 
 
-<!-- ===============================
-     MAGIC
-================================ -->
+<!-- MAGIC -->
 
 <section id="magicScene" class="scene">
 
@@ -1798,9 +1452,7 @@ button {
 </section>
 
 
-<!-- ===============================
-     GIFT
-================================ -->
+<!-- GIFT -->
 
 <section id="giftScene" class="scene">
 
@@ -1809,15 +1461,13 @@ button {
     <div
       id="giftThought"
       class="gift-thought">
-
-      ...Did it work?
-
     </div>
+
 
     <div class="gift-card">
 
       <div class="gift-card-small">
-        Project Remember Me
+        FOR YAKO
       </div>
 
       <div class="gift-icon">
@@ -1825,12 +1475,12 @@ button {
       </div>
 
       <div class="gift-name">
-        One Warm Drink
+        A Little Something From Far Away
       </div>
 
       <div class="gift-desc">
 
-        For Yako.
+        One warm drink.
 
         <br>
 
@@ -1847,17 +1497,46 @@ button {
 
     </div>
 
+
     <div class="ending-line">
 
-      A tiny bit of love was used.
+      Let this coffee keep you company
+      through the long wait.
+
+      <br><br>
+
+      The distance between you and Celluaria
+      may be growing again...
+
+      <br><br>
+
+      but his love for you won't grow
+      any smaller with it.
+
+      <br><br>
+
+      Wherever this new chapter
+      of your life takes you,
+
+      <br><br>
+
+      I'll be right there with you—
 
       <br>
 
-      There's still plenty left.
+      carrying a little piece
+      of his heart along the way.
 
-      <span class="ending-heart">
-        ♡
-      </span>
+    </div>
+
+
+    <div class="final-line">
+
+      Off you go, Yako.
+
+      <br><br>
+
+      The best little octopus in the world. 🐙♡
 
     </div>
 
@@ -1892,9 +1571,10 @@ function showScene(id) {
 
 function sleep(ms) {
 
-  return new Promise(resolve => {
-    setTimeout(resolve, ms);
-  });
+  return new Promise(
+    resolve =>
+      setTimeout(resolve, ms)
+  );
 
 }
 
@@ -1904,44 +1584,84 @@ function sleep(ms) {
 ========================================== */
 
 const openingLines = [
-  "...",
-  "...ugh.",
-  "Why is everything still moving?",
-  "Wait.",
-  "It's not moving anymore.",
-  "So...",
-  "Where am I?"
+
+  "Mmm... where am I?\nThe shaking finally stopped...",
+
+  "This looks like... an airport?"
+
 ];
+
 
 let openingIndex = 0;
 
-const openingText =
-  document.getElementById("openingText");
 
-const openingButton =
-  document.getElementById("openingButton");
+const openingBox =
+  document.getElementById(
+    "openingBox"
+  );
 
 
-openingButton.addEventListener(
+const openingNext =
+  document.getElementById(
+    "openingNext"
+  );
+
+
+openingBox.textContent =
+  openingLines[0];
+
+
+function shakeOpening() {
+
+  openingBox.classList.remove(
+    "shake"
+  );
+
+  void openingBox.offsetWidth;
+
+  openingBox.classList.add(
+    "shake"
+  );
+
+}
+
+
+setTimeout(
+  shakeOpening,
+  300
+);
+
+
+openingNext.addEventListener(
   "click",
   () => {
 
     openingIndex++;
 
-    if (openingIndex < openingLines.length) {
 
-      openingText.textContent =
-        openingLines[openingIndex];
+    if (
+      openingIndex === 1
+    ) {
 
-      openingButton.textContent =
+      openingBox.textContent =
+        openingLines[1];
+
+      shakeOpening();
+
+      openingNext.textContent =
         "...";
 
-    } else {
-
-      showScene("airportScene");
-      startAirportDialogue();
+      return;
 
     }
+
+
+    showScene(
+      "airportScene"
+    );
+
+    startAirportDialogue();
+
   }
 );
 
@@ -1952,63 +1672,48 @@ openingButton.addEventListener(
 
 const airportLines = [
 
-  "Bright lights... glass windows... suitcases everywhere.",
+  "Huh?",
 
-  "An airport?",
-
-  "Oh.",
-
-  "That explains the shaking.",
-
-  "...",
-
-  "Hm?",
-
-  "There's someone sitting over there.",
+  "And who's this beside me...",
 
   "A little octopus?",
 
-  "...wait.",
+  "I feel like... I know you?",
 
-  "A LITTLE OCTOPUS?!",
+  "But everything in my head is all fuzzy...",
 
-  "Could that be...",
+  "Like I've been asleep for a very, very long time.",
 
-  "Yako?",
+  "Little octopus... could you help me?",
 
-  "The Yako that Celluaria kept talking about while making me?",
+  "I want to find all those scattered memories...",
 
-  "...",
-
-  "So that's her.",
-
-  "I thought I'd recognise her somehow.",
-
-  "Funny.",
-
-  "I think I actually did.",
-
-  "...",
-
-  "Something inside me feels all tangled up.",
-
-  "Maybe the journey shook some things loose."
+  "Little by little."
 
 ];
 
-let airportDialogueIndex = 0;
+
+let airportIndex = 0;
+
 
 const airportDialogue =
-  document.getElementById("airportDialogue");
+  document.getElementById(
+    "airportDialogue"
+  );
+
 
 const airportNext =
-  document.getElementById("airportNext");
+  document.getElementById(
+    "airportNext"
+  );
 
 
 function startAirportDialogue() {
 
-  airportDialogueIndex = 0;
-  airportDialogue.textContent = airportLines[0];
+  airportIndex = 0;
+
+  airportDialogue.textContent =
+    airportLines[0];
 
 }
 
@@ -2017,21 +1722,28 @@ airportNext.addEventListener(
   "click",
   () => {
 
-    airportDialogueIndex++;
+    airportIndex++;
+
 
     if (
-      airportDialogueIndex <
+      airportIndex <
       airportLines.length
     ) {
 
       airportDialogue.textContent =
-        airportLines[airportDialogueIndex];
+        airportLines[
+          airportIndex
+        ];
 
-    } else {
+    }
+
+    else {
 
       puzzleIndex = 0;
 
-      showScene("matchScene");
+      showScene(
+        "matchScene"
+      );
 
       createBoard();
 
@@ -2051,34 +1763,39 @@ const puzzleSteps = [
     target: "🐇",
 
     thought:
-      "Something feels familiar...\nIs that...?",
+      "This feels familiar...\nMaybe this one?",
 
     board: [
       ["🐇","💾","🧵","✈️","🐙"],
-      ["🧵","🐇","📓","💾","✈️"],
-      ["💾","✈️","🐇","🐇","📓"],
-      ["🐇","📓","🐙","✈️","💾"],
-      ["🐇","💾","🧵","🐙","📓"]
+      ["🧵","🐇","📖","💾","✈️"],
+      ["💾","✈️","🐇","🐇","📖"],
+      ["🐇","📖","🐙","✈️","💾"],
+      ["🐇","💾","🧵","🐙","📖"]
     ],
 
     memories: [
       {
         icon: "🐇",
-        text: "Celluaria..."
+        text:
+          "Yes! That's him!"
       },
+
       {
         icon: "🐇",
-        text: "I remember him."
+        text:
+          "He's the one who made me!"
       },
+
       {
         icon: "🧵",
         text:
-          "His hands kept moving while he was making me."
+          "And while he was stitching me together..."
       },
+
       {
-        icon: "💭",
+        icon: "🐙",
         text:
-          "And he talked. A lot."
+          "he sure talked about you a lot, little octopus!"
       }
     ]
   },
@@ -2088,98 +1805,33 @@ const puzzleSteps = [
     target: "🐙",
 
     thought:
-      "Wait...\nThere's another one.",
+      "Wait...\nI know this one too.",
 
     board: [
-      ["📓","💾","🐙","✈️","🧵"],
+      ["📖","💾","🐙","✈️","🧵"],
       ["🐇","💾","🐙","💾","✈️"],
-      ["🐙","📓","💾","🧵","🐇"],
-      ["🐙","✈️","🐙","📓","🐙"],
-      ["🧵","✈️","🧵","📓","💾"]
+      ["🐙","📖","💾","🧵","🐇"],
+      ["🐙","✈️","🐙","📖","🐙"],
+      ["🧵","✈️","🧵","📖","💾"]
     ],
 
     memories: [
       {
         icon: "🐙",
-        text: "Yako."
+        text:
+          "Little octopus... Yako."
       },
+
+      {
+        icon: "♡",
+        text:
+          "That name..."
+      },
+
       {
         icon: "🐙",
         text:
-          "That's the name I heard so many times."
-      },
-      {
-        icon: "🐙",
-        text:
-          "So the little octopus really is her."
-      }
-    ]
-  },
-
-
-  {
-    target: "🧵",
-
-    thought:
-      "And this one...\nWhy does it feel so close?",
-
-    board: [
-      ["💾","🐙","✈️","🧵","📓"],
-      ["💾","🐇","🧵","💾","🐇"],
-      ["📓","✈️","💾","✈️","📓"],
-      ["🐙","🧵","🧵","🐙","💾"],
-      ["🧵","🐇","📓","💾","🐙"]
-    ],
-
-    memories: [
-      {
-        icon: "🧵",
-        text: "Thread..."
-      },
-      {
-        icon: "🧵",
-        text: "Stitches..."
-      },
-      {
-        icon: "🧵",
-        text: "Oh."
-      },
-      {
-        icon: "🧵",
-        text: "That's me."
-      }
-    ]
-  },
-
-
-  {
-    target: "📓",
-
-    thought:
-      "Hm...\nI think something came before me.",
-
-    board: [
-      ["🧵","📓","🐙","🧵","✈️"],
-      ["📓","🐇","💾","📓","🧵"],
-      ["🐇","📓","💾","🧵","🧵"],
-      ["🐙","💾","🐙","🐙","🐇"],
-      ["🐙","🧵","🐙","💾","📓"]
-    ],
-
-    memories: [
-      {
-        icon: "📓",
-        text: "A notebook..."
-      },
-      {
-        icon: "📓",
-        text:
-          "So I wasn't the first thing Celluaria sent along with her."
-      },
-      {
-        icon: "📓",
-        text:
-          "I suppose that makes the notebook my senior."
+          "it's been stitched deep inside my heart all along!"
       }
     ]
   },
@@ -2189,12 +1841,12 @@ const puzzleSteps = [
     target: "💾",
 
     thought:
-      "And there's one more thing hiding in here...",
+      "Something is playing in my head...\nA melody?",
 
     board: [
       ["🐙","✈️","🐇","🧵","💾"],
-      ["📓","🐇","📓","🐙","✈️"],
-      ["🐙","✈️","📓","💾","🐇"],
+      ["📖","🐇","📖","🐙","✈️"],
+      ["🐙","✈️","📖","💾","🐇"],
       ["💾","🐇","🐇","🐙","🐙"],
       ["✈️","💾","💾","🧵","🐙"]
     ],
@@ -2202,17 +1854,110 @@ const puzzleSteps = [
     memories: [
       {
         icon: "💾",
-        text: "A little USB drive."
-      },
-      {
-        icon: "💾",
         text:
-          "Apparently it carried things ahead before I did."
+          "I can almost hear a melody..."
       },
+
+      {
+        icon: "🎵",
+        text:
+          "This little drive was filled with songs for you."
+      },
+
+      {
+        icon: "♡",
+        text:
+          "Every single one carried a memory that belonged only to you and Celluaria."
+      }
+    ]
+  },
+
+
+  {
+    target: "📖",
+
+    thought:
+      "Pages...\nThere are so many pages.",
+
+    board: [
+      ["🧵","📖","🐙","🧵","✈️"],
+      ["📖","🐇","💾","📖","🧵"],
+      ["🐇","📖","💾","🧵","🧵"],
+      ["🐙","💾","🐙","🐙","🐇"],
+      ["🐙","🧵","🐙","💾","📖"]
+    ],
+
+    memories: [
+      {
+        icon: "📖",
+        text:
+          "One page... two pages..."
+      },
+
+      {
+        icon: "📖",
+        text:
+          "So many words. So many photos!"
+      },
+
+      {
+        icon: "👣",
+        text:
+          "Every step you took together is in here."
+      },
+
+      {
+        icon: "♡",
+        text:
+          "All those laughs, all those little moments... carefully kept between the pages."
+      }
+    ]
+  },
+
+
+  {
+    target: "🧵",
+
+    thought:
+      "And this feeling...\nI know it.",
+
+    board: [
+      ["💾","🐙","✈️","🧵","📖"],
+      ["💾","🐇","🧵","💾","🐇"],
+      ["📖","✈️","💾","✈️","📖"],
+      ["🐙","🧵","🧵","🐙","💾"],
+      ["🧵","🐇","📖","💾","🐙"]
+    ],
+
+    memories: [
       {
         icon: "🧵",
         text:
-          "Celluaria has been sending little pieces of himself along for a while, hasn't he?"
+          "Ah! I remember!"
+      },
+
+      {
+        icon: "🧵",
+        text:
+          "The feeling of needle and thread passing through the fabric..."
+      },
+
+      {
+        icon: "🪡",
+        text:
+          "stitch by stitch..."
+      },
+
+      {
+        icon: "🤲",
+        text:
+          "There were a pair of hands..."
+      },
+
+      {
+        icon: "♡",
+        text:
+          "taking so much care to make me."
       }
     ]
   }
@@ -2229,11 +1974,17 @@ let board = [];
 let selected = null;
 let boardLocked = false;
 
+
 const boardElement =
-  document.getElementById("matchBoard");
+  document.getElementById(
+    "matchBoard"
+  );
+
 
 const matchThought =
-  document.getElementById("matchThought");
+  document.getElementById(
+    "matchThought"
+  );
 
 
 function createBoard() {
@@ -2245,17 +1996,16 @@ function createBoard() {
     puzzleSteps[puzzleIndex];
 
   board =
-    step.board.map(row => [...row]);
+    step.board.map(
+      row => [...row]
+    );
 
   matchThought.innerHTML =
-
     step.thought.replace(
       /\n/g,
       "<br>"
     )
-
     +
-
     `<span class="target-emoji">${step.target}</span>`;
 
   renderBoard();
@@ -2266,6 +2016,7 @@ function createBoard() {
 function renderBoard() {
 
   boardElement.innerHTML = "";
+
 
   for (
     let row = 0;
@@ -2280,9 +2031,14 @@ function renderBoard() {
     ) {
 
       const tile =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
-      tile.className = "tile";
+
+      tile.className =
+        "tile";
+
 
       tile.textContent =
         board[row][col];
@@ -2303,14 +2059,11 @@ function renderBoard() {
 
       tile.addEventListener(
         "click",
-        () => {
-
+        () =>
           handleTileClick(
             row,
             col
-          );
-
-        }
+          )
       );
 
 
@@ -2330,12 +2083,16 @@ function handleTileClick(
   col
 ) {
 
-  if (boardLocked) {
+  if (
+    boardLocked
+  ) {
     return;
   }
 
 
-  if (!selected) {
+  if (
+    !selected
+  ) {
 
     selected = {
       row,
@@ -2373,7 +2130,9 @@ function handleTileClick(
     );
 
 
-  if (distance !== 1) {
+  if (
+    distance !== 1
+  ) {
 
     selected = {
       row,
@@ -2391,6 +2150,7 @@ function handleTileClick(
     ...selected
   };
 
+
   selected = null;
 
 
@@ -2406,7 +2166,9 @@ function handleTileClick(
     findMatches();
 
 
-  if (matches.length === 0) {
+  if (
+    matches.length === 0
+  ) {
 
     swapTiles(
       previous.row,
@@ -2423,17 +2185,22 @@ function handleTileClick(
 
 
   const target =
-    puzzleSteps[puzzleIndex].target;
+    puzzleSteps[
+      puzzleIndex
+    ].target;
 
 
   const containsTarget =
     matches.some(
       ({row, col}) =>
-        board[row][col] === target
+        board[row][col] ===
+        target
     );
 
 
-  if (!containsTarget) {
+  if (
+    !containsTarget
+  ) {
 
     swapTiles(
       previous.row,
@@ -2449,7 +2216,9 @@ function handleTileClick(
   }
 
 
-  solvePuzzle(matches);
+  solvePuzzle(
+    matches
+  );
 
 }
 
@@ -2622,16 +2391,18 @@ async function solvePuzzle(
   renderBoard();
 
 
-  await sleep(550);
+  await sleep(
+    550
+  );
 
 
   puzzleMemoryIndex = 0;
 
-  memoryMode = "puzzle";
-
   displayPuzzleMemory();
 
-  showScene("memoryScene");
+  showScene(
+    "memoryScene"
+  );
 
 }
 
@@ -2641,301 +2412,87 @@ async function solvePuzzle(
 ========================================== */
 
 const memoryIcon =
-  document.getElementById("memoryIcon");
+  document.getElementById(
+    "memoryIcon"
+  );
+
 
 const memoryText =
-  document.getElementById("memoryText");
+  document.getElementById(
+    "memoryText"
+  );
+
 
 const memoryNext =
-  document.getElementById("memoryNext");
-
-
-let memoryMode = "";
-
-let finalMemoryIndex = 0;
-
-let warmthRealisationIndex = 0;
-
-
-const finalMemoryLines = [
-
-  {
-    icon: "🧵",
-    text:
-      "That's strange..."
-  },
-
-  {
-    icon: "💭",
-    text:
-      "Things feel a little clearer now."
-  },
-
-  {
-    icon: "🐙",
-    text:
-      "Yako."
-  },
-
-  {
-    icon: "🐇",
-    text:
-      "Celluaria."
-  },
-
-  {
-    icon: "🧵",
-    text:
-      "And me."
-  },
-
-  {
-    icon: "💭",
-    text:
-      "So that's why all of those things felt familiar."
-  },
-
-  {
-    icon: "❔",
-    text:
-      "...Wait."
-  },
-
-  {
-    icon: "❔",
-    text:
-      "There's something on the other side of me."
-  }
-
-];
-
-
-const warmthRealisationLines = [
-
-  "Oh.",
-
-  "I think this is what Celluaria left inside me.",
-
-  "I don't really know how much of it there is.",
-
-  "...",
-
-  "But Yako has been waiting here for so long.",
-
-  "Maybe...",
-
-  "Maybe I can use just a tiny bit."
-
-];
+  document.getElementById(
+    "memoryNext"
+  );
 
 
 function displayPuzzleMemory() {
 
   const item =
-    puzzleSteps[puzzleIndex]
-      .memories[puzzleMemoryIndex];
+    puzzleSteps[
+      puzzleIndex
+    ].memories[
+      puzzleMemoryIndex
+    ];
+
 
   memoryIcon.textContent =
     item.icon;
+
 
   memoryText.textContent =
     item.text;
 
 }
 
-
-function displayFinalMemory() {
-
-  const item =
-    finalMemoryLines[
-      finalMemoryIndex
-    ];
-
-  memoryIcon.textContent =
-    item.icon;
-
-  memoryText.textContent =
-    item.text;
-
-}
-
-
-function displayWarmthMemory() {
-
-  memoryIcon.textContent =
-    warmthRealisationIndex >= 5
-      ? "✨"
-      : "♡";
-
-  memoryText.textContent =
-    warmthRealisationLines[
-      warmthRealisationIndex
-    ];
-
-}
-
-
-function startFinalMemory() {
-
-  memoryMode = "final";
-
-  finalMemoryIndex = 0;
-
-  displayFinalMemory();
-
-  showScene("memoryScene");
-
-}
-
-
-function startWarmthRealisation() {
-
-  memoryMode = "warmth";
-
-  warmthRealisationIndex = 0;
-
-  displayWarmthMemory();
-
-  showScene("memoryScene");
-
-}
-
-
-/*
-   ONE BUTTON.
-   ONE HANDLER.
-   ALL MEMORY STORY FLOW GOES THROUGH HERE.
-*/
 
 memoryNext.addEventListener(
   "click",
   () => {
 
-    /* PUZZLE MEMORIES */
+    puzzleMemoryIndex++;
+
+
+    const memories =
+      puzzleSteps[
+        puzzleIndex
+      ].memories;
+
 
     if (
-      memoryMode ===
-      "puzzle"
+      puzzleMemoryIndex <
+      memories.length
     ) {
 
-      puzzleMemoryIndex++;
-
-
-      const memories =
-        puzzleSteps[puzzleIndex]
-          .memories;
-
-
-      if (
-        puzzleMemoryIndex <
-        memories.length
-      ) {
-
-        displayPuzzleMemory();
-
-        return;
-
-      }
-
-
-      puzzleIndex++;
-
-
-      if (
-        puzzleIndex <
-        puzzleSteps.length
-      ) {
-
-        showScene(
-          "matchScene"
-        );
-
-        createBoard();
-
-      } else {
-
-        startFinalMemory();
-
-      }
-
+      displayPuzzleMemory();
 
       return;
 
     }
 
 
-    /* FINAL MEMORY BEFORE CHARM */
+    puzzleIndex++;
+
 
     if (
-      memoryMode ===
-      "final"
+      puzzleIndex <
+      puzzleSteps.length
     ) {
 
-      finalMemoryIndex++;
+      showScene(
+        "matchScene"
+      );
 
-
-      if (
-        finalMemoryIndex <
-        finalMemoryLines.length
-      ) {
-
-        displayFinalMemory();
-
-      } else {
-
-        showScene(
-          "rememberScene"
-        );
-
-
-        setTimeout(
-          () => {
-
-            const first =
-              document.querySelector(
-                ".missing-letter"
-              );
-
-            if (first) {
-              first.focus();
-            }
-
-          },
-          400
-        );
-
-      }
-
-
-      return;
+      createBoard();
 
     }
 
+    else {
 
-    /* WARMTH REALISATION */
-
-    if (
-      memoryMode ===
-      "warmth"
-    ) {
-
-      warmthRealisationIndex++;
-
-
-      if (
-        warmthRealisationIndex <
-        warmthRealisationLines.length
-      ) {
-
-        displayWarmthMemory();
-
-      } else {
-
-        memoryMode = "";
-
-        startMagicScene();
-
-      }
+      startRememberScene();
 
     }
 
@@ -2944,14 +2501,30 @@ memoryNext.addEventListener(
 
 
 /* ==========================================
-   REMEMBER ME
+   REMEMBER SCENE
 ========================================== */
 
-const letterBoxes =
-  Array.from(
-    document.querySelectorAll(
-      ".missing-letter"
-    )
+const rememberInput =
+  document.getElementById(
+    "rememberInput"
+  );
+
+
+const emojiSlot1 =
+  document.getElementById(
+    "emojiSlot1"
+  );
+
+
+const emojiSlot2 =
+  document.getElementById(
+    "emojiSlot2"
+  );
+
+
+const emojiChoices =
+  document.querySelectorAll(
+    ".emoji-choice"
   );
 
 
@@ -2961,125 +2534,79 @@ const answerFeedback =
   );
 
 
-let rememberSolved = false;
+let selectedEmojis = [];
 
 
-letterBoxes.forEach(
-  (box, index) => {
+function startRememberScene() {
 
-    box.addEventListener(
-      "input",
+  selectedEmojis = [];
+
+  rememberInput.value = "";
+
+  emojiSlot1.textContent = "?";
+  emojiSlot2.textContent = "?";
+
+  answerFeedback.textContent = "";
+
+  showScene(
+    "rememberScene"
+  );
+
+}
+
+
+emojiChoices.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
       () => {
 
-        if (
-          rememberSolved
-        ) {
-          return;
-        }
-
-
-        let value =
-          box.value
-            .replace(
-              /[^a-zA-Z]/g,
-              ""
-            )
-            .slice(0, 1)
-            .toUpperCase();
-
-
-        box.value = value;
-
-
-        if (!value) {
-          return;
-        }
-
-
-        const expected =
-          box.dataset.answer;
+        const emoji =
+          button.dataset.emoji;
 
 
         if (
-          value !== expected
+          selectedEmojis.length >= 2
         ) {
 
-          box.classList.remove(
-            "wrong"
-          );
+          selectedEmojis = [];
 
-          void box.offsetWidth;
+          emojiSlot1.textContent =
+            "?";
 
-          box.classList.add(
-            "wrong"
-          );
-
-
-          answerFeedback.textContent =
-            "Hmm... that doesn't feel right.";
-
-
-          setTimeout(
-            () => {
-
-              box.value = "";
-
-              box.classList.remove(
-                "wrong"
-              );
-
-            },
-            280
-          );
-
-
-          return;
+          emojiSlot2.textContent =
+            "?";
 
         }
 
 
-        box.classList.add(
-          "correct"
+        selectedEmojis.push(
+          emoji
         );
 
 
-        answerFeedback.textContent =
-          "";
-
-
         if (
-          index <
-          letterBoxes.length - 1
+          selectedEmojis.length >= 1
         ) {
 
-          letterBoxes[
-            index + 1
-          ].focus();
+          emojiSlot1.textContent =
+            selectedEmojis[0];
 
         }
 
 
-        checkLetterPuzzle();
-
-      }
-    );
-
-
-    box.addEventListener(
-      "keydown",
-      event => {
-
         if (
-          event.key === "Backspace" &&
-          box.value === "" &&
-          index > 0
+          selectedEmojis.length >= 2
         ) {
 
-          letterBoxes[
-            index - 1
-          ].focus();
+          emojiSlot2.textContent =
+            selectedEmojis[1];
 
         }
+
+
+        checkRememberPuzzle();
 
       }
     );
@@ -3088,133 +2615,180 @@ letterBoxes.forEach(
 );
 
 
-function checkLetterPuzzle() {
+rememberInput.addEventListener(
+  "input",
+  () => {
 
-  const solved =
-    letterBoxes.every(
-      box =>
-        box.value
-          .toUpperCase()
-        ===
-        box.dataset.answer
+    checkRememberPuzzle();
+
+  }
+);
+
+
+function normalizeRememberText(
+  value
+) {
+
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(
+      /\s+/g,
+      " "
+    );
+
+}
+
+
+function checkRememberPuzzle() {
+
+  const textCorrect =
+    normalizeRememberText(
+      rememberInput.value
+    ) ===
+    "remember me";
+
+
+  const emojiCorrect =
+    selectedEmojis.length === 2 &&
+    selectedEmojis[0] === "🐇" &&
+    selectedEmojis[1] === "🐙";
+
+
+  if (
+    textCorrect &&
+    emojiCorrect
+  ) {
+
+    answerFeedback.textContent =
+      "...That's it!";
+
+
+    rememberInput.disabled =
+      true;
+
+
+    emojiChoices.forEach(
+      button => {
+
+        button.disabled =
+          true;
+
+      }
     );
 
 
-  if (!solved) {
+    setTimeout(
+      startCompleteRecall,
+      900
+    );
+
+
     return;
+
   }
 
 
-  rememberSolved = true;
+  if (
+    rememberInput.value.length > 0 &&
+    normalizeRememberText(
+      rememberInput.value
+    ) !==
+    "remember me"
+  ) {
 
+    answerFeedback.textContent =
+      "Hmm... I don't think that's quite right.";
 
-  letterBoxes.forEach(
-    box => {
+  }
 
-      box.disabled = true;
+  else {
 
-    }
-  );
+    answerFeedback.textContent =
+      "";
 
-
-  /*
-     Let Yako see the completed phrase
-     before the scene changes.
-  */
-
-  answerFeedback.textContent =
-    "...Oh.";
-
-
-  setTimeout(
-    () => {
-
-      startRevealScene();
-
-    },
-    1250
-  );
+  }
 
 }
 
 
 /* ==========================================
-   REVEAL
+   COMPLETE RECALL
 ========================================== */
 
-const revealLines = [
+const completeRecallLines = [
 
-  "So that's what it says.",
+  "I remember everything now!",
 
-  "REMEMBER ME.",
+  "I'm the little charm Celluaria embroidered with his own hands!",
+
+  "And you—",
+
+  "You're Yako.",
+
+  "The Yako Celluaria has been missing...",
+
+  "and thinking about all this time.",
 
   "...",
 
-  "🐙 must be Yako.",
+  "Celluaria made me so I could cross mountains, seas, and all those miles...",
 
-  "And 🐇 must be Celluaria.",
-
-  "\"Remember me\"...",
-
-  "Hm.",
-
-  "Maybe I don't need to understand exactly what that means yet.",
-
-  "I'm going with her anyway."
+  "and stay right here beside you for him."
 
 ];
 
 
-let revealIndex = 0;
+let completeRecallIndex =
+  0;
 
 
-const revealText =
+const completeRecallText =
   document.getElementById(
-    "revealText"
+    "completeRecallText"
   );
 
 
-const revealNext =
+const completeRecallNext =
   document.getElementById(
-    "revealNext"
+    "completeRecallNext"
   );
 
 
-function startRevealScene() {
+function startCompleteRecall() {
 
-  revealIndex = 0;
+  completeRecallIndex = 0;
 
-  revealText.textContent =
-    revealLines[0];
-
-  revealNext.style.display =
-    "";
+  completeRecallText.textContent =
+    completeRecallLines[0];
 
   showScene(
-    "revealScene"
+    "completeRecallScene"
   );
 
 }
 
 
-revealNext.addEventListener(
+completeRecallNext.addEventListener(
   "click",
   () => {
 
-    revealIndex++;
+    completeRecallIndex++;
 
 
     if (
-      revealIndex <
-      revealLines.length
+      completeRecallIndex <
+      completeRecallLines.length
     ) {
 
-      revealText.textContent =
-        revealLines[
-          revealIndex
+      completeRecallText.textContent =
+        completeRecallLines[
+          completeRecallIndex
         ];
 
-    } else {
+    }
+
+    else {
 
       startWaitingScene();
 
@@ -3230,32 +2804,29 @@ revealNext.addEventListener(
 
 const waitingLines = [
 
-  "She's still here.",
+  "It's a long wait here in Xiamen, isn't it?",
 
-  "Sitting...",
+  "Seeing you sitting all by yourself in the terminal...",
 
-  "waiting...",
+  "suddenly makes my little heart ache.",
 
-  "and waiting.",
+  "...Wait!",
 
-  "She still has such a long time before the next flight.",
+  "Something warm is welling up inside me!",
 
-  "...",
+  "This is...",
 
-  "Why does looking at her like this make something inside me ache a little?",
+  "all the love Celluaria left inside me, from thousands of kilometres away!",
 
-  "Hm?",
+  "Quick, Yako!",
 
-  "Wait.",
-
-  "There's something else inside me.",
-
-  "Something warm."
+  "Tap the screen and help me gather these little pieces of warmth!"
 
 ];
 
 
-let waitingIndex = 0;
+let waitingIndex =
+  0;
 
 
 const waitingText =
@@ -3301,7 +2872,9 @@ waitingNext.addEventListener(
           waitingIndex
         ];
 
-    } else {
+    }
+
+    else {
 
       startWarmthScene();
 
@@ -3344,7 +2917,23 @@ const orbPositions = [
 ];
 
 
-let collectedWarmth = 0;
+const warmthLines = [
+
+  "Warm...",
+
+  "♡",
+
+  "Another one!",
+
+  "Hehe...",
+
+  "Almost!"
+
+];
+
+
+let collectedWarmth =
+  0;
 
 
 function startWarmthScene() {
@@ -3363,7 +2952,7 @@ function startWarmthScene() {
 
 
   warmthText.textContent =
-    "There are little warm pieces everywhere...";
+    "There they are...";
 
 
   document
@@ -3431,7 +3020,9 @@ function startWarmthScene() {
 }
 
 
-function collectOrb(orb) {
+function collectOrb(
+  orb
+) {
 
   orb.classList.add(
     "collected"
@@ -3439,21 +3030,6 @@ function collectOrb(orb) {
 
 
   collectedWarmth++;
-
-
-  const warmthLines = [
-
-    "Oh...",
-
-    "That's warm.",
-
-    "It feels strangely familiar.",
-
-    "Almost like someone put it here on purpose.",
-
-    "I think I know what this is."
-
-  ];
 
 
   warmthText.textContent =
@@ -3478,12 +3054,12 @@ function collectOrb(orb) {
     orbPositions.length
   ) {
 
+    warmthText.textContent =
+      "Got them all!";
+
+
     setTimeout(
-      () => {
-
-        startWarmthRealisation();
-
-      },
+      startMagicScene,
       900
     );
 
@@ -3504,15 +3080,27 @@ const magicText =
 
 const magicLines = [
 
-  "Okay...",
+  "Hehe...",
 
-  "Just a little.",
+  "I'm going to secretly borrow just a tiiiny bit of this love...",
+
+  "and make some magic for you!",
 
   "...",
 
-  "Go on.",
+  "Okay...",
 
-  "Find a way into the real world."
+  "Just a tiny bit...",
+
+  "✨",
+
+  "Ding!",
+
+  "Magic complete!",
+
+  "A little delivery from far, far away has arrived.",
+
+  "Go get yourself a warm coffee! ☕"
 
 ];
 
@@ -3535,21 +3123,16 @@ async function startMagicScene() {
 
 
     await sleep(
-      i ===
-      magicLines.length - 1
-        ? 1500
-        : 900
+      i >= 7
+        ? 1000
+        : 850
     );
 
   }
 
 
-  magicText.textContent =
-    "Something crossed over.";
-
-
   await sleep(
-    1300
+    700
   );
 
 
@@ -3576,29 +3159,7 @@ function showGift() {
 
 
   giftThought.textContent =
-    "...Did it work?";
-
-
-  setTimeout(
-    () => {
-
-      giftThought.textContent =
-        "Oh! It did.";
-
-    },
-    1100
-  );
-
-
-  setTimeout(
-    () => {
-
-      giftThought.textContent =
-        "It's not exactly a drink yet... but I think Yako will know what to do.";
-
-    },
-    2600
-  );
+    "A little delivery from far, far away.";
 
 }
 
