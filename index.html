@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>Project Remember Me</title>
 
 <style>
+
+/* ========================================
+   BASIC
+======================================== */
+
 * {
   box-sizing: border-box;
 }
@@ -21,17 +32,27 @@ body {
     "Segoe UI",
     Arial,
     sans-serif;
+
   background:
-    radial-gradient(circle at top, #273750 0%, #111827 43%, #080c14 100%);
+    radial-gradient(
+      circle at top,
+      #273750 0%,
+      #111827 43%,
+      #080c14 100%
+    );
+
   color: #f7f4ee;
 }
 
 body {
   min-height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   padding: 18px;
+
   overflow-x: hidden;
 }
 
@@ -46,206 +67,399 @@ button {
 
 #game {
   width: min(920px, 100%);
-  min-height: min(720px, calc(100vh - 36px));
+
+  min-height:
+    min(
+      720px,
+      calc(100vh - 36px)
+    );
+
   position: relative;
+
   overflow: hidden;
+
   background:
     linear-gradient(
-      rgba(17, 24, 39, 0.91),
-      rgba(17, 24, 39, 0.97)
+      rgba(17,24,39,.91),
+      rgba(17,24,39,.97)
     );
-  border: 1px solid rgba(255,255,255,0.12);
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
   border-radius: 26px;
+
   box-shadow:
-    0 30px 100px rgba(0,0,0,0.45),
-    inset 0 1px 0 rgba(255,255,255,0.05);
+    0 30px 100px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 
 .scene {
   display: none;
+
   min-height: inherit;
+
   padding: 34px;
+
   position: relative;
 }
 
 .scene.active {
   display: flex;
   flex-direction: column;
-  animation: sceneFade .55s ease;
+
+  animation:
+    sceneFade
+    .55s
+    ease;
 }
 
 @keyframes sceneFade {
+
   from {
     opacity: 0;
     transform: translateY(7px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
+
 }
 
+
+/* ========================================
+   BUTTONS
+======================================== */
+
 .primary-btn,
-.soft-btn {
+.soft-btn,
+.gift-btn {
+
   border: 0;
+
   cursor: pointer;
+
   border-radius: 999px;
+
   transition:
     transform .15s ease,
-    background .15s ease;
+    background .15s ease,
+    box-shadow .15s ease;
 }
 
 .primary-btn {
+
   padding: 14px 27px;
+
   background: #f3e6dc;
+
   color: #202632;
+
   font-weight: 700;
+
   min-width: 142px;
 }
 
 .soft-btn {
+
   padding: 12px 20px;
-  background: rgba(255,255,255,.09);
+
+  background:
+    rgba(255,255,255,.09);
+
   color: white;
-  border: 1px solid rgba(255,255,255,.12);
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+}
+
+.gift-btn {
+
+  padding: 14px 24px;
+
+  background:
+    rgba(255,255,255,.92);
+
+  color: #23302b;
+
+  font-weight: 750;
+
+  min-width: 180px;
+
+  box-shadow:
+    0 8px 24px
+    rgba(0,0,0,.18);
 }
 
 .primary-btn:hover,
-.soft-btn:hover {
-  transform: translateY(-2px);
+.soft-btn:hover,
+.gift-btn:hover {
+
+  transform:
+    translateY(-2px);
 }
 
 .primary-btn:active,
-.soft-btn:active {
-  transform: translateY(0);
+.soft-btn:active,
+.gift-btn:active {
+
+  transform:
+    translateY(0);
 }
 
 
-/* =============================
+/* ========================================
    REAL CHARM
-============================= */
+======================================== */
 
 .charm-photo {
+
   display: block;
+
   object-fit: contain;
+
   filter:
-    drop-shadow(0 15px 22px rgba(0,0,0,.38));
+    drop-shadow(
+      0 15px 22px
+      rgba(0,0,0,.38)
+    );
 }
 
 .charm-small {
-  width: min(180px, 42vw);
+
+  width:
+    min(
+      180px,
+      42vw
+    );
+
   max-height: 210px;
-  margin: 0 auto 18px;
+
+  margin:
+    0 auto 18px;
 }
 
 .charm-medium {
-  width: min(245px, 58vw);
+
+  width:
+    min(
+      245px,
+      58vw
+    );
+
   max-height: 300px;
-  margin: 0 auto 22px;
+
+  margin:
+    0 auto 22px;
 }
 
 .charm-float {
-  animation: charmFloat 3s ease-in-out infinite;
+
+  animation:
+    charmFloat
+    3s
+    ease-in-out
+    infinite;
 }
 
 @keyframes charmFloat {
-  0%,100% {
-    transform: translateY(0) rotate(-1deg);
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(-1deg);
   }
+
   50% {
-    transform: translateY(-8px) rotate(1deg);
+
+    transform:
+      translateY(-8px)
+      rotate(1deg);
   }
+
 }
 
 
-/* =============================
+/* ========================================
    OPENING
-============================= */
+======================================== */
 
 #opening {
+
   justify-content: center;
+
   align-items: center;
+
   text-align: center;
+
   background: #05070b;
 }
 
 .opening-box {
-  width: min(620px, 100%);
+
+  width:
+    min(
+      620px,
+      100%
+    );
+
   min-height: 150px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   padding: 26px;
+
   border-radius: 22px;
-  background: rgba(255,255,255,.035);
-  border: 1px solid rgba(255,255,255,.07);
-  font-size: clamp(1.08rem, 3vw, 1.35rem);
+
+  background:
+    rgba(255,255,255,.035);
+
+  border:
+    1px solid
+    rgba(255,255,255,.07);
+
+  font-size:
+    clamp(
+      1.08rem,
+      3vw,
+      1.35rem
+    );
+
   line-height: 1.75;
+
   white-space: pre-line;
 }
 
 .opening-box.shake {
-  animation: textShake .42s ease;
+
+  animation:
+    textShake
+    .42s
+    ease;
 }
 
 @keyframes textShake {
-  0%,100% { transform: translateX(0); }
-  20% { transform: translateX(-8px); }
-  40% { transform: translateX(7px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(3px); }
+
+  0%,
+  100% {
+    transform:
+      translateX(0);
+  }
+
+  20% {
+    transform:
+      translateX(-8px);
+  }
+
+  40% {
+    transform:
+      translateX(7px);
+  }
+
+  60% {
+    transform:
+      translateX(-4px);
+  }
+
+  80% {
+    transform:
+      translateX(3px);
+  }
+
 }
 
 .opening-controls {
+
   margin-top: 25px;
 }
 
 
-/* =============================
+/* ========================================
    AIRPORT
-============================= */
+======================================== */
 
 .airport-header {
+
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    flex-start;
+
   gap: 15px;
+
   margin-bottom: 18px;
 }
 
 .airport-name {
+
   font-weight: 800;
-  font-size: clamp(1.2rem, 4vw, 1.75rem);
+
+  font-size:
+    clamp(
+      1.2rem,
+      4vw,
+      1.75rem
+    );
 }
 
 .airport-sub {
+
   opacity: .5;
+
   margin-top: 4px;
+
   font-size: .86rem;
 }
 
 .airport-time {
+
   opacity: .7;
+
   text-align: right;
 }
 
 .window,
 .waiting-window {
+
   min-height: 245px;
+
   border-radius: 22px;
+
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.1);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
   background:
     linear-gradient(
       to bottom,
+
       #829aac 0%,
       #a9bac7 46%,
+
       #c8cac5 47%,
       #a5a8a5 60%,
+
       #555d68 61%,
       #424955 100%
     );
+
   position: relative;
+
   margin-bottom: 18px;
 }
 
@@ -253,221 +467,406 @@ button {
 .window::after,
 .waiting-window::before,
 .waiting-window::after {
+
   content: "";
+
   position: absolute;
-  background: rgba(25,34,45,.5);
+
+  background:
+    rgba(25,34,45,.5);
 }
 
 .window::before,
 .waiting-window::before {
+
   width: 8px;
+
   top: 0;
   bottom: 0;
+
   left: 50%;
 }
 
 .window::after,
 .waiting-window::after {
+
   height: 8px;
+
   left: 0;
   right: 0;
+
   top: 48%;
 }
 
 .plane {
+
   position: absolute;
+
   top: 32px;
+
   left: 18%;
+
   font-size: 2rem;
+
   opacity: .7;
 }
 
 .seat,
 .waiting-seat {
+
   position: absolute;
+
   right: 8%;
+
   bottom: 15px;
+
   width: 210px;
+
   height: 30px;
+
   border-radius: 10px;
+
   background: #252d39;
 }
 
 .bag,
 .waiting-bag {
+
   position: absolute;
+
   right: 7%;
+
   bottom: 42px;
+
   font-size: 2.5rem;
 }
 
 .yako,
 .waiting-yako {
+
   position: absolute;
+
   right: 16%;
+
   bottom: 30px;
-  font-size: clamp(4.2rem, 14vw, 6.5rem);
+
+  font-size:
+    clamp(
+      4.2rem,
+      14vw,
+      6.5rem
+    );
+
   z-index: 5;
-  animation: yakoFloat 2.6s ease-in-out infinite;
+
+  animation:
+    yakoFloat
+    2.6s
+    ease-in-out
+    infinite;
 }
 
 @keyframes yakoFloat {
-  0%,100% {
-    transform: translateY(0) rotate(-2deg);
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(-2deg);
   }
+
   50% {
-    transform: translateY(-7px) rotate(2deg);
+
+    transform:
+      translateY(-7px)
+      rotate(2deg);
   }
+
 }
 
 .dialogue-box,
 .waiting-dialogue {
+
   margin-top: auto;
-  background: rgba(255,255,255,.065);
-  border: 1px solid rgba(255,255,255,.1);
+
+  background:
+    rgba(255,255,255,.065);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
   border-radius: 18px;
+
   padding: 20px;
 }
 
 .dialogue,
 #waitingText {
-  font-size: clamp(1rem, 2.8vw, 1.25rem);
+
+  font-size:
+    clamp(
+      1rem,
+      2.8vw,
+      1.25rem
+    );
+
   line-height: 1.65;
+
   min-height: 65px;
 }
 
 .dialogue-controls,
 .waiting-controls {
+
   display: flex;
-  justify-content: flex-end;
+
+  justify-content:
+    flex-end;
+
   margin-top: 12px;
 }
 
 
-/* =============================
+/* ========================================
    MATCH
-============================= */
+======================================== */
 
 #matchScene {
-  justify-content: center;
-  text-align: center;
+
+  justify-content:
+    center;
+
+  text-align:
+    center;
 }
 
 .charm-thought {
-  font-size: clamp(1.05rem, 3vw, 1.25rem);
+
+  font-size:
+    clamp(
+      1.05rem,
+      3vw,
+      1.25rem
+    );
+
   line-height: 1.7;
+
   min-height: 70px;
+
   max-width: 620px;
-  margin: 0 auto 16px;
+
+  margin:
+    0 auto 16px;
 }
 
 .target-emoji {
+
   display: block;
+
   font-size: 2.5rem;
+
   margin-top: 6px;
 }
 
 #matchBoard {
+
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+
+  grid-template-columns:
+    repeat(
+      5,
+      1fr
+    );
+
   gap: 8px;
-  width: min(430px, 100%);
+
+  width:
+    min(
+      430px,
+      100%
+    );
+
   margin: 0 auto;
+
   user-select: none;
 }
 
 .tile {
+
   aspect-ratio: 1;
-  border: 1px solid rgba(255,255,255,.11);
+
+  border:
+    1px solid
+    rgba(255,255,255,.11);
+
   border-radius: 16px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
-  font-size: clamp(1.65rem, 7vw, 2.6rem);
+
+  font-size:
+    clamp(
+      1.65rem,
+      7vw,
+      2.6rem
+    );
+
   cursor: pointer;
-  background: rgba(255,255,255,.07);
+
+  background:
+    rgba(255,255,255,.07);
 }
 
 .tile.selected {
-  background: rgba(255,255,255,.2);
-  transform: scale(.92);
-  outline: 2px solid rgba(255,255,255,.55);
+
+  background:
+    rgba(255,255,255,.2);
+
+  transform:
+    scale(.92);
+
+  outline:
+    2px solid
+    rgba(255,255,255,.55);
 }
 
 
-/* =============================
+/* ========================================
    MEMORY
-============================= */
+======================================== */
 
 #memoryScene {
+
   justify-content: center;
+
   text-align: center;
 }
 
 .memory-card {
+
   max-width: 650px;
+
   margin: auto;
+
   padding: 28px;
+
   border-radius: 24px;
-  background: rgba(255,255,255,.065);
-  border: 1px solid rgba(255,255,255,.1);
+
+  background:
+    rgba(255,255,255,.065);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
 }
 
 .memory-icon {
+
   font-size: 4rem;
+
   margin-bottom: 16px;
 }
 
 .memory-text {
+
   min-height: 125px;
-  font-size: clamp(1.05rem, 3vw, 1.3rem);
+
+  font-size:
+    clamp(
+      1.05rem,
+      3vw,
+      1.3rem
+    );
+
   line-height: 1.75;
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
 }
 
 
-/* =============================
+/* ========================================
    REMEMBER PUZZLE
-============================= */
+======================================== */
 
 #rememberScene {
+
   justify-content: center;
+
   text-align: center;
 }
 
 .remember-card {
+
   max-width: 720px;
+
   width: 100%;
+
   margin: auto;
-  padding: 26px 22px;
+
+  padding:
+    26px 22px;
+
   border-radius: 24px;
-  background: rgba(255,255,255,.055);
-  border: 1px solid rgba(255,255,255,.1);
+
+  background:
+    rgba(255,255,255,.055);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
 }
 
 .back-charm-stage {
-  width: min(360px, 82vw);
+
+  width:
+    min(
+      360px,
+      82vw
+    );
+
   height: 390px;
-  margin: 0 auto 15px;
+
+  margin:
+    0 auto 15px;
+
   position: relative;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 }
 
 .back-layer {
+
   position: absolute;
+
   width: 100%;
+
   height: 100%;
+
   object-fit: contain;
+
   transition:
     opacity .8s ease,
     transform .8s ease,
     filter .8s ease;
+
   filter:
-    drop-shadow(0 15px 24px rgba(0,0,0,.35));
+    drop-shadow(
+      0 15px 24px
+      rgba(0,0,0,.35)
+    );
 }
 
 #backBlank {
@@ -482,58 +881,89 @@ button {
   opacity: 0;
 }
 
-.back-charm-stage.text-revealed #backBlank {
+.back-charm-stage.text-revealed
+#backBlank {
+
   opacity: 0;
 }
 
-.back-charm-stage.text-revealed #backText {
+.back-charm-stage.text-revealed
+#backText {
+
   opacity: 1;
 }
 
-.back-charm-stage.complete #backText,
-.back-charm-stage.complete #backBlank {
+.back-charm-stage.complete
+#backText,
+
+.back-charm-stage.complete
+#backBlank {
+
   opacity: 0;
 }
 
-.back-charm-stage.complete #backFull {
+.back-charm-stage.complete
+#backFull {
+
   opacity: 1;
-  transform: scale(1.035);
+
+  transform:
+    scale(1.035);
+
   filter:
-    drop-shadow(0 0 20px rgba(255,217,153,.35))
-    drop-shadow(0 15px 24px rgba(0,0,0,.35));
+    drop-shadow(
+      0 0 20px
+      rgba(255,217,153,.35)
+    )
+    drop-shadow(
+      0 15px 24px
+      rgba(0,0,0,.35)
+    );
 }
-
-
-/* user types directly "on" the charm */
 
 .remember-input-wrap {
+
   position: absolute;
+
   z-index: 10;
 
   left: 50%;
+
   top: 55%;
 
-  transform: translate(-50%, -50%);
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
 
   width: 55%;
 
-  transition: opacity .5s ease;
+  transition:
+    opacity
+    .5s
+    ease;
 }
 
 .remember-input-wrap.hidden {
+
   opacity: 0;
+
   pointer-events: none;
 }
 
 .password-input {
+
   width: 100%;
 
   border: 0;
+
   border-bottom:
     2px solid
     rgba(255,255,255,.8);
 
-  padding: 7px 5px;
+  padding:
+    7px 5px;
 
   background:
     rgba(40,25,55,.18);
@@ -545,21 +975,30 @@ button {
   text-align: center;
 
   font-size:
-    clamp(.9rem, 3.5vw, 1.15rem);
+    clamp(
+      .9rem,
+      3.5vw,
+      1.15rem
+    );
 
-  letter-spacing: .05em;
+  letter-spacing:
+    .05em;
 
-  border-radius: 5px 5px 0 0;
+  border-radius:
+    5px 5px 0 0;
 }
 
 .password-input::placeholder {
-  color: rgba(255,255,255,.65);
+
+  color:
+    rgba(255,255,255,.65);
 }
 
 
-/* emoji selection moved lower in v11 */
+/* moved down one emoji length */
 
 .emoji-puzzle {
+
   display: none;
 
   position: absolute;
@@ -567,34 +1006,54 @@ button {
   z-index: 11;
 
   left: 50%;
-  top: calc(70% + 58px);
+
+  top:
+    calc(
+      70% + 58px
+    );
 
   transform:
-    translate(-50%, -50%);
+    translate(
+      -50%,
+      -50%
+    );
 
   width: 70%;
 }
 
 .emoji-puzzle.show {
+
   display: block;
-  animation: sceneFade .5s ease;
+
+  animation:
+    sceneFade
+    .5s
+    ease;
 }
 
 .emoji-slots {
+
   display: flex;
+
   justify-content: center;
+
   gap: 10px;
+
   margin-bottom: 12px;
 }
 
 .emoji-slot {
+
   width: 58px;
+
   height: 58px;
 
   border-radius: 50%;
 
   display: flex;
+
   justify-content: center;
+
   align-items: center;
 
   background:
@@ -608,17 +1067,24 @@ button {
 }
 
 .emoji-options {
+
   display: flex;
+
   flex-wrap: wrap;
+
   justify-content: center;
+
   gap: 7px;
 }
 
 .emoji-choice {
+
   width: 47px;
+
   height: 47px;
 
   border: 0;
+
   border-radius: 12px;
 
   cursor: pointer;
@@ -630,91 +1096,168 @@ button {
 }
 
 .remember-dialogue {
+
   min-height: 90px;
+
   line-height: 1.65;
-  font-size: clamp(.98rem, 3vw, 1.18rem);
+
+  font-size:
+    clamp(
+      .98rem,
+      3vw,
+      1.18rem
+    );
 }
 
 .answer-feedback {
+
   min-height: 28px;
+
   margin-top: 8px;
+
   opacity: .75;
 }
 
 
-/* =============================
+/* ========================================
    COMPLETE RECALL
-============================= */
+======================================== */
 
 #completeRecallScene {
+
   justify-content: center;
+
   text-align: center;
 }
 
 .complete-card {
+
   max-width: 650px;
+
   margin: auto;
+
   padding: 30px;
+
   border-radius: 26px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.1);
+
+  background:
+    rgba(255,255,255,.06);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
 }
 
 .complete-text {
+
   min-height: 160px;
-  font-size: clamp(1.08rem, 3vw, 1.3rem);
+
+  font-size:
+    clamp(
+      1.08rem,
+      3vw,
+      1.3rem
+    );
+
   line-height: 1.8;
 }
 
 
-/* =============================
+/* ========================================
    WARMTH
-============================= */
+======================================== */
 
 #warmthScene {
+
   justify-content: center;
+
   text-align: center;
 }
 
 .warmth-text {
+
   max-width: 650px;
-  margin: 0 auto 20px;
-  font-size: clamp(1.05rem, 3vw, 1.3rem);
+
+  margin:
+    0 auto 20px;
+
+  font-size:
+    clamp(
+      1.05rem,
+      3vw,
+      1.3rem
+    );
+
   line-height: 1.75;
+
   min-height: 75px;
 }
 
 #warmthField {
-  width: min(650px, 100%);
+
+  width:
+    min(
+      650px,
+      100%
+    );
+
   height: 410px;
+
   position: relative;
+
   margin: 0 auto;
+
   border-radius: 26px;
+
   overflow: hidden;
+
   background:
     radial-gradient(
       circle at center,
+
       rgba(255,222,161,.08),
-      rgba(255,255,255,.025) 50%,
-      rgba(0,0,0,.05) 100%
+
+      rgba(255,255,255,.025)
+      50%,
+
+      rgba(0,0,0,.05)
+      100%
     );
-  border: 1px solid rgba(255,255,255,.08);
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
 }
 
 .warm-charm-photo {
+
   position: absolute;
+
   left: 50%;
+
   top: 50%;
-  width: min(210px, 50vw);
+
+  width:
+    min(
+      210px,
+      50vw
+    );
+
   max-height: 280px;
 
   transform:
-    translate(-50%, -50%);
+    translate(
+      -50%,
+      -50%
+    );
 
   object-fit: contain;
 
   filter:
-    drop-shadow(0 14px 20px rgba(0,0,0,.4));
+    drop-shadow(
+      0 14px 20px
+      rgba(0,0,0,.4)
+    );
 
   transition:
     filter .6s ease,
@@ -722,85 +1265,137 @@ button {
 }
 
 .warm-charm-photo.glowing {
+
   filter:
-    drop-shadow(0 0 15px rgba(255,224,164,.8))
-    drop-shadow(0 0 40px rgba(255,203,122,.55))
-    drop-shadow(0 15px 20px rgba(0,0,0,.4));
+    drop-shadow(
+      0 0 15px
+      rgba(255,224,164,.8)
+    )
+    drop-shadow(
+      0 0 40px
+      rgba(255,203,122,.55)
+    )
+    drop-shadow(
+      0 15px 20px
+      rgba(0,0,0,.4)
+    );
 
   transform:
-    translate(-50%, -50%)
+    translate(
+      -50%,
+      -50%
+    )
     scale(1.06);
 }
 
 .warm-orb {
+
   width: 46px;
+
   height: 46px;
+
   position: absolute;
+
   border: 0;
+
   border-radius: 50%;
+
   background:
     radial-gradient(
       circle,
-      rgba(255,246,202,.98) 0%,
-      rgba(255,216,145,.77) 32%,
-      rgba(255,191,109,.22) 68%,
-      transparent 72%
+
+      rgba(255,246,202,.98)
+      0%,
+
+      rgba(255,216,145,.77)
+      32%,
+
+      rgba(255,191,109,.22)
+      68%,
+
+      transparent
+      72%
     );
+
   box-shadow:
     0 0 24px
     rgba(255,213,137,.45);
+
   cursor: pointer;
+
   animation:
     orbFloat
     2.7s
     ease-in-out
     infinite;
+
   transition:
     transform .4s ease,
     opacity .4s ease;
 }
 
 .warm-orb.collected {
-  transform: scale(.2);
+
+  transform:
+    scale(.2);
+
   opacity: 0;
+
   pointer-events: none;
 }
 
 @keyframes orbFloat {
+
   50% {
+
     margin-top: -9px;
   }
+
 }
 
 
-/* =============================
+/* ========================================
    MAGIC
-============================= */
+======================================== */
 
 #magicScene {
+
   justify-content: center;
+
   align-items: center;
+
   text-align: center;
 }
 
 .magic-core {
+
   position: relative;
+
   width: 280px;
+
   height: 300px;
-  margin: 0 auto 18px;
+
+  margin:
+    0 auto 18px;
 }
 
 .magic-ring {
+
   position: absolute;
 
   width: 210px;
+
   height: 210px;
 
   left: 50%;
+
   top: 50%;
 
   transform:
-    translate(-50%, -50%);
+    translate(
+      -50%,
+      -50%
+    );
 
   border-radius: 50%;
 
@@ -816,209 +1411,653 @@ button {
 }
 
 .magic-ring:nth-child(2) {
+
   width: 170px;
+
   height: 170px;
+
   animation-delay: .4s;
 }
 
 .magic-ring:nth-child(3) {
+
   width: 130px;
+
   height: 130px;
+
   animation-delay: .8s;
 }
 
 @keyframes ringPulse {
+
   0% {
+
     transform:
-      translate(-50%, -50%)
+      translate(
+        -50%,
+        -50%
+      )
       scale(.65);
+
     opacity: 0;
   }
 
   40% {
+
     opacity: .85;
   }
 
   100% {
+
     transform:
-      translate(-50%, -50%)
+      translate(
+        -50%,
+        -50%
+      )
       scale(1.25);
+
     opacity: 0;
   }
+
 }
 
 .magic-charm {
+
   position: absolute;
+
   left: 50%;
+
   top: 50%;
 
   width: 180px;
+
   max-height: 250px;
 
   transform:
-    translate(-50%, -50%);
+    translate(
+      -50%,
+      -50%
+    );
 
   object-fit: contain;
 
   filter:
-    drop-shadow(0 0 22px rgba(255,220,151,.7));
+    drop-shadow(
+      0 0 22px
+      rgba(255,220,151,.7)
+    );
 }
 
 .magic-text {
+
   min-height: 100px;
+
   max-width: 600px;
-  font-size: clamp(1.05rem, 3vw, 1.3rem);
+
+  font-size:
+    clamp(
+      1.05rem,
+      3vw,
+      1.3rem
+    );
+
   line-height: 1.75;
 }
 
 
-/* =============================
+/* ========================================
    GIFT
-============================= */
+======================================== */
 
 #giftScene {
+
   justify-content: center;
+
   text-align: center;
+
+  overflow-y: auto;
 }
 
 .gift-wrap {
-  max-width: 650px;
+
+  max-width: 660px;
+
   width: 100%;
+
   margin: auto;
 }
 
 .gift-thought {
-  font-size: clamp(1.05rem, 3vw, 1.28rem);
+
+  font-size:
+    clamp(
+      1.05rem,
+      3vw,
+      1.28rem
+    );
+
   line-height: 1.8;
-  margin-bottom: 28px;
+
+  margin-bottom: 24px;
 }
 
 .gift-card {
-  width: min(430px, 100%);
-  min-height: 245px;
-  margin: 0 auto;
-  padding: 30px 25px;
+
+  width:
+    min(
+      470px,
+      100%
+    );
+
+  min-height: 285px;
+
+  margin:
+    0 auto;
+
+  padding:
+    30px 25px;
+
   border-radius: 28px;
 
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
+
   align-items: center;
 
   background:
     linear-gradient(
       145deg,
-      #f4eadc,
-      #d6bea4
+      #f3eee4,
+      #dcd2bc
     );
 
   color: #292723;
 
   box-shadow:
-    0 25px 65px rgba(0,0,0,.35),
-    0 0 40px rgba(255,216,153,.18);
+    0 25px 65px
+    rgba(0,0,0,.35),
+
+    0 0 40px
+    rgba(255,216,153,.18);
 }
 
 .gift-card-small {
+
   font-size: .68rem;
+
   letter-spacing: .2em;
+
   text-transform: uppercase;
+
   opacity: .55;
 }
 
 .gift-icon {
-  font-size: 3.7rem;
-  margin: 20px 0 10px;
+
+  font-size: 4rem;
+
+  margin:
+    15px 0 9px;
 }
 
 .gift-name {
-  font-size: clamp(1.45rem, 5vw, 2rem);
+
+  font-size:
+    clamp(
+      1.45rem,
+      5vw,
+      2rem
+    );
+
   font-weight: 800;
+
   margin-bottom: 8px;
 }
 
 .gift-desc {
+
   opacity: .72;
+
+  line-height: 1.6;
+}
+
+.gift-reveal-button {
+
+  margin-top: 25px;
+}
+
+
+/* ========================================
+   REVEALED VOUCHER
+======================================== */
+
+#giftReveal {
+
+  display: none;
+
+  margin-top: 28px;
+
+  opacity: 0;
+
+  transform:
+    translateY(14px);
+
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
+
+#giftReveal.visible {
+
+  display: block;
+
+  animation:
+    revealGift
+    .9s
+    ease
+    forwards;
+}
+
+@keyframes revealGift {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(16px)
+      scale(.97);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+.voucher-panel {
+
+  width:
+    min(
+      520px,
+      100%
+    );
+
+  margin:
+    0 auto;
+
+  padding:
+    26px 20px;
+
+  border-radius: 26px;
+
+  background:
+    rgba(255,255,255,.07);
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  box-shadow:
+    0 20px 60px
+    rgba(0,0,0,.22);
+}
+
+.voucher-sparkle {
+
+  font-size: 2rem;
+
+  margin-bottom: 5px;
+}
+
+.voucher-title {
+
+  font-size:
+    clamp(
+      1.35rem,
+      5vw,
+      1.85rem
+    );
+
+  font-weight: 800;
+
+  margin-bottom: 7px;
+}
+
+.voucher-subtitle {
+
+  opacity: .75;
+
+  line-height: 1.55;
+
+  margin-bottom: 20px;
+}
+
+.location-card {
+
+  padding:
+    15px 16px;
+
+  margin:
+    0 auto 20px;
+
+  max-width: 420px;
+
+  border-radius: 16px;
+
+  text-align: left;
+
+  background:
+    rgba(255,255,255,.065);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+}
+
+.location-label {
+
+  font-size: .68rem;
+
+  letter-spacing: .16em;
+
+  opacity: .5;
+
+  margin-bottom: 8px;
+}
+
+.location-name {
+
+  font-weight: 750;
+
+  font-size: 1.05rem;
+
   line-height: 1.55;
 }
 
-.placeholder-tag {
-  margin-top: 20px;
-  padding: 7px 12px;
+.location-detail {
+
+  margin-top: 5px;
+
+  opacity: .72;
+
+  line-height: 1.55;
+}
+
+.qr-shell {
+
+  width:
+    min(
+      390px,
+      100%
+    );
+
+  margin:
+    0 auto 18px;
+
+  background: white;
+
+  padding: 12px;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 13px 35px
+    rgba(0,0,0,.28);
+}
+
+
+/*
+  Important:
+  no filter / blur / transparency
+  on the actual voucher image.
+*/
+
+.voucher-image {
+
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  background: white;
+
+  border-radius: 12px;
+
+  image-rendering: auto;
+
+  opacity: 1;
+
+  filter: none;
+}
+
+.scan-note {
+
+  line-height: 1.65;
+
+  margin:
+    12px auto 18px;
+
+  max-width: 430px;
+}
+
+.save-row {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-top: 15px;
+}
+
+.save-btn {
+
+  border: 0;
+
   border-radius: 999px;
-  border: 1px dashed rgba(40,40,40,.35);
-  font-size: .72rem;
-  opacity: .65;
+
+  padding:
+    13px 22px;
+
+  cursor: pointer;
+
+  font-weight: 750;
+
+  background: #f5eee5;
+
+  color: #242a28;
+
+  min-width: 180px;
+}
+
+.save-btn:active {
+
+  transform:
+    scale(.98);
+}
+
+.save-help {
+
+  margin-top: 10px;
+
+  opacity: .55;
+
+  font-size: .8rem;
+
+  line-height: 1.5;
 }
 
 .ending-line {
-  margin-top: 28px;
-  font-size: clamp(1rem, 3vw, 1.18rem);
+
+  margin-top: 30px;
+
+  font-size:
+    clamp(
+      1rem,
+      3vw,
+      1.18rem
+    );
+
   line-height: 1.85;
 }
 
 .final-line {
+
   margin-top: 22px;
-  font-size: clamp(1.15rem, 3.5vw, 1.4rem);
+
+  font-size:
+    clamp(
+      1.15rem,
+      3.5vw,
+      1.4rem
+    );
+
   font-weight: 700;
+
+  padding-bottom: 15px;
 }
 
 
-/* =============================
+/* ========================================
    MOBILE
-============================= */
+======================================== */
 
-@media (max-width:600px) {
+@media
+(max-width: 600px) {
 
   body {
+
     padding: 0;
   }
 
   #game {
+
     width: 100%;
+
     min-height: 100vh;
+
     border: 0;
+
     border-radius: 0;
   }
 
   .scene {
-    padding: 20px 16px;
+
+    padding:
+      20px 16px;
   }
 
   .window,
   .waiting-window {
+
     min-height: 205px;
   }
 
   .seat,
   .waiting-seat {
+
     width: 160px;
   }
 
   .back-charm-stage {
+
     height: 355px;
   }
 
   .remember-card {
-    padding: 20px 12px;
+
+    padding:
+      20px 12px;
   }
 
   #warmthField {
+
     height: 370px;
   }
 
+  .gift-card {
+
+    padding:
+      27px 18px;
+  }
+
+  .voucher-panel {
+
+    padding:
+      22px 12px;
+  }
+
+  .qr-shell {
+
+    width: 100%;
+
+    padding: 9px;
+  }
+
 }
+
+
+/* ========================================
+   VERY SMALL MOBILE
+======================================== */
+
+@media
+(max-width: 380px) {
+
+  .emoji-puzzle {
+
+    width: 82%;
+  }
+
+  .emoji-choice {
+
+    width: 43px;
+
+    height: 43px;
+
+    font-size: 1.5rem;
+  }
+
+  .emoji-slot {
+
+    width: 53px;
+
+    height: 53px;
+  }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
 <main id="game">
 
 
-<!-- OPENING -->
+<!-- ======================================
+     OPENING
+====================================== -->
 
-<section id="opening" class="scene active">
+<section
+  id="opening"
+  class="scene active"
+>
 
   <div
     id="openingBox"
@@ -1038,13 +2077,20 @@ button {
 </section>
 
 
-<!-- AIRPORT -->
 
-<section id="airportScene" class="scene">
+<!-- ======================================
+     AIRPORT
+====================================== -->
+
+<section
+  id="airportScene"
+  class="scene"
+>
 
   <div class="airport-header">
 
     <div>
+
       <div class="airport-name">
         XIAMEN
       </div>
@@ -1052,12 +2098,19 @@ button {
       <div class="airport-sub">
         Gaoqi International Airport
       </div>
+
     </div>
 
     <div class="airport-time">
+
       Morning
+
       <br>
-      <small>Transit</small>
+
+      <small>
+        Transit
+      </small>
+
     </div>
 
   </div>
@@ -1084,7 +2137,11 @@ button {
 
   <img
     src="assets/charm-front.png"
-    class="charm-photo charm-small charm-float"
+    class="
+      charm-photo
+      charm-small
+      charm-float
+    "
     alt="The little charm"
   >
 
@@ -1111,13 +2168,23 @@ button {
 </section>
 
 
-<!-- MATCH -->
 
-<section id="matchScene" class="scene">
+<!-- ======================================
+     MATCH
+====================================== -->
+
+<section
+  id="matchScene"
+  class="scene"
+>
 
   <img
     src="assets/charm-front.png"
-    class="charm-photo charm-small charm-float"
+    class="
+      charm-photo
+      charm-small
+      charm-float
+    "
     alt=""
   >
 
@@ -1131,15 +2198,24 @@ button {
 </section>
 
 
-<!-- MEMORY -->
 
-<section id="memoryScene" class="scene">
+<!-- ======================================
+     MEMORY
+====================================== -->
+
+<section
+  id="memoryScene"
+  class="scene"
+>
 
   <div class="memory-card">
 
     <img
       src="assets/charm-front.png"
-      class="charm-photo charm-small"
+      class="
+        charm-photo
+        charm-small
+      "
       alt=""
     >
 
@@ -1164,16 +2240,23 @@ button {
 </section>
 
 
-<!-- REMEMBER -->
 
-<section id="rememberScene" class="scene">
+<!-- ======================================
+     REMEMBER PUZZLE
+====================================== -->
+
+<section
+  id="rememberScene"
+  class="scene"
+>
 
   <div class="remember-card">
 
 
     <div
       id="backCharmStage"
-      class="back-charm-stage">
+      class="back-charm-stage"
+    >
 
 
       <img
@@ -1202,7 +2285,8 @@ button {
 
       <div
         id="rememberInputWrap"
-        class="remember-input-wrap">
+        class="remember-input-wrap"
+      >
 
         <input
           id="rememberInput"
@@ -1220,7 +2304,8 @@ button {
 
       <div
         id="emojiPuzzle"
-        class="emoji-puzzle">
+        class="emoji-puzzle"
+      >
 
 
         <div class="emoji-slots">
@@ -1287,13 +2372,15 @@ button {
 
     <div
       id="rememberDialogue"
-      class="remember-dialogue">
+      class="remember-dialogue"
+    >
 
       Something still feels incomplete.
 
       <br><br>
 
-      I can feel one last, important mark hidden somewhere on me.
+      I can feel one last, important mark
+      hidden somewhere on me.
 
       <br><br>
 
@@ -1301,7 +2388,8 @@ button {
 
       <br><br>
 
-      Yako, could you take a look at the real me?
+      Yako, could you take a look
+      at the real me?
 
       <br>
 
@@ -1321,17 +2409,25 @@ button {
 </section>
 
 
-<!-- COMPLETE -->
+
+<!-- ======================================
+     COMPLETE RECALL
+====================================== -->
 
 <section
   id="completeRecallScene"
-  class="scene">
+  class="scene"
+>
 
   <div class="complete-card">
 
     <img
       src="assets/charm-front.png"
-      class="charm-photo charm-medium charm-float"
+      class="
+        charm-photo
+        charm-medium
+        charm-float
+      "
       alt=""
     >
 
@@ -1351,13 +2447,20 @@ button {
 </section>
 
 
-<!-- WAITING -->
 
-<section id="waitingScene" class="scene">
+<!-- ======================================
+     WAITING
+====================================== -->
+
+<section
+  id="waitingScene"
+  class="scene"
+>
 
   <div class="waiting-window">
 
-    <div class="waiting-seat"></div>
+    <div class="waiting-seat">
+    </div>
 
     <div class="waiting-bag">
       🧳
@@ -1372,14 +2475,19 @@ button {
 
   <img
     src="assets/charm-front.png"
-    class="charm-photo charm-small charm-float"
+    class="
+      charm-photo
+      charm-small
+      charm-float
+    "
     alt=""
   >
 
 
   <div class="waiting-dialogue">
 
-    <div id="waitingText"></div>
+    <div id="waitingText">
+    </div>
 
     <div class="waiting-controls">
 
@@ -1396,9 +2504,15 @@ button {
 </section>
 
 
-<!-- WARMTH -->
 
-<section id="warmthScene" class="scene">
+<!-- ======================================
+     WARMTH
+====================================== -->
+
+<section
+  id="warmthScene"
+  class="scene"
+>
 
   <div
     id="warmthText"
@@ -1420,15 +2534,27 @@ button {
 </section>
 
 
-<!-- MAGIC -->
 
-<section id="magicScene" class="scene">
+<!-- ======================================
+     MAGIC
+====================================== -->
+
+<section
+  id="magicScene"
+  class="scene"
+>
 
   <div class="magic-core">
 
-    <div class="magic-ring"></div>
-    <div class="magic-ring"></div>
-    <div class="magic-ring"></div>
+    <div class="magic-ring">
+    </div>
+
+    <div class="magic-ring">
+    </div>
+
+    <div class="magic-ring">
+    </div>
+
 
     <img
       src="assets/charm-front.png"
@@ -1438,6 +2564,7 @@ button {
 
   </div>
 
+
   <div
     id="magicText"
     class="magic-text">
@@ -1446,11 +2573,18 @@ button {
 </section>
 
 
-<!-- GIFT -->
 
-<section id="giftScene" class="scene">
+<!-- ======================================
+     GIFT
+====================================== -->
+
+<section
+  id="giftScene"
+  class="scene"
+>
 
   <div class="gift-wrap">
+
 
     <div
       id="giftThought"
@@ -1458,75 +2592,235 @@ button {
     </div>
 
 
-    <div class="gift-card">
+    <!-- FIRST GIFT CARD -->
+
+    <div
+      id="giftCard"
+      class="gift-card"
+    >
 
       <div class="gift-card-small">
         FOR YAKO
       </div>
 
       <div class="gift-icon">
-        ☕
+        🧋
       </div>
 
       <div class="gift-name">
-        A Little Something From Far Away
+
+        A Little Something
+        From Far Away
+
       </div>
 
       <div class="gift-desc">
-        One warm drink.
+
+        Something sweet.
+
         <br>
-        Pick something you like.
+
+        For the long wait ahead.
+
       </div>
 
-      <div class="placeholder-tag">
-        TEST PLACEHOLDER — NOT A REAL VOUCHER
+
+      <div class="gift-reveal-button">
+
+        <button
+          id="revealGiftButton"
+          class="gift-btn"
+        >
+          Reveal my magic ✨
+        </button>
+
       </div>
 
     </div>
 
 
-    <div class="ending-line">
 
-      Let this coffee keep you company
-      through the long wait.
+    <!-- REAL VOUCHER -->
 
-      <br><br>
+    <div id="giftReveal">
 
-      The distance between you and Celluaria
-      may be growing again...
+      <div class="voucher-panel">
 
-      <br><br>
 
-      but his love for you won't grow
-      any smaller with it.
+        <div class="voucher-sparkle">
+          ✨
+        </div>
 
-      <br><br>
 
-      Wherever this new chapter
-      of your life takes you,
+        <div class="voucher-title">
 
-      <br><br>
+          I found it!
 
-      I'll be right there with you—
+          🧋
 
-      <br>
+        </div>
 
-      carrying a little piece
-      of his heart along the way.
+
+        <div class="voucher-subtitle">
+
+          A little treat is waiting
+          for you at the airport.
+
+        </div>
+
+
+
+        <!-- LOCATION -->
+
+        <div class="location-card">
+
+          <div class="location-label">
+
+            WHERE TO FIND IT
+
+          </div>
+
+
+          <div class="location-name">
+
+            KOI Thé
+
+            <br>
+
+            KOI Thé（高崎T3机场店）
+
+          </div>
+
+
+          <div class="location-detail">
+
+            Xiamen Gaoqi
+            International Airport
+
+            <br>
+
+            Terminal 3 · Level 1
+
+            <br>
+
+            T3-D-3
+
+          </div>
+
+        </div>
+
+
+
+        <!-- QR -->
+
+        <div class="qr-shell">
+
+          <img
+            id="voucherImage"
+            class="voucher-image"
+            src="assets/yako-gift.jpg"
+            alt="Yako's KOI voucher"
+          >
+
+        </div>
+
+
+
+        <div class="scan-note">
+
+          Show this code to the staff
+          and let them scan it.
+
+          <br><br>
+
+          You can also save the code
+          to your phone first.
+
+        </div>
+
+
+
+        <div class="save-row">
+
+          <button
+            id="saveVoucherButton"
+            class="save-btn"
+          >
+            Save QR Image ↓
+          </button>
+
+        </div>
+
+
+        <div
+          id="saveHelp"
+          class="save-help"
+        >
+
+          If your phone opens the image
+          instead, press and hold it
+          to save it.
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="ending-line">
+
+        Hehe...
+
+        <br><br>
+
+        Let this little treat
+        keep you company
+        through the long wait.
+
+        <br><br>
+
+        The distance between you
+        and Celluaria
+        may be growing again...
+
+        <br><br>
+
+        but his love for you
+        won't grow any smaller
+        with it.
+
+        <br><br>
+
+        Wherever this new chapter
+        of your life takes you,
+
+        <br><br>
+
+        I'll be right there with you—
+
+        <br>
+
+        carrying a little piece
+        of his heart along the way.
+
+      </div>
+
+
+      <div class="final-line">
+
+        Off you go, Yako.
+
+        <br><br>
+
+        The best little octopus
+        in the world. 🐙♡
+
+      </div>
+
 
     </div>
 
-
-    <div class="final-line">
-
-      Off you go, Yako.
-
-      <br><br>
-
-      The best little octopus
-      in the world. 🐙♡
-
-    </div>
 
   </div>
 
@@ -1536,49 +2830,83 @@ button {
 </main>
 
 
+
 <script>
 
-/* =============================
+/* ========================================
    BASIC
-============================= */
+======================================== */
 
 function showScene(id) {
 
   document
-    .querySelectorAll(".scene")
-    .forEach(scene =>
-      scene.classList.remove("active")
+    .querySelectorAll(
+      ".scene"
+    )
+    .forEach(
+      scene =>
+        scene.classList.remove(
+          "active"
+        )
     );
+
 
   document
     .getElementById(id)
-    .classList.add("active");
-}
+    .classList.add(
+      "active"
+    );
 
 
-function sleep(ms) {
-  return new Promise(resolve =>
-    setTimeout(resolve, ms)
+  window.scrollTo(
+    {
+      top: 0,
+      behavior: "smooth"
+    }
   );
 }
 
 
-/* =============================
+function sleep(ms) {
+
+  return new Promise(
+    resolve =>
+      setTimeout(
+        resolve,
+        ms
+      )
+  );
+}
+
+
+
+/* ========================================
    OPENING
-============================= */
+======================================== */
 
 const openingLines = [
+
   "Mmm... where am I?\nThe shaking finally stopped...",
+
   "This looks like... an airport?"
+
 ];
+
 
 let openingIndex = 0;
 
+
 const openingBox =
-  document.getElementById("openingBox");
+  document.getElementById(
+    "openingBox"
+  );
+
 
 const openingNext =
-  document.getElementById("openingNext");
+  document.getElementById(
+    "openingNext"
+  );
+
 
 openingBox.textContent =
   openingLines[0];
@@ -1586,43 +2914,66 @@ openingBox.textContent =
 
 function shakeOpening() {
 
-  openingBox.classList.remove("shake");
+  openingBox
+    .classList
+    .remove(
+      "shake"
+    );
+
 
   void openingBox.offsetWidth;
 
-  openingBox.classList.add("shake");
+
+  openingBox
+    .classList
+    .add(
+      "shake"
+    );
 }
 
 
-setTimeout(shakeOpening, 300);
-
-
-openingNext.addEventListener(
-  "click",
-  () => {
-
-    openingIndex++;
-
-    if (openingIndex === 1) {
-
-      openingBox.textContent =
-        openingLines[1];
-
-      shakeOpening();
-
-      return;
-    }
-
-    showScene("airportScene");
-
-    startAirportDialogue();
-  }
+setTimeout(
+  shakeOpening,
+  300
 );
 
 
-/* =============================
+openingNext
+  .addEventListener(
+    "click",
+    () => {
+
+      openingIndex++;
+
+
+      if (
+        openingIndex === 1
+      ) {
+
+        openingBox.textContent =
+          openingLines[1];
+
+        shakeOpening();
+
+        return;
+      }
+
+
+      showScene(
+        "airportScene"
+      );
+
+
+      startAirportDialogue();
+
+    }
+  );
+
+
+
+/* ========================================
    AIRPORT
-============================= */
+======================================== */
 
 const airportLines = [
 
@@ -1646,12 +2997,15 @@ const airportLines = [
 
 ];
 
+
 let airportIndex = 0;
+
 
 const airportDialogue =
   document.getElementById(
     "airportDialogue"
   );
+
 
 const airportNext =
   document.getElementById(
@@ -1668,268 +3022,386 @@ function startAirportDialogue() {
 }
 
 
-airportNext.addEventListener(
-  "click",
-  () => {
+airportNext
+  .addEventListener(
+    "click",
+    () => {
 
-    airportIndex++;
+      airportIndex++;
 
-    if (
-      airportIndex <
-      airportLines.length
-    ) {
 
-      airportDialogue.textContent =
-        airportLines[airportIndex];
+      if (
+        airportIndex <
+        airportLines.length
+      ) {
+
+        airportDialogue.textContent =
+          airportLines[
+            airportIndex
+          ];
+
+      }
+
+      else {
+
+        puzzleIndex = 0;
+
+        showScene(
+          "matchScene"
+        );
+
+        createBoard();
+      }
 
     }
-
-    else {
-
-      puzzleIndex = 0;
-
-      showScene("matchScene");
-
-      createBoard();
-    }
-  }
-);
+  );
 
 
-/* =============================
+
+/* ========================================
    PUZZLES
-============================= */
+======================================== */
 
 const puzzleSteps = [
 
+
   {
+
     target: "🐰",
 
     thought:
       "This feels familiar...\nMaybe this one?",
 
     board: [
+
       ["🐰","💾","🧵","✈️","🐙"],
+
       ["🧵","🐰","📖","💾","✈️"],
+
       ["💾","✈️","🐰","🐰","📖"],
+
       ["🐰","📖","🐙","✈️","💾"],
+
       ["🐰","💾","🧵","🐙","📖"]
+
     ],
 
     memories: [
 
       {
+
         icon: "🐰",
+
         text:
           "Yes! That's him!"
+
       },
 
       {
+
         icon: "🐰",
+
         text:
           "He's the one who made me!"
+
       },
 
       {
+
         icon: "🧵",
+
         text:
           "And while he was stitching me together..."
+
       },
 
       {
+
         icon: "🐙",
+
         text:
           "he sure talked about you a lot, little octopus!"
+
       }
 
     ]
+
   },
 
 
+
   {
+
     target: "🐙",
 
     thought:
       "Wait...\nI know this one too.",
 
     board: [
+
       ["📖","💾","🐙","✈️","🧵"],
+
       ["🐰","💾","🐙","💾","✈️"],
+
       ["🐙","📖","💾","🧵","🐰"],
+
       ["🐙","✈️","🐙","📖","🐙"],
+
       ["🧵","✈️","🧵","📖","💾"]
+
     ],
 
     memories: [
 
       {
+
         icon: "🐙",
+
         text:
           "Little octopus... Yako."
+
       },
 
       {
+
         icon: "♡",
+
         text:
           "That name..."
+
       },
 
       {
+
         icon: "🐙",
+
         text:
           "it's been stitched deep inside my heart all along!"
+
       }
 
     ]
+
   },
 
 
+
   {
+
     target: "💾",
 
     thought:
       "Something is playing in my head...\nA melody?",
 
     board: [
+
       ["🐙","✈️","🐰","🧵","💾"],
+
       ["📖","🐰","📖","🐙","✈️"],
+
       ["🐙","✈️","📖","💾","🐰"],
+
       ["💾","🐰","🐰","🐙","🐙"],
+
       ["✈️","💾","💾","🧵","🐙"]
+
     ],
 
     memories: [
 
       {
+
         icon: "💾",
+
         text:
           "I can almost hear a melody..."
+
       },
 
       {
+
         icon: "🎵",
+
         text:
           "This little drive was filled with songs for you."
+
       },
 
       {
+
         icon: "♡",
+
         text:
           "Every single one carried a memory that belonged only to you and Celluaria."
+
       }
 
     ]
+
   },
 
 
+
   {
+
     target: "📖",
 
     thought:
       "Pages...\nThere are so many pages.",
 
     board: [
+
       ["🧵","📖","🐙","🧵","✈️"],
+
       ["📖","🐰","💾","📖","🧵"],
+
       ["🐰","📖","💾","🧵","🧵"],
+
       ["🐙","💾","🐙","🐙","🐰"],
+
       ["🐙","🧵","🐙","💾","📖"]
+
     ],
 
     memories: [
 
       {
+
         icon: "📖",
+
         text:
           "One page... two pages..."
+
       },
 
       {
+
         icon: "📖",
+
         text:
           "So many words. So many photos!"
+
       },
 
       {
+
         icon: "👣",
+
         text:
           "Every step you took together is in here."
+
       },
 
       {
+
         icon: "♡",
+
         text:
           "All those laughs, all those little moments... carefully kept between the pages."
+
       }
 
     ]
+
   },
 
 
+
   {
+
     target: "🧵",
 
     thought:
       "And this feeling...\nI know it.",
 
     board: [
+
       ["💾","🐙","✈️","🧵","📖"],
+
       ["💾","🐰","🧵","💾","🐰"],
+
       ["📖","✈️","💾","✈️","📖"],
+
       ["🐙","🧵","🧵","🐙","💾"],
+
       ["🧵","🐰","📖","💾","🐙"]
+
     ],
 
     memories: [
 
       {
+
         icon: "🧵",
+
         text:
           "Ah! I remember!"
+
       },
 
       {
+
         icon: "🧵",
+
         text:
           "The feeling of needle and thread passing through the fabric..."
+
       },
 
       {
+
         icon: "🪡",
+
         text:
           "stitch by stitch..."
+
       },
 
       {
+
         icon: "🤲",
+
         text:
           "There were a pair of hands..."
+
       },
 
       {
+
         icon: "♡",
+
         text:
           "taking so much care to make me."
+
       }
 
     ]
+
   }
 
 ];
 
 
+
 const size = 5;
 
+
 let puzzleIndex = 0;
+
 let puzzleMemoryIndex = 0;
+
 let board = [];
+
 let selected = null;
+
 let boardLocked = false;
+
 
 const boardElement =
   document.getElementById(
     "matchBoard"
   );
+
 
 const matchThought =
   document.getElementById(
@@ -1940,31 +3412,45 @@ const matchThought =
 function createBoard() {
 
   selected = null;
+
   boardLocked = false;
 
+
   const step =
-    puzzleSteps[puzzleIndex];
+    puzzleSteps[
+      puzzleIndex
+    ];
+
 
   board =
     step.board.map(
-      row => [...row]
+      row =>
+        [...row]
     );
 
+
   matchThought.innerHTML =
+
     step.thought.replace(
       /\n/g,
       "<br>"
     )
+
     +
+
     `<span class="target-emoji">${step.target}</span>`;
+
 
   renderBoard();
 }
 
 
+
 function renderBoard() {
 
-  boardElement.innerHTML = "";
+  boardElement.innerHTML =
+    "";
+
 
   for (
     let row = 0;
@@ -1972,32 +3458,42 @@ function renderBoard() {
     row++
   ) {
 
+
     for (
       let col = 0;
       col < size;
       col++
     ) {
 
+
       const tile =
         document.createElement(
           "div"
         );
 
+
       tile.className =
         "tile";
 
+
       tile.textContent =
         board[row][col];
+
 
       if (
         selected &&
         selected.row === row &&
         selected.col === col
       ) {
-        tile.classList.add(
-          "selected"
-        );
+
+        tile
+          .classList
+          .add(
+            "selected"
+          );
+
       }
+
 
       tile.addEventListener(
         "click",
@@ -2008,12 +3504,18 @@ function renderBoard() {
           )
       );
 
-      boardElement.appendChild(
-        tile
-      );
+
+      boardElement
+        .appendChild(
+          tile
+        );
+
     }
+
   }
+
 }
+
 
 
 function handleTileClick(
@@ -2021,10 +3523,17 @@ function handleTileClick(
   col
 ) {
 
-  if (boardLocked) return;
+
+  if (
+    boardLocked
+  ) {
+    return;
+  }
 
 
-  if (!selected) {
+  if (
+    !selected
+  ) {
 
     selected = {
       row,
@@ -2051,16 +3560,21 @@ function handleTileClick(
 
 
   const distance =
+
     Math.abs(
       selected.row - row
     )
+
     +
+
     Math.abs(
       selected.col - col
     );
 
 
-  if (distance !== 1) {
+  if (
+    distance !== 1
+  ) {
 
     selected = {
       row,
@@ -2077,6 +3591,7 @@ function handleTileClick(
     ...selected
   };
 
+
   selected = null;
 
 
@@ -2092,7 +3607,9 @@ function handleTileClick(
     findMatches();
 
 
-  if (matches.length === 0) {
+  if (
+    matches.length === 0
+  ) {
 
     swapTiles(
       previous.row,
@@ -2114,6 +3631,7 @@ function handleTileClick(
 
 
   const containsTarget =
+
     matches.some(
       ({row, col}) =>
         board[row][col] ===
@@ -2121,7 +3639,9 @@ function handleTileClick(
     );
 
 
-  if (!containsTarget) {
+  if (
+    !containsTarget
+  ) {
 
     swapTiles(
       previous.row,
@@ -2136,8 +3656,12 @@ function handleTileClick(
   }
 
 
-  solvePuzzle(matches);
+  solvePuzzle(
+    matches
+  );
+
 }
+
 
 
 function swapTiles(
@@ -2150,12 +3674,15 @@ function swapTiles(
   const temp =
     board[r1][c1];
 
+
   board[r1][c1] =
     board[r2][c2];
+
 
   board[r2][c2] =
     temp;
 }
+
 
 
 function findMatches() {
@@ -2170,7 +3697,9 @@ function findMatches() {
     row++
   ) {
 
+
     let start = 0;
+
 
     for (
       let col = 1;
@@ -2178,17 +3707,21 @@ function findMatches() {
       col++
     ) {
 
+
       if (
         col < size &&
         board[row][col] ===
         board[row][start]
       ) {
+
         continue;
       }
+
 
       if (
         col - start >= 3
       ) {
+
 
         for (
           let x = start;
@@ -2199,11 +3732,16 @@ function findMatches() {
           matched.add(
             `${row},${x}`
           );
+
         }
+
       }
 
+
       start = col;
+
     }
+
   }
 
 
@@ -2213,7 +3751,9 @@ function findMatches() {
     col++
   ) {
 
+
     let start = 0;
+
 
     for (
       let row = 1;
@@ -2221,17 +3761,21 @@ function findMatches() {
       row++
     ) {
 
+
       if (
         row < size &&
         board[row][col] ===
         board[start][col]
       ) {
+
         continue;
       }
+
 
       if (
         row - start >= 3
       ) {
+
 
         for (
           let y = start;
@@ -2242,36 +3786,56 @@ function findMatches() {
           matched.add(
             `${y},${col}`
           );
+
         }
+
       }
 
+
       start = row;
+
     }
+
   }
 
 
   return Array
-    .from(matched)
-    .map(item => {
+    .from(
+      matched
+    )
+    .map(
+      item => {
 
-      const [row, col] =
-        item
-          .split(",")
-          .map(Number);
 
-      return {
-        row,
-        col
-      };
-    });
+        const [
+          row,
+          col
+        ] =
+
+          item
+            .split(",")
+            .map(Number);
+
+
+        return {
+          row,
+          col
+        };
+
+      }
+    );
+
 }
+
 
 
 async function solvePuzzle(
   matches
 ) {
 
+
   boardLocked = true;
+
 
   matches.forEach(
     ({row, col}) => {
@@ -2282,31 +3846,45 @@ async function solvePuzzle(
     }
   );
 
+
   renderBoard();
 
-  await sleep(550);
 
-  puzzleMemoryIndex = 0;
+  await sleep(
+    550
+  );
+
+
+  puzzleMemoryIndex =
+    0;
+
 
   displayPuzzleMemory();
 
-  showScene("memoryScene");
+
+  showScene(
+    "memoryScene"
+  );
+
 }
 
 
-/* =============================
+
+/* ========================================
    MEMORY
-============================= */
+======================================== */
 
 const memoryIcon =
   document.getElementById(
     "memoryIcon"
   );
 
+
 const memoryText =
   document.getElementById(
     "memoryText"
   );
+
 
 const memoryNext =
   document.getElementById(
@@ -2323,102 +3901,127 @@ function displayPuzzleMemory() {
       puzzleMemoryIndex
     ];
 
+
   memoryIcon.textContent =
     item.icon;
 
+
   memoryText.textContent =
     item.text;
+
 }
 
 
-memoryNext.addEventListener(
-  "click",
-  () => {
+/*
+  IMPORTANT:
+  There is only ONE listener
+  for memoryNext.
+*/
 
-    puzzleMemoryIndex++;
-
-    const memories =
-      puzzleSteps[
-        puzzleIndex
-      ].memories;
+memoryNext
+  .addEventListener(
+    "click",
+    () => {
 
 
-    if (
-      puzzleMemoryIndex <
-      memories.length
-    ) {
+      puzzleMemoryIndex++;
 
-      displayPuzzleMemory();
 
-      return;
+      const memories =
+        puzzleSteps[
+          puzzleIndex
+        ].memories;
+
+
+      if (
+        puzzleMemoryIndex <
+        memories.length
+      ) {
+
+        displayPuzzleMemory();
+
+        return;
+      }
+
+
+      puzzleIndex++;
+
+
+      if (
+        puzzleIndex <
+        puzzleSteps.length
+      ) {
+
+        showScene(
+          "matchScene"
+        );
+
+        createBoard();
+
+      }
+
+      else {
+
+        startRememberScene();
+
+      }
+
     }
+  );
 
 
-    puzzleIndex++;
 
-
-    if (
-      puzzleIndex <
-      puzzleSteps.length
-    ) {
-
-      showScene("matchScene");
-
-      createBoard();
-
-    }
-
-    else {
-
-      startRememberScene();
-    }
-  }
-);
-
-
-/* =============================
+/* ========================================
    REMEMBER
-============================= */
+======================================== */
 
 const backCharmStage =
   document.getElementById(
     "backCharmStage"
   );
 
+
 const rememberInputWrap =
   document.getElementById(
     "rememberInputWrap"
   );
+
 
 const rememberInput =
   document.getElementById(
     "rememberInput"
   );
 
+
 const emojiPuzzle =
   document.getElementById(
     "emojiPuzzle"
   );
+
 
 const emojiSlot1 =
   document.getElementById(
     "emojiSlot1"
   );
 
+
 const emojiSlot2 =
   document.getElementById(
     "emojiSlot2"
   );
+
 
 const emojiChoices =
   document.querySelectorAll(
     ".emoji-choice"
   );
 
+
 const answerFeedback =
   document.getElementById(
     "answerFeedback"
   );
+
 
 const rememberDialogue =
   document.getElementById(
@@ -2427,8 +4030,11 @@ const rememberDialogue =
 
 
 let textUnlocked = false;
+
 let selectedEmojis = [];
+
 let rememberFinished = false;
+
 
 
 function normalizeRememberText(
@@ -2438,128 +4044,198 @@ function normalizeRememberText(
   return value
     .trim()
     .toLowerCase()
-    .replace(/\s+/g, " ");
+    .replace(
+      /\s+/g,
+      " "
+    );
+
 }
+
 
 
 function startRememberScene() {
 
+
   textUnlocked = false;
+
   rememberFinished = false;
+
   selectedEmojis = [];
 
-  rememberInput.value = "";
-  rememberInput.disabled = false;
+
+  rememberInput.value =
+    "";
+
+
+  rememberInput.disabled =
+    false;
+
 
   emojiChoices.forEach(
     button =>
-      button.disabled = false
+      button.disabled =
+        false
   );
 
-  emojiSlot1.textContent = "?";
-  emojiSlot2.textContent = "?";
+
+  emojiSlot1.textContent =
+    "?";
+
+
+  emojiSlot2.textContent =
+    "?";
+
 
   backCharmStage.className =
     "back-charm-stage";
 
-  rememberInputWrap.classList.remove(
-    "hidden"
-  );
 
-  emojiPuzzle.classList.remove(
-    "show"
-  );
+  rememberInputWrap
+    .classList
+    .remove(
+      "hidden"
+    );
+
+
+  emojiPuzzle
+    .classList
+    .remove(
+      "show"
+    );
+
 
   emojiPuzzle.style.opacity =
     "1";
 
-  answerFeedback.textContent = "";
 
-  showScene("rememberScene");
+  answerFeedback.textContent =
+    "";
+
+
+  showScene(
+    "rememberScene"
+  );
 
 
   setTimeout(
-    () => rememberInput.focus(),
+    () =>
+      rememberInput.focus(),
     500
   );
+
 }
 
 
-rememberInput.addEventListener(
-  "input",
-  async () => {
 
-    if (textUnlocked) return;
-
-
-    const answer =
-      normalizeRememberText(
-        rememberInput.value
-      );
+rememberInput
+  .addEventListener(
+    "input",
+    async () => {
 
 
-    if (
-      answer === "remember me"
-    ) {
-
-      textUnlocked = true;
-
-      rememberInput.disabled =
-        true;
+      if (
+        textUnlocked
+      ) {
+        return;
+      }
 
 
-      answerFeedback.textContent =
-        "...Yes. That's it.";
+      const answer =
+        normalizeRememberText(
+          rememberInput.value
+        );
 
 
-      await sleep(350);
+      if (
+        answer ===
+        "remember me"
+      ) {
 
 
-      rememberInputWrap.classList.add(
-        "hidden"
-      );
+        textUnlocked =
+          true;
 
 
-      backCharmStage.classList.add(
-        "text-revealed"
-      );
+        rememberInput.disabled =
+          true;
 
 
-      await sleep(900);
+        answerFeedback.textContent =
+          "...Yes. That's it.";
 
 
-      rememberDialogue.innerHTML =
-        "The letters...<br><br>" +
-        "They turned into real stitches!<br><br>" +
-        "And these two little ones...<br>" +
-        "who are they?";
+        await sleep(
+          350
+        );
 
 
-      answerFeedback.textContent =
-        "";
+        rememberInputWrap
+          .classList
+          .add(
+            "hidden"
+          );
 
 
-      emojiPuzzle.classList.add(
-        "show"
-      );
+        backCharmStage
+          .classList
+          .add(
+            "text-revealed"
+          );
+
+
+        await sleep(
+          900
+        );
+
+
+        rememberDialogue.innerHTML =
+
+          "The letters..." +
+
+          "<br><br>" +
+
+          "They turned into real stitches!" +
+
+          "<br><br>" +
+
+          "And these two little ones..." +
+
+          "<br>" +
+
+          "who are they?";
+
+
+        answerFeedback.textContent =
+          "";
+
+
+        emojiPuzzle
+          .classList
+          .add(
+            "show"
+          );
+
+      }
 
     }
+  );
 
-  }
-);
 
 
 emojiChoices.forEach(
   button => {
 
+
     button.addEventListener(
       "click",
       () => {
+
 
         if (
           !textUnlocked ||
           rememberFinished
         ) {
+
           return;
         }
 
@@ -2568,13 +4244,18 @@ emojiChoices.forEach(
           selectedEmojis.length >= 2
         ) {
 
-          selectedEmojis = [];
+
+          selectedEmojis =
+            [];
+
 
           emojiSlot1.textContent =
             "?";
 
+
           emojiSlot2.textContent =
             "?";
+
         }
 
 
@@ -2593,6 +4274,7 @@ emojiChoices.forEach(
 
           emojiSlot1.textContent =
             selectedEmojis[0];
+
         }
 
 
@@ -2605,46 +4287,67 @@ emojiChoices.forEach(
 
 
           checkEmojiAnswer();
+
         }
 
       }
     );
+
   }
 );
 
 
+
 async function checkEmojiAnswer() {
 
+
   const correct =
+
     selectedEmojis[0] ===
       "🐰"
+
     &&
+
     selectedEmojis[1] ===
       "🐙";
 
 
-  if (!correct) {
+  if (
+    !correct
+  ) {
+
 
     answerFeedback.textContent =
       "Hmm... those don't feel quite right.";
 
 
-    await sleep(650);
+    await sleep(
+      650
+    );
 
 
-    selectedEmojis = [];
+    selectedEmojis =
+      [];
 
-    emojiSlot1.textContent = "?";
-    emojiSlot2.textContent = "?";
+
+    emojiSlot1.textContent =
+      "?";
+
+
+    emojiSlot2.textContent =
+      "?";
+
 
     answerFeedback.textContent =
       "";
+
 
     return;
   }
 
 
-  rememberFinished = true;
+  rememberFinished =
+    true;
 
 
   answerFeedback.textContent =
@@ -2653,27 +4356,38 @@ async function checkEmojiAnswer() {
 
   emojiChoices.forEach(
     button =>
-      button.disabled = true
+      button.disabled =
+        true
   );
 
 
-  await sleep(450);
+  await sleep(
+    450
+  );
 
 
   emojiPuzzle.style.opacity =
     "0";
 
 
-  await sleep(400);
-
-
-  backCharmStage.classList.add(
-    "complete"
+  await sleep(
+    400
   );
 
 
+  backCharmStage
+    .classList
+    .add(
+      "complete"
+    );
+
+
   rememberDialogue.innerHTML =
-    "REMEMBER ME.<br><br>" +
+
+    "REMEMBER ME." +
+
+    "<br><br>" +
+
     "🐰 &nbsp;&nbsp; 🐙";
 
 
@@ -2681,16 +4395,20 @@ async function checkEmojiAnswer() {
     "";
 
 
-  await sleep(1600);
+  await sleep(
+    1600
+  );
 
 
   startCompleteRecall();
+
 }
 
 
-/* =============================
+
+/* ========================================
    COMPLETE RECALL
-============================= */
+======================================== */
 
 const completeRecallLines = [
 
@@ -2715,12 +4433,15 @@ const completeRecallLines = [
 ];
 
 
-let completeRecallIndex = 0;
+let completeRecallIndex =
+  0;
+
 
 const completeRecallText =
   document.getElementById(
     "completeRecallText"
   );
+
 
 const completeRecallNext =
   document.getElementById(
@@ -2730,46 +4451,58 @@ const completeRecallNext =
 
 function startCompleteRecall() {
 
-  completeRecallIndex = 0;
+
+  completeRecallIndex =
+    0;
+
 
   completeRecallText.textContent =
     completeRecallLines[0];
 
+
   showScene(
     "completeRecallScene"
   );
+
 }
 
 
-completeRecallNext.addEventListener(
-  "click",
-  () => {
+completeRecallNext
+  .addEventListener(
+    "click",
+    () => {
 
-    completeRecallIndex++;
 
-    if (
-      completeRecallIndex <
-      completeRecallLines.length
-    ) {
+      completeRecallIndex++;
 
-      completeRecallText.textContent =
-        completeRecallLines[
-          completeRecallIndex
-        ];
+
+      if (
+        completeRecallIndex <
+        completeRecallLines.length
+      ) {
+
+
+        completeRecallText.textContent =
+          completeRecallLines[
+            completeRecallIndex
+          ];
+
+      }
+
+      else {
+
+        startWaitingScene();
+
+      }
 
     }
-
-    else {
-
-      startWaitingScene();
-    }
-  }
-);
+  );
 
 
-/* =============================
+
+/* ========================================
    WAITING
-============================= */
+======================================== */
 
 const waitingLines = [
 
@@ -2794,12 +4527,15 @@ const waitingLines = [
 ];
 
 
-let waitingIndex = 0;
+let waitingIndex =
+  0;
+
 
 const waitingText =
   document.getElementById(
     "waitingText"
   );
+
 
 const waitingNext =
   document.getElementById(
@@ -2809,56 +4545,71 @@ const waitingNext =
 
 function startWaitingScene() {
 
-  waitingIndex = 0;
+
+  waitingIndex =
+    0;
+
 
   waitingText.textContent =
     waitingLines[0];
 
+
   showScene(
     "waitingScene"
   );
+
 }
 
 
-waitingNext.addEventListener(
-  "click",
-  () => {
 
-    waitingIndex++;
+waitingNext
+  .addEventListener(
+    "click",
+    () => {
 
-    if (
-      waitingIndex <
-      waitingLines.length
-    ) {
 
-      waitingText.textContent =
-        waitingLines[
-          waitingIndex
-        ];
+      waitingIndex++;
+
+
+      if (
+        waitingIndex <
+        waitingLines.length
+      ) {
+
+
+        waitingText.textContent =
+          waitingLines[
+            waitingIndex
+          ];
+
+      }
+
+      else {
+
+        startWarmthScene();
+
+      }
 
     }
-
-    else {
-
-      startWarmthScene();
-    }
-  }
-);
+  );
 
 
-/* =============================
+
+/* ========================================
    WARMTH
-============================= */
+======================================== */
 
 const warmthField =
   document.getElementById(
     "warmthField"
   );
 
+
 const warmthText =
   document.getElementById(
     "warmthText"
   );
+
 
 const warmCharm =
   document.getElementById(
@@ -2867,37 +4618,58 @@ const warmCharm =
 
 
 const orbPositions = [
+
   [13,16],
+
   [72,14],
+
   [11,69],
+
   [76,70],
+
   [47,10]
+
 ];
 
 
 const warmthLines = [
+
   "Warm...",
+
   "♡",
+
   "Another one!",
+
   "Hehe...",
+
   "Almost!"
+
 ];
 
 
-let collectedWarmth = 0;
+let collectedWarmth =
+  0;
+
 
 
 function startWarmthScene() {
+
 
   showScene(
     "warmthScene"
   );
 
-  collectedWarmth = 0;
 
-  warmCharm.classList.remove(
-    "glowing"
-  );
+  collectedWarmth =
+    0;
+
+
+  warmCharm
+    .classList
+    .remove(
+      "glowing"
+    );
+
 
   warmthText.textContent =
     "There they are...";
@@ -2908,54 +4680,75 @@ function startWarmthScene() {
       ".warm-orb"
     )
     .forEach(
-      orb => orb.remove()
+      orb =>
+        orb.remove()
     );
 
 
   orbPositions.forEach(
     (position, index) => {
 
+
       const orb =
         document.createElement(
           "button"
         );
 
+
       orb.className =
         "warm-orb";
 
+
       orb.style.left =
-        position[0] + "%";
+        position[0] +
+        "%";
+
 
       orb.style.top =
-        position[1] + "%";
+        position[1] +
+        "%";
+
 
       orb.style.animationDelay =
         `${index * .23}s`;
 
+
       orb.addEventListener(
         "click",
         () =>
-          collectOrb(orb),
+          collectOrb(
+            orb
+          ),
         {
           once: true
         }
       );
 
-      warmthField.appendChild(
-        orb
-      );
+
+      warmthField
+        .appendChild(
+          orb
+        );
+
     }
   );
+
 }
 
 
-function collectOrb(orb) {
+
+function collectOrb(
+  orb
+) {
+
 
   orb.classList.add(
     "collected"
   );
 
+
   collectedWarmth++;
+
 
   warmthText.textContent =
     warmthLines[
@@ -2967,9 +4760,12 @@ function collectOrb(orb) {
     collectedWarmth >= 3
   ) {
 
-    warmCharm.classList.add(
-      "glowing"
-    );
+    warmCharm
+      .classList
+      .add(
+        "glowing"
+      );
+
   }
 
 
@@ -2978,20 +4774,25 @@ function collectOrb(orb) {
     orbPositions.length
   ) {
 
+
     warmthText.textContent =
       "Got them all!";
+
 
     setTimeout(
       startMagicScene,
       900
     );
+
   }
+
 }
 
 
-/* =============================
+
+/* ========================================
    MAGIC
-============================= */
+======================================== */
 
 const magicText =
   document.getElementById(
@@ -3021,12 +4822,14 @@ const magicLines = [
 
   "A little delivery from far, far away has arrived.",
 
-  "Go get yourself a warm coffee! ☕"
+  "Go get yourself a little treat! 🧋"
 
 ];
 
 
+
 async function startMagicScene() {
+
 
   showScene(
     "magicScene"
@@ -3039,27 +4842,38 @@ async function startMagicScene() {
     i++
   ) {
 
+
     magicText.textContent =
       magicLines[i];
 
 
     await sleep(
+
       i >= 7
+
         ? 2200
+
         : 1800
+
     );
+
   }
 
 
-  await sleep(900);
+  await sleep(
+    900
+  );
+
 
   showGift();
+
 }
 
 
-/* =============================
+
+/* ========================================
    GIFT
-============================= */
+======================================== */
 
 const giftThought =
   document.getElementById(
@@ -3067,17 +4881,213 @@ const giftThought =
   );
 
 
+const giftCard =
+  document.getElementById(
+    "giftCard"
+  );
+
+
+const giftReveal =
+  document.getElementById(
+    "giftReveal"
+  );
+
+
+const revealGiftButton =
+  document.getElementById(
+    "revealGiftButton"
+  );
+
+
+const saveVoucherButton =
+  document.getElementById(
+    "saveVoucherButton"
+  );
+
+
+const voucherImage =
+  document.getElementById(
+    "voucherImage"
+  );
+
+
+
 function showGift() {
+
+
+  giftReveal.classList.remove(
+    "visible"
+  );
+
+
+  giftReveal.style.display =
+    "none";
+
+
+  giftCard.style.display =
+    "flex";
+
+
+  giftThought.textContent =
+
+    "I think I actually made something...";
+
 
   showScene(
     "giftScene"
   );
 
-  giftThought.textContent =
-    "A little delivery from far, far away.";
 }
+
+
+
+/* ========================================
+   REVEAL REAL GIFT
+======================================== */
+
+revealGiftButton
+  .addEventListener(
+    "click",
+    async () => {
+
+
+      revealGiftButton.disabled =
+        true;
+
+
+      revealGiftButton.textContent =
+        "✨";
+
+
+      giftThought.textContent =
+        "...There!";
+
+
+      await sleep(
+        650
+      );
+
+
+      giftCard.style.display =
+        "none";
+
+
+      giftReveal.style.display =
+        "block";
+
+
+      /*
+        force browser layout
+        so animation always plays
+      */
+
+      void giftReveal.offsetWidth;
+
+
+      giftReveal
+        .classList
+        .add(
+          "visible"
+        );
+
+
+      giftThought.textContent =
+
+        "Hehe... it worked!";
+
+
+      setTimeout(
+        () => {
+
+          giftReveal.scrollIntoView(
+            {
+              behavior: "smooth",
+              block: "start"
+            }
+          );
+
+        },
+        350
+      );
+
+    }
+  );
+
+
+
+/* ========================================
+   SAVE / DOWNLOAD QR IMAGE
+======================================== */
+
+saveVoucherButton
+  .addEventListener(
+    "click",
+    async () => {
+
+
+      const imageURL =
+        voucherImage.src;
+
+
+      /*
+        First try the normal
+        HTML download method.
+      */
+
+      const link =
+        document.createElement(
+          "a"
+        );
+
+
+      link.href =
+        imageURL;
+
+
+      link.download =
+        "Yako-KOI-Gift.jpg";
+
+
+      document.body
+        .appendChild(
+          link
+        );
+
+
+      link.click();
+
+
+      link.remove();
+
+
+      /*
+        iPhone / some in-app browsers
+        may ignore the download attribute.
+        In that case, the image itself is
+        still directly accessible by
+        tapping/holding it.
+      */
+
+      saveVoucherButton.textContent =
+        "Saved / Opened ✓";
+
+
+      setTimeout(
+        () => {
+
+          saveVoucherButton.textContent =
+            "Save QR Image ↓";
+
+        },
+        2200
+      );
+
+    }
+  );
 
 </script>
 
+
 </body>
+
 </html>
