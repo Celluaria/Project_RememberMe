@@ -1,1810 +1,1489 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Remember Me</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      background:
-        radial-gradient(circle at top, #273750 0%, #111827 43%, #080c14 100%);
-
-      color: #f7f4ee;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 18px;
-      overflow-x: hidden;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    button {
-      touch-action: manipulation;
-    }
-
-    #game {
-      width: min(920px, 100%);
-      min-height: min(720px, calc(100vh - 36px));
-
-      position: relative;
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          rgba(17, 24, 39, 0.91),
-          rgba(17, 24, 39, 0.97)
-        );
-
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 26px;
-
-      box-shadow:
-        0 30px 100px rgba(0,0,0,0.45),
-        inset 0 1px 0 rgba(255,255,255,0.05);
-    }
-
-    .scene {
-      display: none;
-      min-height: inherit;
-      padding: 34px;
-      position: relative;
-      animation: sceneFade 0.5s ease;
-    }
-
-    .scene.active {
-      display: flex;
-      flex-direction: column;
-    }
-
-    @keyframes sceneFade {
-      from {
-        opacity: 0;
-        transform: translateY(7px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .primary-btn,
-    .soft-btn {
-      border: 0;
-      cursor: pointer;
-      border-radius: 999px;
-
-      transition:
-        transform 0.15s ease,
-        opacity 0.15s ease,
-        background 0.15s ease;
-    }
-
-    .primary-btn {
-      padding: 14px 27px;
-      background: #f3e6dc;
-      color: #202632;
-      font-weight: 700;
-      min-width: 142px;
-    }
-
-    .soft-btn {
-      padding: 12px 20px;
-      background: rgba(255,255,255,0.09);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .primary-btn:hover,
-    .soft-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .primary-btn:active,
-    .soft-btn:active {
-      transform: translateY(0);
-    }
-
-    /* ==================================================
-       CHARM
-    ================================================== */
-
-    .charm {
-      width: 132px;
-      height: 160px;
-      margin: 15px auto 34px;
-
-      border-radius: 44% 44% 40% 40%;
-      border: 3px dashed rgba(255,255,255,0.72);
-
-      background:
-        linear-gradient(145deg, #ead9c9, #c9a98e);
-
-      box-shadow:
-        0 15px 45px rgba(0,0,0,0.4),
-        inset 0 0 0 8px rgba(255,255,255,0.08);
-
-      position: relative;
-
-      animation:
-        sway 3.2s ease-in-out infinite;
-    }
-
-    .charm::before {
-      content: "";
-      position: absolute;
-
-      width: 38px;
-      height: 28px;
-
-      border-radius: 50%;
-      border: 5px solid #b6a18f;
-
-      top: -31px;
-      left: 50%;
-
-      transform: translateX(-50%);
-    }
-
-    .charm-face {
-      position: absolute;
-      inset: 0;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 3rem;
-    }
-
-    @keyframes sway {
-      0%,
-      100% {
-        transform:
-          rotate(-2deg)
-          translateY(0);
-      }
-
-      50% {
-        transform:
-          rotate(2deg)
-          translateY(-5px);
-      }
-    }
-
-    /* ==================================================
-       OPENING
-    ================================================== */
-
-    #opening {
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .tiny-label {
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      opacity: 0.5;
-      font-size: 0.72rem;
-      margin-bottom: 18px;
-    }
-
-    .opening-text {
-      min-height: 112px;
-      max-width: 560px;
-
-      font-size: clamp(1.05rem, 3vw, 1.35rem);
-      line-height: 1.7;
-
-      margin:
-        0 auto
-        24px;
-    }
-
-    /* ==================================================
-       AIRPORT
-    ================================================== */
-
-    .airport-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-
-      gap: 15px;
-      margin-bottom: 26px;
-    }
-
-    .airport-name {
-      font-weight: 800;
-      font-size: clamp(1.2rem, 4vw, 1.75rem);
-    }
-
-    .airport-sub {
-      opacity: 0.5;
-      margin-top: 4px;
-      font-size: 0.86rem;
-    }
-
-    .airport-time {
-      font-variant-numeric: tabular-nums;
-      opacity: 0.7;
-      text-align: right;
-    }
-
-    .window {
-      min-height: 245px;
-
-      border-radius: 22px;
-      overflow: hidden;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.1);
-
-      background:
-        linear-gradient(
-          to bottom,
-          #829aac 0%,
-          #a9bac7 46%,
-          #c8cac5 47%,
-          #a5a8a5 60%,
-          #555d68 61%,
-          #424955 100%
-        );
-
-      position: relative;
-      margin-bottom: 24px;
-    }
-
-    .window::before,
-    .window::after {
-      content: "";
-      position: absolute;
-      background: rgba(25,34,45,0.5);
-    }
-
-    .window::before {
-      width: 8px;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-    }
-
-    .window::after {
-      height: 8px;
-      left: 0;
-      right: 0;
-      top: 48%;
-    }
-
-    .plane {
-      position: absolute;
-      top: 32px;
-      left: 18%;
-      font-size: 2rem;
-      opacity: 0.7;
-      transform: rotate(-4deg);
-    }
-
-    .seat {
-      position: absolute;
-      right: 8%;
-      bottom: 15px;
-
-      width: 210px;
-      height: 30px;
-
-      border-radius: 10px;
-
-      background: #252d39;
-      opacity: 0.9;
-    }
-
-    .bag {
-      position: absolute;
-      right: 7%;
-      bottom: 42px;
-      font-size: 2.5rem;
-    }
-
-    .yako {
-      position: absolute;
-      right: 16%;
-      bottom: 30px;
-
-      font-size:
-        clamp(
-          4.2rem,
-          14vw,
-          6.5rem
-        );
-
-      filter:
-        drop-shadow(
-          0 10px 12px
-          rgba(0,0,0,0.3)
-        );
-
-      animation:
-        yakoFloat
-        2.6s
-        ease-in-out
-        infinite;
-
-      z-index: 5;
-    }
-
-    @keyframes yakoFloat {
-      0%,
-      100% {
-        transform:
-          translateY(0)
-          rotate(-2deg);
-      }
-
-      50% {
-        transform:
-          translateY(-7px)
-          rotate(2deg);
-      }
-    }
-
-    .dialogue-box {
-      margin-top: auto;
-
-      background:
-        rgba(255,255,255,0.065);
-
-      border:
-        1px solid
-        rgba(255,255,255,0.1);
-
-      border-radius: 18px;
-      padding: 22px;
-      min-height: 150px;
-    }
-
-    .speaker {
-      font-size: 0.73rem;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        0.18em;
-
-      opacity: 0.42;
-
-      margin-bottom:
-        10px;
-    }
-
-    .dialogue {
-      font-size:
-        clamp(
-          1rem,
-          2.8vw,
-          1.25rem
-        );
-
-      line-height: 1.65;
-      min-height: 65px;
-    }
-
-    .dialogue-controls {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 12px;
-    }
-
-    /* ==================================================
-       MATCH
-    ================================================== */
-
-    #matchScene {
-      justify-content: center;
-      text-align: center;
-    }
-
-    .charm-thought {
-      font-size:
-        clamp(
-          1.05rem,
-          3vw,
-          1.25rem
-        );
-
-      line-height: 1.7;
-      min-height: 78px;
-
-      max-width: 620px;
-
-      margin:
-        0 auto
-        18px;
-    }
-
-    .target-emoji {
-      display: block;
-      font-size: 2.5rem;
-      margin-top: 6px;
-    }
-
-    #matchBoard {
-      display: grid;
-      grid-template-columns:
-        repeat(5, 1fr);
-
-      gap: 8px;
-
-      width:
-        min(430px, 100%);
-
-      margin: 0 auto;
-
-      user-select: none;
-    }
-
-    .tile {
-      aspect-ratio: 1;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.11);
-
-      border-radius:
-        16px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size:
-        clamp(
-          1.65rem,
-          7vw,
-          2.6rem
-        );
-
-      cursor: pointer;
-
-      background:
-        rgba(255,255,255,0.07);
-
-      transition:
-        transform 0.15s ease,
-        background 0.15s ease,
-        opacity 0.2s ease;
-    }
-
-    .tile:hover {
-      background:
-        rgba(255,255,255,0.11);
-    }
-
-    .tile.selected {
-      background:
-        rgba(255,255,255,0.2);
-
-      transform:
-        scale(0.92);
-
-      outline:
-        2px solid
-        rgba(255,255,255,0.55);
-    }
-
-    /* ==================================================
-       MEMORY
-    ================================================== */
-
-    #memoryScene {
-      justify-content: center;
-      text-align: center;
-    }
-
-    .memory-card {
-      max-width: 650px;
-
-      margin: auto;
-
-      padding:
-        34px 30px;
-
-      border-radius:
-        24px;
-
-      background:
-        rgba(255,255,255,0.065);
-
-      border:
-        1px solid
-        rgba(255,255,255,0.1);
-    }
-
-    .memory-icon {
-      font-size: 4.5rem;
-      margin-bottom: 20px;
-    }
-
-    .memory-text {
-      min-height: 145px;
-
-      font-size:
-        clamp(
-          1.05rem,
-          3vw,
-          1.3rem
-        );
-
-      line-height: 1.75;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* ==================================================
-       REMEMBER
-    ================================================== */
-
-    #rememberScene {
-      justify-content: center;
-      text-align: center;
-    }
-
-    .remember-card {
-      max-width: 700px;
-      width: 100%;
-
-      margin: auto;
-
-      padding:
-        32px 28px;
-
-      border-radius:
-        24px;
-
-      background:
-        rgba(255,255,255,0.065);
-
-      border:
-        1px solid
-        rgba(255,255,255,0.1);
-    }
-
-    .back-charm {
-      width: 180px;
-      min-height: 210px;
-
-      margin:
-        0 auto
-        28px;
-
-      padding:
-        26px 18px;
-
-      border-radius: 48px;
-
-      border:
-        3px dashed
-        rgba(255,255,255,0.72);
-
-      background:
-        linear-gradient(
-          145deg,
-          #ead9c9,
-          #c9a98e
-        );
-
-      color: #272a31;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      gap: 17px;
-
-      box-shadow:
-        0 15px 45px rgba(0,0,0,0.35),
-        inset 0 0 0 8px rgba(255,255,255,0.08);
-    }
-
-    .back-icons {
-      font-size: 2.8rem;
-    }
-
-    .mystery-stitches {
-      width: 110px;
-
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-
-      opacity: 0.55;
-    }
-
-    .stitch-line {
-      height: 3px;
-      border-radius: 999px;
-
-      background:
-        repeating-linear-gradient(
-          90deg,
-          #655346 0 8px,
-          transparent 8px 13px
-        );
-    }
-
-    .remember-dialogue {
-      max-width: 570px;
-
-      margin:
-        0 auto
-        26px;
-
-      line-height: 1.75;
-
-      font-size:
-        clamp(
-          1.02rem,
-          3vw,
-          1.25rem
-        );
-    }
-
-    .letter-puzzle {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      flex-wrap: wrap;
-
-      gap: 4px;
-
-      margin:
-        28px auto
-        18px;
-
-      font-weight: 800;
-    }
-
-    .word-group {
-      display: flex;
-      align-items: flex-end;
-      gap: 4px;
-      margin: 5px 9px;
-    }
-
-    .fixed-letter,
-    .letter-box {
-      width: 31px;
-      height: 44px;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      font-size:
-        clamp(
-          1.35rem,
-          5vw,
-          1.85rem
-        );
-
-      font-weight: 800;
-    }
-
-    .letter-box {
-      border: 0;
-
-      border-bottom:
-        2px solid
-        rgba(255,255,255,0.62);
-
-      border-radius: 0;
-      outline: none;
-
-      background:
-        transparent;
-
-      color: white;
-
-      text-transform:
-        uppercase;
-
-      text-align:
-        center;
-
-      padding: 0;
-      caret-color: white;
-    }
-
-    .letter-box:focus {
-      border-bottom-color:
-        #fff;
-
-      background:
-        rgba(255,255,255,0.04);
-    }
-
-    .letter-box.correct {
-      border-bottom-color:
-        rgba(255,255,255,0);
-
-      animation:
-        letterGlow
-        0.6s ease;
-    }
-
-    .letter-box.wrong {
-      animation:
-        shake
-        0.28s ease;
-    }
-
-    @keyframes shake {
-      0%,
-      100% {
-        transform:
-          translateX(0);
-      }
-
-      25% {
-        transform:
-          translateX(-5px);
-      }
-
-      75% {
-        transform:
-          translateX(5px);
-      }
-    }
-
-    @keyframes letterGlow {
-      0% {
-        text-shadow: none;
-      }
-
-      50% {
-        text-shadow:
-          0 0 10px white,
-          0 0 22px rgba(255,255,255,0.7);
-      }
-
-      100% {
-        text-shadow: none;
-      }
-    }
-
-    .answer-feedback {
-      min-height: 32px;
-      opacity: 0.65;
-      font-size: 0.9rem;
-    }
-
-    /* ==================================================
-       REVEAL
-    ================================================== */
-
-    #revealScene {
-      justify-content: center;
-      text-align: center;
-    }
-
-    .reveal-card {
-      max-width: 650px;
-
-      margin: auto;
-      padding: 34px;
-
-      background:
-        rgba(255,255,255,0.06);
-
-      border:
-        1px solid
-        rgba(255,255,255,0.1);
-
-      border-radius:
-        24px;
-    }
-
-    .reveal-title {
-      letter-spacing:
-        0.15em;
-
-      font-size:
-        clamp(
-          1.6rem,
-          5vw,
-          2.4rem
-        );
-
-      margin:
-        10px 0
-        28px;
-
-      animation:
-        softGlow
-        2s ease-in-out
-        infinite;
-    }
-
-    @keyframes softGlow {
-      0%,
-      100% {
-        text-shadow:
-          0 0 0
-          rgba(255,255,255,0);
-      }
-
-      50% {
-        text-shadow:
-          0 0 24px
-          rgba(255,255,255,0.4);
-      }
-    }
-
-    .reveal-text {
-      min-height: 180px;
-
-      line-height: 1.8;
-
-      font-size:
-        clamp(
-          1.02rem,
-          3vw,
-          1.25rem
-        );
-    }
-
-    /* ==================================================
-       WAITING
-    ================================================== */
-
-    #waitingScene {
-      justify-content: center;
-    }
-
-    .waiting-window {
-      position: relative;
-
-      width: 100%;
-      min-height: 340px;
-
-      border-radius: 24px;
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          180deg,
-          #53697d 0%,
-          #7b8994 38%,
-          #414954 39%,
-          #202733 100%
-        );
-
-      border:
-        1px solid
-        rgba(255,255,255,0.1);
-
-      margin-bottom: 22px;
-    }
-
-    .waiting-yako {
-      position: absolute;
-      bottom: 42px;
-      right: 20%;
-
-      font-size:
-        clamp(
-          4rem,
-          14vw,
-          7rem
-        );
-
-      animation:
-        sleepyFloat
-        3.6s
-        ease-in-out
-        infinite;
-    }
-
-    .waiting-bag {
-      position: absolute;
-      right: 10%;
-      bottom: 45px;
-      font-size: 2.6rem;
-    }
-
-    .waiting-seat {
-      position: absolute;
-
-      right: 9%;
-      bottom: 27px;
-
-      width: 230px;
-      height: 27px;
-
-      border-radius:
-        9px;
-
-      background:
-        #151b23;
-    }
-
-    @keyframes sleepyFloat {
-      0%,
-      100% {
-        transform:
-          translateY(0);
-      }
-
-      50% {
-        transform:
-          translateY(-4px);
-      }
-    }
-
-    .waiting-dialogue {
-      padding:
-        22px 24px;
-
-      border-radius:
-        20px;
-
-      background:
-        rgba(255,255,255,0.06);
-
-      border:
-        1px solid
-        rgba(255,255,255,0.09);
-
-      font-size:
-        clamp(
-          1.02rem,
-          3vw,
-          1.25rem
-        );
-
-      line-height:
-        1.75;
-
-      min-height:
-        135px;
-    }
-
-    .waiting-controls {
-      margin-top:
-        16px;
-
-      display:
-        flex;
-
-      justify-content:
-        flex-end;
-    }
-
-    /* ==================================================
-       WARMTH GAME
-    ================================================== */
-
-    #warmthScene {
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .warmth-text {
-      max-width: 600px;
-
-      margin:
-        0 auto
-        20px;
-
-      font-size:
-        clamp(
-          1.05rem,
-          3vw,
-          1.3rem
-        );
-
-      line-height:
-        1.75;
-
-      min-height:
-        92px;
-    }
-
-    #warmthField {
-      width:
-        min(
-          650px,
-          100%
-        );
-
-      height:
-        390px;
-
-      position:
-        relative;
-
-      margin:
-        0 auto;
-
-      border-radius:
-        26px;
-
-      overflow:
-        hidden;
-
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(255,222,161,0.08),
-          rgba(255,255,255,0.025) 50%,
-          rgba(0,0,0,0.05) 100%
-        );
-
-      border:
-        1px solid
-        rgba(255,255,255,0.08);
-    }
-
-    .warm-charm {
-      position:
-        absolute;
-
-      left:
-        50%;
-
-      top:
-        50%;
-
-      transform:
-        translate(-50%, -50%);
-
-      width:
-        105px;
-
-      height:
-        128px;
-
-      border-radius:
-        40px;
-
-      border:
-        2px dashed
-        rgba(255,255,255,0.65);
-
-      background:
-        linear-gradient(
-          145deg,
-          #ead9c9,
-          #c9a98e
-        );
-
-      display:
-        flex;
-
-      justify-content:
-        center;
-
-      align-items:
-        center;
-
-      font-size:
-        2.5rem;
-
-      box-shadow:
-        0 0 0 rgba(255,222,164,0);
-
-      transition:
-        box-shadow
-        0.6s ease,
-        transform
-        0.6s ease;
-    }
-
-    .warm-charm.glowing {
-      box-shadow:
-        0 0 25px rgba(255,221,156,0.5),
-        0 0 75px rgba(255,206,128,0.28);
-
-      transform:
-        translate(-50%, -50%)
-        scale(1.04);
-    }
-
-    .warm-orb {
-      width: 42px;
-      height: 42px;
-
-      position:
-        absolute;
-
-      border-radius:
-        50%;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.48);
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(255,246,202,0.98) 0%,
-          rgba(255,216,145,0.77) 32%,
-          rgba(255,191,109,0.22) 68%,
-          transparent 72%
-        );
-
-      box-shadow:
-        0 0 24px
-        rgba(
-          255,
-          213,
-          137,
-          0.45
-        );
-
-      cursor:
-        pointer;
-
-      animation:
-        orbFloat
-        2.7s
-        ease-in-out
-        infinite;
-
-      transition:
-        transform 0.4s ease,
-        opacity 0.4s ease;
-    }
-
-    .warm-orb:hover {
-      transform:
-        scale(1.15);
-    }
-
-    .warm-orb.collected {
-      transform:
-        scale(0.25);
-      opacity:
-        0;
-      pointer-events:
-        none;
-    }
-
-    @keyframes orbFloat {
-      0%,
-      100% {
-        margin-top:
-          0;
-      }
-
-      50% {
-        margin-top:
-          -9px;
-      }
-    }
-
-    /* ==================================================
-       MAGIC TRANSITION
-    ================================================== */
-
-    #magicScene {
-      justify-content:
-        center;
-
-      align-items:
-        center;
-
-      text-align:
-        center;
-
-      overflow:
-        hidden;
-    }
-
-    .magic-core {
-      position:
-        relative;
-
-      width:
-        220px;
-
-      height:
-        220px;
-
-      margin:
-        0 auto 30px;
-    }
-
-    .magic-ring {
-      position:
-        absolute;
-
-      inset:
-        0;
-
-      border-radius:
-        50%;
-
-      border:
-        1px solid
-        rgba(255,226,172,0.5);
-
-      animation:
-        ringPulse
-        2s ease-out
-        infinite;
-    }
-
-    .magic-ring:nth-child(2) {
-      inset:
-        25px;
-
-      animation-delay:
-        .4s;
-    }
-
-    .magic-ring:nth-child(3) {
-      inset:
-        50px;
-
-      animation-delay:
-        .8s;
-    }
-
-    @keyframes ringPulse {
-      0% {
-        transform:
-          scale(.65);
-
-        opacity:
-          0;
-      }
-
-      40% {
-        opacity:
-          .85;
-      }
-
-      100% {
-        transform:
-          scale(1.2);
-
-        opacity:
-          0;
-      }
-    }
-
-    .magic-center {
-      position:
-        absolute;
-
-      inset:
-        0;
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      font-size:
-        4rem;
-
-      filter:
-        drop-shadow(
-          0 0 24px
-          rgba(255,220,151,.7)
-        );
-    }
-
-    .magic-text {
-      min-height:
-        100px;
-
-      max-width:
-        570px;
-
-      font-size:
-        clamp(
-          1.05rem,
-          3vw,
-          1.3rem
-        );
-
-      line-height:
-        1.75;
-    }
-
-    /* ==================================================
-       GIFT
-    ================================================== */
-
-    #giftScene {
-      justify-content:
-        center;
-
-      text-align:
-        center;
-    }
-
-    .gift-wrap {
-      max-width:
-        620px;
-
-      width:
-        100%;
-
-      margin:
-        auto;
-    }
-
-    .gift-thought {
-      font-size:
-        clamp(
-          1.05rem,
-          3vw,
-          1.28rem
-        );
-
-      line-height:
-        1.8;
-
-      margin-bottom:
-        28px;
-
-      min-height:
-        80px;
-    }
-
-    .gift-card {
-      width:
-        min(
-          430px,
-          100%
-        );
-
-      min-height:
-        245px;
-
-      margin:
-        0 auto;
-
-      padding:
-        30px 25px;
-
-      border-radius:
-        28px;
-
-      position:
-        relative;
-
-      display:
-        flex;
-
-      flex-direction:
-        column;
-
-      justify-content:
-        center;
-
-      align-items:
-        center;
-
-      background:
-        linear-gradient(
-          145deg,
-          #f4eadc,
-          #d6bea4
-        );
-
-      color:
-        #292723;
-
-      border:
-        1px solid
-        rgba(255,255,255,.7);
-
-      box-shadow:
-        0 25px 65px
-        rgba(0,0,0,.35),
-        0 0 40px
-        rgba(255,216,153,.18);
-
-      animation:
-        giftArrival
-        .9s
-        cubic-bezier(
-          .2,
-          .8,
-          .2,
-          1
-        );
-    }
-
-    @keyframes giftArrival {
-      from {
-        opacity:
-          0;
-
-        transform:
-          translateY(40px)
-          scale(.82)
-          rotate(-3deg);
-      }
-
-      to {
-        opacity:
-          1;
-
-        transform:
-          translateY(0)
-          scale(1)
-          rotate(0);
-      }
-    }
-
-    .gift-card-small {
-      font-size:
-        .68rem;
-
-      letter-spacing:
-        .2em;
-
-      text-transform:
-        uppercase;
-
-      opacity:
-        .55;
-    }
-
-    .gift-icon {
-      font-size:
-        3.7rem;
-
-      margin:
-        20px 0 10px;
-    }
-
-    .gift-name {
-      font-size:
-        clamp(
-          1.45rem,
-          5vw,
-          2rem
-        );
-
-      font-weight:
-        800;
-
-      margin-bottom:
-        8px;
-    }
-
-    .gift-desc {
-      opacity:
-        .72;
-
-      line-height:
-        1.55;
-    }
-
-    .placeholder-tag {
-      margin-top:
-        20px;
-
-      padding:
-        7px 12px;
-
-      border-radius:
-        999px;
-
-      border:
-        1px dashed
-        rgba(40,40,40,.35);
-
-      font-size:
-        .72rem;
-
-      opacity:
-        .65;
-    }
-
-    .ending-line {
-      margin-top:
-        30px;
-
-      font-size:
-        clamp(
-          1rem,
-          3vw,
-          1.2rem
-        );
-
-      line-height:
-        1.8;
-    }
-
-    .ending-heart {
-      font-size:
-        1.4rem;
-
-      display:
-        inline-block;
-
-      animation:
-        heartBeat
-        1.8s
-        ease-in-out
-        infinite;
-    }
-
-    @keyframes heartBeat {
-      0%,
-      100% {
-        transform:
-          scale(1);
-      }
-
-      50% {
-        transform:
-          scale(1.16);
-      }
-    }
-
-    /* ==================================================
-       MOBILE
-    ================================================== */
-
-    @media (max-width: 600px) {
-
-      body {
-        padding:
-          0;
-      }
-
-      #game {
-        width:
-          100%;
-
-        min-height:
-          100vh;
-
-        border:
-          0;
-
-        border-radius:
-          0;
-      }
-
-      .scene {
-        padding:
-          22px 18px;
-      }
-
-      .window {
-        min-height:
-          215px;
-      }
-
-      .yako {
-        right:
-          14%;
-      }
-
-      .seat {
-        width:
-          160px;
-      }
-
-      .dialogue-box {
-        padding:
-          18px;
-      }
-
-      .tile {
-        border-radius:
-          13px;
-      }
-
-      .memory-card,
-      .remember-card,
-      .reveal-card {
-        padding:
-          24px 18px;
-      }
-
-      .fixed-letter,
-      .letter-box {
-        width:
-          27px;
-
-        height:
-          40px;
-      }
-
-      .word-group {
-        margin-left:
-          5px;
-
-        margin-right:
-          5px;
-      }
-
-      #warmthField {
-        height:
-          360px;
-      }
-
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Project Remember Me</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  background:
+    radial-gradient(circle at top, #273750 0%, #111827 43%, #080c14 100%);
+
+  color: #f7f4ee;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+  overflow-x: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+#game {
+  width: min(920px, 100%);
+  min-height: min(720px, calc(100vh - 36px));
+
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      rgba(17, 24, 39, 0.91),
+      rgba(17, 24, 39, 0.97)
+    );
+
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 26px;
+
+  box-shadow:
+    0 30px 100px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.scene {
+  display: none;
+  min-height: inherit;
+  padding: 34px;
+  position: relative;
+}
+
+.scene.active {
+  display: flex;
+  flex-direction: column;
+  animation: sceneFade .55s ease;
+}
+
+@keyframes sceneFade {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.primary-btn,
+.soft-btn {
+  border: 0;
+  cursor: pointer;
+  border-radius: 999px;
+
+  transition:
+    transform .15s ease,
+    background .15s ease;
+}
+
+.primary-btn {
+  padding: 14px 27px;
+  background: #f3e6dc;
+  color: #202632;
+  font-weight: 700;
+  min-width: 142px;
+}
+
+.soft-btn {
+  padding: 12px 20px;
+  background: rgba(255,255,255,.09);
+  color: white;
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.primary-btn:hover,
+.soft-btn:hover {
+  transform: translateY(-2px);
+}
+
+.primary-btn:active,
+.soft-btn:active {
+  transform: translateY(0);
+}
+
+
+/* ===============================
+   CHARM
+================================ */
+
+.charm {
+  width: 132px;
+  height: 160px;
+  margin: 15px auto 34px;
+
+  border-radius: 44% 44% 40% 40%;
+  border: 3px dashed rgba(255,255,255,.72);
+
+  background:
+    linear-gradient(145deg, #ead9c9, #c9a98e);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.4),
+    inset 0 0 0 8px rgba(255,255,255,.08);
+
+  position: relative;
+
+  animation:
+    sway 3.2s ease-in-out infinite;
+}
+
+.charm::before {
+  content: "";
+
+  position: absolute;
+
+  width: 38px;
+  height: 28px;
+
+  border-radius: 50%;
+  border: 5px solid #b6a18f;
+
+  top: -31px;
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.charm-face {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 3rem;
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform:
+      rotate(-2deg)
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      rotate(2deg)
+      translateY(-5px);
+  }
+}
+
+
+/* ===============================
+   OPENING
+================================ */
+
+#opening {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tiny-label {
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  opacity: .5;
+  font-size: .72rem;
+  margin-bottom: 18px;
+}
+
+.opening-text {
+  min-height: 112px;
+  max-width: 560px;
+
+  font-size: clamp(1.05rem, 3vw, 1.35rem);
+  line-height: 1.7;
+
+  margin: 0 auto 24px;
+}
+
+
+/* ===============================
+   AIRPORT
+================================ */
+
+.airport-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 15px;
+  margin-bottom: 26px;
+}
+
+.airport-name {
+  font-weight: 800;
+  font-size: clamp(1.2rem, 4vw, 1.75rem);
+}
+
+.airport-sub {
+  opacity: .5;
+  margin-top: 4px;
+  font-size: .86rem;
+}
+
+.airport-time {
+  font-variant-numeric: tabular-nums;
+  opacity: .7;
+  text-align: right;
+}
+
+.window {
+  min-height: 245px;
+
+  border-radius: 22px;
+  overflow: hidden;
+
+  border: 1px solid rgba(255,255,255,.1);
+
+  background:
+    linear-gradient(
+      to bottom,
+      #829aac 0%,
+      #a9bac7 46%,
+      #c8cac5 47%,
+      #a5a8a5 60%,
+      #555d68 61%,
+      #424955 100%
+    );
+
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.window::before,
+.window::after {
+  content: "";
+  position: absolute;
+  background: rgba(25,34,45,.5);
+}
+
+.window::before {
+  width: 8px;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+}
+
+.window::after {
+  height: 8px;
+  left: 0;
+  right: 0;
+  top: 48%;
+}
+
+.plane {
+  position: absolute;
+  top: 32px;
+  left: 18%;
+  font-size: 2rem;
+  opacity: .7;
+  transform: rotate(-4deg);
+}
+
+.seat {
+  position: absolute;
+  right: 8%;
+  bottom: 15px;
+
+  width: 210px;
+  height: 30px;
+
+  border-radius: 10px;
+  background: #252d39;
+  opacity: .9;
+}
+
+.bag {
+  position: absolute;
+  right: 7%;
+  bottom: 42px;
+  font-size: 2.5rem;
+}
+
+.yako {
+  position: absolute;
+  right: 16%;
+  bottom: 30px;
+
+  font-size: clamp(4.2rem, 14vw, 6.5rem);
+
+  filter:
+    drop-shadow(
+      0 10px 12px
+      rgba(0,0,0,.3)
+    );
+
+  animation:
+    yakoFloat
+    2.6s
+    ease-in-out
+    infinite;
+
+  z-index: 5;
+}
+
+@keyframes yakoFloat {
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(-2deg);
+  }
+
+  50% {
+    transform:
+      translateY(-7px)
+      rotate(2deg);
+  }
+}
+
+.dialogue-box {
+  margin-top: auto;
+
+  background:
+    rgba(255,255,255,.065);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  border-radius: 18px;
+  padding: 22px;
+  min-height: 150px;
+}
+
+.speaker {
+  font-size: .73rem;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  opacity: .42;
+  margin-bottom: 10px;
+}
+
+.dialogue {
+  font-size: clamp(1rem, 2.8vw, 1.25rem);
+  line-height: 1.65;
+  min-height: 65px;
+}
+
+.dialogue-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+
+/* ===============================
+   MATCH GAME
+================================ */
+
+#matchScene {
+  justify-content: center;
+  text-align: center;
+}
+
+.charm-thought {
+  font-size: clamp(1.05rem, 3vw, 1.25rem);
+  line-height: 1.7;
+
+  min-height: 78px;
+  max-width: 620px;
+
+  margin: 0 auto 18px;
+}
+
+.target-emoji {
+  display: block;
+  font-size: 2.5rem;
+  margin-top: 6px;
+}
+
+#matchBoard {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 8px;
+
+  width: min(430px, 100%);
+  margin: 0 auto;
+
+  user-select: none;
+}
+
+.tile {
+  aspect-ratio: 1;
+
+  border:
+    1px solid
+    rgba(255,255,255,.11);
+
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size:
+    clamp(
+      1.65rem,
+      7vw,
+      2.6rem
+    );
+
+  cursor: pointer;
+
+  background:
+    rgba(255,255,255,.07);
+
+  transition:
+    transform .15s ease,
+    background .15s ease;
+}
+
+.tile:hover {
+  background:
+    rgba(255,255,255,.11);
+}
+
+.tile.selected {
+  background:
+    rgba(255,255,255,.2);
+
+  transform:
+    scale(.92);
+
+  outline:
+    2px solid
+    rgba(255,255,255,.55);
+}
+
+
+/* ===============================
+   MEMORY
+================================ */
+
+#memoryScene {
+  justify-content: center;
+  text-align: center;
+}
+
+.memory-card {
+  max-width: 650px;
+  margin: auto;
+
+  padding: 34px 30px;
+
+  border-radius: 24px;
+
+  background:
+    rgba(255,255,255,.065);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+}
+
+.memory-icon {
+  font-size: 4.5rem;
+  margin-bottom: 20px;
+}
+
+.memory-text {
+  min-height: 145px;
+
+  font-size:
+    clamp(
+      1.05rem,
+      3vw,
+      1.3rem
+    );
+
+  line-height: 1.75;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* ===============================
+   REMEMBER
+================================ */
+
+#rememberScene {
+  justify-content: center;
+  text-align: center;
+}
+
+.remember-card {
+  max-width: 700px;
+  width: 100%;
+
+  margin: auto;
+  padding: 32px 28px;
+
+  border-radius: 24px;
+
+  background:
+    rgba(255,255,255,.065);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+}
+
+.back-charm {
+  width: 180px;
+  min-height: 210px;
+
+  margin: 0 auto 28px;
+  padding: 26px 18px;
+
+  border-radius: 48px;
+
+  border:
+    3px dashed
+    rgba(255,255,255,.72);
+
+  background:
+    linear-gradient(
+      145deg,
+      #ead9c9,
+      #c9a98e
+    );
+
+  color: #272a31;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 17px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.35),
+    inset 0 0 0 8px rgba(255,255,255,.08);
+}
+
+.back-icons {
+  font-size: 2.8rem;
+}
+
+.mystery-stitches {
+  width: 110px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  opacity: .55;
+}
+
+.stitch-line {
+  height: 3px;
+  border-radius: 999px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #655346 0 8px,
+      transparent 8px 13px
+    );
+}
+
+.remember-dialogue {
+  max-width: 570px;
+
+  margin: 0 auto 26px;
+
+  line-height: 1.75;
+
+  font-size:
+    clamp(
+      1.02rem,
+      3vw,
+      1.25rem
+    );
+}
+
+.letter-puzzle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+
+  gap: 4px;
+
+  margin: 28px auto 18px;
+  font-weight: 800;
+}
+
+.word-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  margin: 5px 9px;
+}
+
+.fixed-letter,
+.letter-box {
+  width: 31px;
+  height: 44px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size:
+    clamp(
+      1.35rem,
+      5vw,
+      1.85rem
+    );
+
+  font-weight: 800;
+}
+
+.letter-box {
+  border: 0;
+
+  border-bottom:
+    2px solid
+    rgba(255,255,255,.62);
+
+  border-radius: 0;
+  outline: none;
+
+  background: transparent;
+  color: white;
+
+  text-transform: uppercase;
+  text-align: center;
+
+  padding: 0;
+  caret-color: white;
+}
+
+.letter-box:focus {
+  border-bottom-color: white;
+  background: rgba(255,255,255,.04);
+}
+
+.letter-box.correct {
+  border-bottom-color: transparent;
+
+  animation:
+    letterGlow
+    .6s ease;
+}
+
+.letter-box.wrong {
+  animation:
+    shake
+    .28s ease;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes letterGlow {
+  50% {
+    text-shadow:
+      0 0 10px white,
+      0 0 22px rgba(255,255,255,.7);
+  }
+}
+
+.answer-feedback {
+  min-height: 32px;
+  opacity: .65;
+  font-size: .9rem;
+}
+
+
+/* ===============================
+   REVEAL
+================================ */
+
+#revealScene {
+  justify-content: center;
+  text-align: center;
+}
+
+.reveal-card {
+  max-width: 650px;
+  margin: auto;
+  padding: 34px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  border-radius: 24px;
+}
+
+.reveal-title {
+  letter-spacing: .15em;
+
+  font-size:
+    clamp(
+      1.6rem,
+      5vw,
+      2.4rem
+    );
+
+  margin: 10px 0 28px;
+
+  animation:
+    softGlow
+    2s ease-in-out
+    infinite;
+}
+
+@keyframes softGlow {
+  50% {
+    text-shadow:
+      0 0 24px
+      rgba(255,255,255,.4);
+  }
+}
+
+.reveal-text {
+  min-height: 180px;
+  line-height: 1.8;
+
+  font-size:
+    clamp(
+      1.02rem,
+      3vw,
+      1.25rem
+    );
+}
+
+
+/* ===============================
+   WAITING
+================================ */
+
+#waitingScene {
+  justify-content: center;
+}
+
+.waiting-window {
+  position: relative;
+
+  width: 100%;
+  min-height: 340px;
+
+  border-radius: 24px;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #53697d 0%,
+      #7b8994 38%,
+      #414954 39%,
+      #202733 100%
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  margin-bottom: 22px;
+}
+
+.waiting-yako {
+  position: absolute;
+
+  bottom: 42px;
+  right: 20%;
+
+  font-size:
+    clamp(
+      4rem,
+      14vw,
+      7rem
+    );
+
+  animation:
+    sleepyFloat
+    3.6s
+    ease-in-out
+    infinite;
+}
+
+.waiting-bag {
+  position: absolute;
+  right: 10%;
+  bottom: 45px;
+  font-size: 2.6rem;
+}
+
+.waiting-seat {
+  position: absolute;
+
+  right: 9%;
+  bottom: 27px;
+
+  width: 230px;
+  height: 27px;
+
+  border-radius: 9px;
+
+  background: #151b23;
+}
+
+@keyframes sleepyFloat {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.waiting-dialogue {
+  padding: 22px 24px;
+
+  border-radius: 20px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  border:
+    1px solid
+    rgba(255,255,255,.09);
+
+  font-size:
+    clamp(
+      1.02rem,
+      3vw,
+      1.25rem
+    );
+
+  line-height: 1.75;
+  min-height: 135px;
+}
+
+.waiting-controls {
+  margin-top: 16px;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+/* ===============================
+   WARMTH
+================================ */
+
+#warmthScene {
+  justify-content: center;
+  text-align: center;
+}
+
+.warmth-text {
+  max-width: 600px;
+
+  margin: 0 auto 20px;
+
+  font-size:
+    clamp(
+      1.05rem,
+      3vw,
+      1.3rem
+    );
+
+  line-height: 1.75;
+  min-height: 92px;
+}
+
+#warmthField {
+  width: min(650px, 100%);
+  height: 390px;
+
+  position: relative;
+
+  margin: 0 auto;
+
+  border-radius: 26px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,222,161,.08),
+      rgba(255,255,255,.025) 50%,
+      rgba(0,0,0,.05) 100%
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+}
+
+.warm-charm {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  width: 105px;
+  height: 128px;
+
+  border-radius: 40px;
+
+  border:
+    2px dashed
+    rgba(255,255,255,.65);
+
+  background:
+    linear-gradient(
+      145deg,
+      #ead9c9,
+      #c9a98e
+    );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2.5rem;
+
+  transition:
+    box-shadow .6s ease,
+    transform .6s ease;
+}
+
+.warm-charm.glowing {
+  box-shadow:
+    0 0 25px rgba(255,221,156,.5),
+    0 0 75px rgba(255,206,128,.28);
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.06);
+}
+
+.warm-orb {
+  width: 46px;
+  height: 46px;
+
+  position: absolute;
+
+  border: 0;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,246,202,.98) 0%,
+      rgba(255,216,145,.77) 32%,
+      rgba(255,191,109,.22) 68%,
+      transparent 72%
+    );
+
+  box-shadow:
+    0 0 24px
+    rgba(255,213,137,.45);
+
+  cursor: pointer;
+
+  animation:
+    orbFloat
+    2.7s
+    ease-in-out
+    infinite;
+
+  transition:
+    transform .4s ease,
+    opacity .4s ease;
+}
+
+.warm-orb.collected {
+  transform: scale(.2);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes orbFloat {
+  50% {
+    margin-top: -9px;
+  }
+}
+
+
+/* ===============================
+   MAGIC
+================================ */
+
+#magicScene {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.magic-core {
+  position: relative;
+
+  width: 220px;
+  height: 220px;
+
+  margin: 0 auto 30px;
+}
+
+.magic-ring {
+  position: absolute;
+  inset: 0;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(255,226,172,.5);
+
+  animation:
+    ringPulse
+    2s
+    ease-out
+    infinite;
+}
+
+.magic-ring:nth-child(2) {
+  inset: 25px;
+  animation-delay: .4s;
+}
+
+.magic-ring:nth-child(3) {
+  inset: 50px;
+  animation-delay: .8s;
+}
+
+@keyframes ringPulse {
+  0% {
+    transform: scale(.65);
+    opacity: 0;
+  }
+
+  40% {
+    opacity: .85;
+  }
+
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+.magic-center {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 4rem;
+
+  filter:
+    drop-shadow(
+      0 0 24px
+      rgba(255,220,151,.7)
+    );
+}
+
+.magic-text {
+  min-height: 100px;
+  max-width: 570px;
+
+  font-size:
+    clamp(
+      1.05rem,
+      3vw,
+      1.3rem
+    );
+
+  line-height: 1.75;
+}
+
+
+/* ===============================
+   GIFT
+================================ */
+
+#giftScene {
+  justify-content: center;
+  text-align: center;
+}
+
+.gift-wrap {
+  max-width: 620px;
+  width: 100%;
+  margin: auto;
+}
+
+.gift-thought {
+  font-size:
+    clamp(
+      1.05rem,
+      3vw,
+      1.28rem
+    );
+
+  line-height: 1.8;
+  margin-bottom: 28px;
+  min-height: 80px;
+}
+
+.gift-card {
+  width: min(430px, 100%);
+  min-height: 245px;
+
+  margin: 0 auto;
+  padding: 30px 25px;
+
+  border-radius: 28px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f4eadc,
+      #d6bea4
+    );
+
+  color: #292723;
+
+  border:
+    1px solid
+    rgba(255,255,255,.7);
+
+  box-shadow:
+    0 25px 65px rgba(0,0,0,.35),
+    0 0 40px rgba(255,216,153,.18);
+
+  animation:
+    giftArrival
+    .9s
+    cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes giftArrival {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(40px)
+      scale(.82)
+      rotate(-3deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1)
+      rotate(0);
+  }
+}
+
+.gift-card-small {
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  opacity: .55;
+}
+
+.gift-icon {
+  font-size: 3.7rem;
+  margin: 20px 0 10px;
+}
+
+.gift-name {
+  font-size:
+    clamp(
+      1.45rem,
+      5vw,
+      2rem
+    );
+
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.gift-desc {
+  opacity: .72;
+  line-height: 1.55;
+}
+
+.placeholder-tag {
+  margin-top: 20px;
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  border:
+    1px dashed
+    rgba(40,40,40,.35);
+
+  font-size: .72rem;
+  opacity: .65;
+}
+
+.ending-line {
+  margin-top: 30px;
+
+  font-size:
+    clamp(
+      1rem,
+      3vw,
+      1.2rem
+    );
+
+  line-height: 1.8;
+}
+
+.ending-heart {
+  display: inline-block;
+
+  animation:
+    heartBeat
+    1.8s
+    ease-in-out
+    infinite;
+}
+
+@keyframes heartBeat {
+  50% {
+    transform: scale(1.16);
+  }
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 0;
+  }
+
+  #game {
+    width: 100%;
+    min-height: 100vh;
+
+    border: 0;
+    border-radius: 0;
+  }
+
+  .scene {
+    padding: 22px 18px;
+  }
+
+  .window {
+    min-height: 215px;
+  }
+
+  .yako {
+    right: 14%;
+  }
+
+  .seat {
+    width: 160px;
+  }
+
+  .dialogue-box {
+    padding: 18px;
+  }
+
+  .tile {
+    border-radius: 13px;
+  }
+
+  .memory-card,
+  .remember-card,
+  .reveal-card {
+    padding: 24px 18px;
+  }
+
+  .fixed-letter,
+  .letter-box {
+    width: 27px;
+    height: 40px;
+  }
+
+  .word-group {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #warmthField {
+    height: 360px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <main id="game">
 
-  <!-- OPENING -->
 
-  <section id="opening" class="scene active">
+<!-- ===============================
+     OPENING
+================================ -->
 
-    <div class="tiny-label">
-      Project Remember Me
+<section id="opening" class="scene active">
+
+  <div class="tiny-label">
+    Project Remember Me
+  </div>
+
+  <div class="charm">
+    <div class="charm-face">
+      🧵
     </div>
+  </div>
 
-    <div class="charm">
-      <div class="charm-face">🧵</div>
-    </div>
+  <div
+    id="openingText"
+    class="opening-text">
 
-    <div id="openingText" class="opening-text">
-      ...
-    </div>
+    ...
 
-    <button id="openingButton" class="primary-btn">
-      Wake up
-    </button>
+  </div>
 
-  </section>
+  <button
+    id="openingButton"
+    class="primary-btn">
+
+    Wake up
+
+  </button>
+
+</section>
 
 
-  <!-- AIRPORT -->
+<!-- ===============================
+     AIRPORT
+================================ -->
 
-  <section id="airportScene" class="scene">
+<section id="airportScene" class="scene">
 
-    <div class="airport-header">
+  <div class="airport-header">
 
-      <div>
-        <div class="airport-name">
-          XIAMEN
-        </div>
+    <div>
 
-        <div class="airport-sub">
-          Gaoqi International Airport
-        </div>
+      <div class="airport-name">
+        XIAMEN
       </div>
 
-      <div class="airport-time">
-        10:20 AM<br>
-        <small>Transit</small>
-      </div>
-
-    </div>
-
-    <div class="window">
-
-      <div class="plane">✈️</div>
-      <div class="seat"></div>
-      <div class="bag">🧳</div>
-      <div class="yako">🐙</div>
-
-    </div>
-
-    <div class="dialogue-box">
-
-      <div class="speaker">
-        Me
-      </div>
-
-      <div
-        id="airportDialogue"
-        class="dialogue">
-      </div>
-
-      <div class="dialogue-controls">
-
-        <button
-          id="airportNext"
-          class="soft-btn">
-          ...
-        </button>
-
+      <div class="airport-sub">
+        Gaoqi International Airport
       </div>
 
     </div>
 
-  </section>
+    <div class="airport-time">
 
+      10:20 AM
+      <br>
+      <small>Transit</small>
 
-  <!-- MATCH -->
+    </div>
 
-  <section id="matchScene" class="scene">
+  </div>
+
+  <div class="window">
+
+    <div class="plane">
+      ✈️
+    </div>
+
+    <div class="seat"></div>
+
+    <div class="bag">
+      🧳
+    </div>
+
+    <div class="yako">
+      🐙
+    </div>
+
+  </div>
+
+  <div class="dialogue-box">
+
+    <div class="speaker">
+      Me
+    </div>
 
     <div
-      id="matchThought"
-      class="charm-thought">
-
-      Something feels familiar...
-
-      <span
-        id="targetEmoji"
-        class="target-emoji">
-
-        🐇
-
-      </span>
-
+      id="airportDialogue"
+      class="dialogue">
     </div>
 
-    <div id="matchBoard"></div>
-
-  </section>
-
-
-  <!-- MEMORY -->
-
-  <section id="memoryScene" class="scene">
-
-    <div class="memory-card">
-
-      <div
-        id="memoryIcon"
-        class="memory-icon">
-
-        🐇
-
-      </div>
-
-      <div
-        id="memoryText"
-        class="memory-text">
-      </div>
+    <div class="dialogue-controls">
 
       <button
-        id="memoryNext"
-        class="primary-btn">
+        id="airportNext"
+        class="soft-btn">
 
         ...
 
@@ -1812,357 +1491,435 @@
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
-  <!-- REMEMBER -->
+<!-- ===============================
+     MATCH
+================================ -->
 
-  <section id="rememberScene" class="scene">
+<section id="matchScene" class="scene">
 
-    <div class="remember-card">
+  <div
+    id="matchThought"
+    class="charm-thought">
+  </div>
 
-      <div class="back-charm">
+  <div id="matchBoard"></div>
 
-        <div class="back-icons">
-          🐙　🐇
-        </div>
-
-        <div class="mystery-stitches">
-          <div class="stitch-line"></div>
-          <div class="stitch-line"></div>
-        </div>
-
-      </div>
-
-      <div class="remember-dialogue">
-
-        ...Huh?
-
-        <br><br>
-
-        There's something stitched on my back.
-
-        <br><br>
-
-        I can feel the letters,
-        but I can't quite read them.
-
-        <br>
-
-        Maybe the real me can.
-
-      </div>
+</section>
 
 
-      <div class="letter-puzzle">
+<!-- ===============================
+     MEMORY
+================================ -->
 
-        <div class="word-group">
+<section id="memoryScene" class="scene">
 
-          <span class="fixed-letter">R</span>
+  <div class="memory-card">
 
-          <input
-            class="letter-box missing-letter"
-            maxlength="1"
-            autocomplete="off"
-            data-answer="E"
-          />
+    <div
+      id="memoryIcon"
+      class="memory-icon">
 
-          <span class="fixed-letter">M</span>
-
-          <input
-            class="letter-box missing-letter"
-            maxlength="1"
-            autocomplete="off"
-            data-answer="E"
-          />
-
-          <span class="fixed-letter">M</span>
-
-          <span class="fixed-letter">B</span>
-
-          <input
-            class="letter-box missing-letter"
-            maxlength="1"
-            autocomplete="off"
-            data-answer="E"
-          />
-
-          <span class="fixed-letter">R</span>
-
-        </div>
-
-
-        <div class="word-group">
-
-          <span class="fixed-letter">M</span>
-
-          <input
-            class="letter-box missing-letter"
-            maxlength="1"
-            autocomplete="off"
-            data-answer="E"
-          />
-
-        </div>
-
-      </div>
-
-      <div
-        id="answerFeedback"
-        class="answer-feedback">
-      </div>
+      🐇
 
     </div>
 
-  </section>
+    <div
+      id="memoryText"
+      class="memory-text">
+    </div>
+
+    <button
+      id="memoryNext"
+      class="primary-btn">
+
+      ...
+
+    </button>
+
+  </div>
+
+</section>
 
 
-  <!-- REVEAL -->
+<!-- ===============================
+     REMEMBER
+================================ -->
 
-  <section id="revealScene" class="scene">
+<section id="rememberScene" class="scene">
 
-    <div class="reveal-card">
+  <div class="remember-card">
 
-      <div style="font-size:3rem;">
+    <div class="back-charm">
+
+      <div class="back-icons">
         🐙　🐇
       </div>
 
-      <div class="reveal-title">
-        REMEMBER ME
-      </div>
+      <div class="mystery-stitches">
 
-      <div
-        id="revealText"
-        class="reveal-text">
-      </div>
-
-      <button
-        id="revealNext"
-        class="primary-btn">
-        ...
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- WAITING -->
-
-  <section id="waitingScene" class="scene">
-
-    <div class="waiting-window">
-
-      <div class="waiting-seat"></div>
-      <div class="waiting-bag">🧳</div>
-      <div class="waiting-yako">🐙</div>
-
-    </div>
-
-    <div class="waiting-dialogue">
-
-      <div class="speaker">
-        Me
-      </div>
-
-      <div id="waitingText"></div>
-
-      <div class="waiting-controls">
-
-        <button
-          id="waitingNext"
-          class="soft-btn">
-
-          ...
-
-        </button>
+        <div class="stitch-line"></div>
+        <div class="stitch-line"></div>
 
       </div>
 
     </div>
 
-  </section>
+    <div class="remember-dialogue">
 
+      ...Huh?
 
-  <!-- WARMTH -->
+      <br><br>
 
-  <section id="warmthScene" class="scene">
+      There's something stitched on my back.
 
-    <div
-      id="warmthText"
-      class="warmth-text">
+      <br><br>
 
-      There's something warm inside me...
+      I can feel the letters,
+      but I can't quite read them.
 
-    </div>
+      <br>
 
-    <div id="warmthField">
-
-      <div
-        id="warmCharm"
-        class="warm-charm">
-
-        🧵
-
-      </div>
+      Maybe the real me can.
 
     </div>
 
-  </section>
 
+    <div class="letter-puzzle">
 
-  <!-- MAGIC -->
+      <div class="word-group">
 
-  <section id="magicScene" class="scene">
+        <span class="fixed-letter">
+          R
+        </span>
 
-    <div class="magic-core">
+        <input
+          class="letter-box missing-letter"
+          maxlength="1"
+          autocomplete="off"
+          data-answer="E"
+        >
 
-      <div class="magic-ring"></div>
-      <div class="magic-ring"></div>
-      <div class="magic-ring"></div>
+        <span class="fixed-letter">
+          M
+        </span>
 
-      <div class="magic-center">
-        🧵
-      </div>
+        <input
+          class="letter-box missing-letter"
+          maxlength="1"
+          autocomplete="off"
+          data-answer="E"
+        >
 
-    </div>
+        <span class="fixed-letter">
+          M
+        </span>
 
-    <div
-      id="magicText"
-      class="magic-text">
-    </div>
+        <span class="fixed-letter">
+          B
+        </span>
 
-  </section>
+        <input
+          class="letter-box missing-letter"
+          maxlength="1"
+          autocomplete="off"
+          data-answer="E"
+        >
 
-
-  <!-- GIFT -->
-
-  <section id="giftScene" class="scene">
-
-    <div class="gift-wrap">
-
-      <div
-        id="giftThought"
-        class="gift-thought">
-
-        ...Did it work?
-
-      </div>
-
-      <div class="gift-card">
-
-        <div class="gift-card-small">
-          Project Remember Me
-        </div>
-
-        <div class="gift-icon">
-          ☕
-        </div>
-
-        <div class="gift-name">
-          One Warm Drink
-        </div>
-
-        <div class="gift-desc">
-
-          For Yako.
-
-          <br>
-
-          Pick something you like.
-
-        </div>
-
-        <div class="placeholder-tag">
-          TEST PLACEHOLDER — NOT A REAL VOUCHER
-        </div>
-
-      </div>
-
-      <div class="ending-line">
-
-        A tiny bit of love was used.
-
-        <br>
-
-        There's still plenty left.
-
-        <span class="ending-heart">
-          ♡
+        <span class="fixed-letter">
+          R
         </span>
 
       </div>
 
+
+      <div class="word-group">
+
+        <span class="fixed-letter">
+          M
+        </span>
+
+        <input
+          class="letter-box missing-letter"
+          maxlength="1"
+          autocomplete="off"
+          data-answer="E"
+        >
+
+      </div>
+
     </div>
 
-  </section>
+    <div
+      id="answerFeedback"
+      class="answer-feedback">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ===============================
+     REVEAL
+================================ -->
+
+<section id="revealScene" class="scene">
+
+  <div class="reveal-card">
+
+    <div style="font-size:3rem;">
+      🐙　🐇
+    </div>
+
+    <div class="reveal-title">
+      REMEMBER ME
+    </div>
+
+    <div
+      id="revealText"
+      class="reveal-text">
+    </div>
+
+    <button
+      id="revealNext"
+      class="primary-btn">
+
+      ...
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ===============================
+     WAITING
+================================ -->
+
+<section id="waitingScene" class="scene">
+
+  <div class="waiting-window">
+
+    <div class="waiting-seat"></div>
+
+    <div class="waiting-bag">
+      🧳
+    </div>
+
+    <div class="waiting-yako">
+      🐙
+    </div>
+
+  </div>
+
+  <div class="waiting-dialogue">
+
+    <div class="speaker">
+      Me
+    </div>
+
+    <div id="waitingText"></div>
+
+    <div class="waiting-controls">
+
+      <button
+        id="waitingNext"
+        class="soft-btn">
+
+        ...
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ===============================
+     WARMTH
+================================ -->
+
+<section id="warmthScene" class="scene">
+
+  <div
+    id="warmthText"
+    class="warmth-text">
+
+    There's something warm inside me...
+
+  </div>
+
+  <div id="warmthField">
+
+    <div
+      id="warmCharm"
+      class="warm-charm">
+
+      🧵
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ===============================
+     MAGIC
+================================ -->
+
+<section id="magicScene" class="scene">
+
+  <div class="magic-core">
+
+    <div class="magic-ring"></div>
+    <div class="magic-ring"></div>
+    <div class="magic-ring"></div>
+
+    <div class="magic-center">
+      🧵
+    </div>
+
+  </div>
+
+  <div
+    id="magicText"
+    class="magic-text">
+  </div>
+
+</section>
+
+
+<!-- ===============================
+     GIFT
+================================ -->
+
+<section id="giftScene" class="scene">
+
+  <div class="gift-wrap">
+
+    <div
+      id="giftThought"
+      class="gift-thought">
+
+      ...Did it work?
+
+    </div>
+
+    <div class="gift-card">
+
+      <div class="gift-card-small">
+        Project Remember Me
+      </div>
+
+      <div class="gift-icon">
+        ☕
+      </div>
+
+      <div class="gift-name">
+        One Warm Drink
+      </div>
+
+      <div class="gift-desc">
+
+        For Yako.
+
+        <br>
+
+        Pick something you like.
+
+      </div>
+
+      <div class="placeholder-tag">
+
+        TEST PLACEHOLDER —
+        NOT A REAL VOUCHER
+
+      </div>
+
+    </div>
+
+    <div class="ending-line">
+
+      A tiny bit of love was used.
+
+      <br>
+
+      There's still plenty left.
+
+      <span class="ending-heart">
+        ♡
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
 
 </main>
 
 
 <script>
 
-/* ==================================================
-   SCENE CONTROL
-================================================== */
+/* ==========================================
+   BASIC
+========================================== */
 
 function showScene(id) {
 
   document
     .querySelectorAll(".scene")
     .forEach(scene => {
-
-      scene
-        .classList
-        .remove("active");
-
+      scene.classList.remove("active");
     });
-
 
   document
     .getElementById(id)
     .classList
     .add("active");
+}
+
+
+function sleep(ms) {
+
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
 
 }
 
 
-/* ==================================================
+/* ==========================================
    OPENING
-================================================== */
+========================================== */
 
 const openingLines = [
-
   "...",
-
   "...ugh.",
-
   "Why is everything still moving?",
-
   "Wait.",
-
   "It's not moving anymore.",
-
   "So...",
-
   "Where am I?"
-
 ];
-
 
 let openingIndex = 0;
 
-
 const openingText =
-  document.getElementById(
-    "openingText"
-  );
-
+  document.getElementById("openingText");
 
 const openingButton =
-  document.getElementById(
-    "openingButton"
-  );
+  document.getElementById("openingButton");
 
 
 openingButton.addEventListener(
@@ -2171,39 +1928,27 @@ openingButton.addEventListener(
 
     openingIndex++;
 
-
-    if (
-      openingIndex <
-      openingLines.length
-    ) {
+    if (openingIndex < openingLines.length) {
 
       openingText.textContent =
-        openingLines[
-          openingIndex
-        ];
+        openingLines[openingIndex];
 
       openingButton.textContent =
         "...";
 
-    }
+    } else {
 
-    else {
-
-      showScene(
-        "airportScene"
-      );
-
+      showScene("airportScene");
       startAirportDialogue();
 
     }
-
   }
 );
 
 
-/* ==================================================
+/* ==========================================
    AIRPORT
-================================================== */
+========================================== */
 
 const airportLines = [
 
@@ -2251,28 +1996,19 @@ const airportLines = [
 
 ];
 
-
 let airportDialogueIndex = 0;
 
-
 const airportDialogue =
-  document.getElementById(
-    "airportDialogue"
-  );
-
+  document.getElementById("airportDialogue");
 
 const airportNext =
-  document.getElementById(
-    "airportNext"
-  );
+  document.getElementById("airportNext");
 
 
 function startAirportDialogue() {
 
   airportDialogueIndex = 0;
-
-  airportDialogue.textContent =
-    airportLines[0];
+  airportDialogue.textContent = airportLines[0];
 
 }
 
@@ -2283,26 +2019,19 @@ airportNext.addEventListener(
 
     airportDialogueIndex++;
 
-
     if (
       airportDialogueIndex <
       airportLines.length
     ) {
 
       airportDialogue.textContent =
-        airportLines[
-          airportDialogueIndex
-        ];
+        airportLines[airportDialogueIndex];
 
-    }
-
-    else {
+    } else {
 
       puzzleIndex = 0;
 
-      showScene(
-        "matchScene"
-      );
+      showScene("matchScene");
 
       createBoard();
 
@@ -2312,231 +2041,180 @@ airportNext.addEventListener(
 );
 
 
-/* ==================================================
-   STORY MATCH PUZZLES
-================================================== */
+/* ==========================================
+   MATCH PUZZLES
+========================================== */
 
 const puzzleSteps = [
 
   {
-
     target: "🐇",
 
     thought:
       "Something feels familiar...\nIs that...?",
 
     board: [
-
       ["🐇","💾","🧵","✈️","🐙"],
       ["🧵","🐇","📓","💾","✈️"],
       ["💾","✈️","🐇","🐇","📓"],
       ["🐇","📓","🐙","✈️","💾"],
       ["🐇","💾","🧵","🐙","📓"]
-
     ],
 
     memories: [
-
       {
         icon: "🐇",
-        text:
-          "Celluaria..."
+        text: "Celluaria..."
       },
-
       {
         icon: "🐇",
-        text:
-          "I remember him."
+        text: "I remember him."
       },
-
       {
         icon: "🧵",
         text:
           "His hands kept moving while he was making me."
       },
-
       {
         icon: "💭",
         text:
           "And he talked. A lot."
       }
-
     ]
-
   },
 
 
   {
-
     target: "🐙",
 
     thought:
       "Wait...\nThere's another one.",
 
     board: [
-
       ["📓","💾","🐙","✈️","🧵"],
       ["🐇","💾","🐙","💾","✈️"],
       ["🐙","📓","💾","🧵","🐇"],
       ["🐙","✈️","🐙","📓","🐙"],
       ["🧵","✈️","🧵","📓","💾"]
-
     ],
 
     memories: [
-
       {
         icon: "🐙",
-        text:
-          "Yako."
+        text: "Yako."
       },
-
       {
         icon: "🐙",
         text:
           "That's the name I heard so many times."
       },
-
       {
         icon: "🐙",
         text:
           "So the little octopus really is her."
       }
-
     ]
-
   },
 
 
   {
-
     target: "🧵",
 
     thought:
       "And this one...\nWhy does it feel so close?",
 
     board: [
-
       ["💾","🐙","✈️","🧵","📓"],
       ["💾","🐇","🧵","💾","🐇"],
       ["📓","✈️","💾","✈️","📓"],
       ["🐙","🧵","🧵","🐙","💾"],
       ["🧵","🐇","📓","💾","🐙"]
-
     ],
 
     memories: [
-
       {
         icon: "🧵",
-        text:
-          "Thread..."
+        text: "Thread..."
       },
-
       {
         icon: "🧵",
-        text:
-          "Stitches..."
+        text: "Stitches..."
       },
-
       {
         icon: "🧵",
-        text:
-          "Oh."
+        text: "Oh."
       },
-
       {
         icon: "🧵",
-        text:
-          "That's me."
+        text: "That's me."
       }
-
     ]
-
   },
 
 
   {
-
     target: "📓",
 
     thought:
       "Hm...\nI think something came before me.",
 
     board: [
-
       ["🧵","📓","🐙","🧵","✈️"],
       ["📓","🐇","💾","📓","🧵"],
       ["🐇","📓","💾","🧵","🧵"],
       ["🐙","💾","🐙","🐙","🐇"],
       ["🐙","🧵","🐙","💾","📓"]
-
     ],
 
     memories: [
-
       {
         icon: "📓",
-        text:
-          "A notebook..."
+        text: "A notebook..."
       },
-
       {
         icon: "📓",
         text:
           "So I wasn't the first thing Celluaria sent along with her."
       },
-
       {
         icon: "📓",
         text:
           "I suppose that makes the notebook my senior."
       }
-
     ]
-
   },
 
 
   {
-
     target: "💾",
 
     thought:
       "And there's one more thing hiding in here...",
 
     board: [
-
       ["🐙","✈️","🐇","🧵","💾"],
       ["📓","🐇","📓","🐙","✈️"],
       ["🐙","✈️","📓","💾","🐇"],
       ["💾","🐇","🐇","🐙","🐙"],
       ["✈️","💾","💾","🧵","🐙"]
-
     ],
 
     memories: [
-
       {
         icon: "💾",
-        text:
-          "A little USB drive."
+        text: "A little USB drive."
       },
-
       {
         icon: "💾",
         text:
           "Apparently it carried things ahead before I did."
       },
-
       {
         icon: "🧵",
         text:
           "Celluaria has been sending little pieces of himself along for a while, hasn't he?"
       }
-
     ]
-
   }
 
 ];
@@ -2545,26 +2223,17 @@ const puzzleSteps = [
 const size = 5;
 
 let puzzleIndex = 0;
-
-let board = [];
-
-let selected = null;
-
-let boardLocked = false;
-
 let puzzleMemoryIndex = 0;
 
+let board = [];
+let selected = null;
+let boardLocked = false;
 
 const boardElement =
-  document.getElementById(
-    "matchBoard"
-  );
-
+  document.getElementById("matchBoard");
 
 const matchThought =
-  document.getElementById(
-    "matchThought"
-  );
+  document.getElementById("matchThought");
 
 
 function createBoard() {
@@ -2572,25 +2241,22 @@ function createBoard() {
   selected = null;
   boardLocked = false;
 
-
   const step =
-    puzzleSteps[
-      puzzleIndex
-    ];
-
+    puzzleSteps[puzzleIndex];
 
   board =
-    step.board.map(
-      row => [...row]
-    );
-
+    step.board.map(row => [...row]);
 
   matchThought.innerHTML =
-    step.thought
-      .replace(/\n/g, "<br>") +
+
+    step.thought.replace(
+      /\n/g,
+      "<br>"
+    )
+
+    +
 
     `<span class="target-emoji">${step.target}</span>`;
-
 
   renderBoard();
 
@@ -2599,9 +2265,7 @@ function createBoard() {
 
 function renderBoard() {
 
-  boardElement.innerHTML =
-    "";
-
+  boardElement.innerHTML = "";
 
   for (
     let row = 0;
@@ -2616,14 +2280,9 @@ function renderBoard() {
     ) {
 
       const tile =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
-
-      tile.className =
-        "tile";
-
+      tile.className = "tile";
 
       tile.textContent =
         board[row][col];
@@ -2635,22 +2294,23 @@ function renderBoard() {
         selected.col === col
       ) {
 
-        tile
-          .classList
-          .add(
-            "selected"
-          );
+        tile.classList.add(
+          "selected"
+        );
 
       }
 
 
       tile.addEventListener(
         "click",
-        () =>
+        () => {
+
           handleTileClick(
             row,
             col
-          )
+          );
+
+        }
       );
 
 
@@ -2670,16 +2330,12 @@ function handleTileClick(
   col
 ) {
 
-  if (
-    boardLocked
-  ) {
+  if (boardLocked) {
     return;
   }
 
 
-  if (
-    !selected
-  ) {
+  if (!selected) {
 
     selected = {
       row,
@@ -2698,8 +2354,7 @@ function handleTileClick(
     selected.col === col
   ) {
 
-    selected =
-      null;
+    selected = null;
 
     renderBoard();
 
@@ -2711,16 +2366,14 @@ function handleTileClick(
   const distance =
     Math.abs(
       selected.row - row
-    ) +
-
+    )
+    +
     Math.abs(
       selected.col - col
     );
 
 
-  if (
-    distance !== 1
-  ) {
+  if (distance !== 1) {
 
     selected = {
       row,
@@ -2738,7 +2391,6 @@ function handleTileClick(
     ...selected
   };
 
-
   selected = null;
 
 
@@ -2754,9 +2406,7 @@ function handleTileClick(
     findMatches();
 
 
-  if (
-    matches.length === 0
-  ) {
+  if (matches.length === 0) {
 
     swapTiles(
       previous.row,
@@ -2773,22 +2423,17 @@ function handleTileClick(
 
 
   const target =
-    puzzleSteps[
-      puzzleIndex
-    ].target;
+    puzzleSteps[puzzleIndex].target;
 
 
   const containsTarget =
     matches.some(
       ({row, col}) =>
-        board[row][col] ===
-        target
+        board[row][col] === target
     );
 
 
-  if (
-    !containsTarget
-  ) {
+  if (!containsTarget) {
 
     swapTiles(
       previous.row,
@@ -2804,9 +2449,7 @@ function handleTileClick(
   }
 
 
-  solvePuzzle(
-    matches
-  );
+  solvePuzzle(matches);
 
 }
 
@@ -2821,10 +2464,8 @@ function swapTiles(
   const temp =
     board[r1][c1];
 
-
   board[r1][c1] =
     board[r2][c2];
-
 
   board[r2][c2] =
     temp;
@@ -2864,12 +2505,8 @@ function findMatches() {
       }
 
 
-      const length =
-        col - start;
-
-
       if (
-        length >= 3
+        col - start >= 3
       ) {
 
         for (
@@ -2920,12 +2557,8 @@ function findMatches() {
       }
 
 
-      const length =
-        row - start;
-
-
       if (
-        length >= 3
+        row - start >= 3
       ) {
 
         for (
@@ -2959,7 +2592,6 @@ function findMatches() {
           .split(",")
           .map(Number);
 
-
       return {
         row,
         col
@@ -2974,8 +2606,7 @@ async function solvePuzzle(
   matches
 ) {
 
-  boardLocked =
-    true;
+  boardLocked = true;
 
 
   matches.forEach(
@@ -2994,84 +2625,36 @@ async function solvePuzzle(
   await sleep(550);
 
 
-  startPuzzleMemory();
+  puzzleMemoryIndex = 0;
 
-}
-
-
-function startPuzzleMemory() {
-
-  puzzleMemoryIndex =
-    0;
-
-
-  memoryNext.dataset.mode =
-    "puzzle";
-
+  memoryMode = "puzzle";
 
   displayPuzzleMemory();
 
-
-  showScene(
-    "memoryScene"
-  );
+  showScene("memoryScene");
 
 }
 
 
-function displayPuzzleMemory() {
-
-  const item =
-    puzzleSteps[
-      puzzleIndex
-    ].memories[
-      puzzleMemoryIndex
-    ];
-
-
-  memoryIcon.textContent =
-    item.icon;
-
-
-  memoryText.textContent =
-    item.text;
-
-}
-
-
-function sleep(ms) {
-
-  return new Promise(
-    resolve =>
-      setTimeout(
-        resolve,
-        ms
-      )
-  );
-
-}
-
-
-/* ==================================================
+/* ==========================================
    MEMORY
-================================================== */
+========================================== */
 
 const memoryIcon =
-  document.getElementById(
-    "memoryIcon"
-  );
-
+  document.getElementById("memoryIcon");
 
 const memoryText =
-  document.getElementById(
-    "memoryText"
-  );
-
+  document.getElementById("memoryText");
 
 const memoryNext =
-  document.getElementById(
-    "memoryNext"
-  );
+  document.getElementById("memoryNext");
+
+
+let memoryMode = "";
+
+let finalMemoryIndex = 0;
+
+let warmthRealisationIndex = 0;
 
 
 const finalMemoryLines = [
@@ -3127,16 +2710,111 @@ const finalMemoryLines = [
 ];
 
 
-let finalMemoryIndex =
-  0;
+const warmthRealisationLines = [
 
+  "Oh.",
+
+  "I think this is what Celluaria left inside me.",
+
+  "I don't really know how much of it there is.",
+
+  "...",
+
+  "But Yako has been waiting here for so long.",
+
+  "Maybe...",
+
+  "Maybe I can use just a tiny bit."
+
+];
+
+
+function displayPuzzleMemory() {
+
+  const item =
+    puzzleSteps[puzzleIndex]
+      .memories[puzzleMemoryIndex];
+
+  memoryIcon.textContent =
+    item.icon;
+
+  memoryText.textContent =
+    item.text;
+
+}
+
+
+function displayFinalMemory() {
+
+  const item =
+    finalMemoryLines[
+      finalMemoryIndex
+    ];
+
+  memoryIcon.textContent =
+    item.icon;
+
+  memoryText.textContent =
+    item.text;
+
+}
+
+
+function displayWarmthMemory() {
+
+  memoryIcon.textContent =
+    warmthRealisationIndex >= 5
+      ? "✨"
+      : "♡";
+
+  memoryText.textContent =
+    warmthRealisationLines[
+      warmthRealisationIndex
+    ];
+
+}
+
+
+function startFinalMemory() {
+
+  memoryMode = "final";
+
+  finalMemoryIndex = 0;
+
+  displayFinalMemory();
+
+  showScene("memoryScene");
+
+}
+
+
+function startWarmthRealisation() {
+
+  memoryMode = "warmth";
+
+  warmthRealisationIndex = 0;
+
+  displayWarmthMemory();
+
+  showScene("memoryScene");
+
+}
+
+
+/*
+   ONE BUTTON.
+   ONE HANDLER.
+   ALL MEMORY STORY FLOW GOES THROUGH HERE.
+*/
 
 memoryNext.addEventListener(
   "click",
   () => {
 
+    /* PUZZLE MEMORIES */
+
     if (
-      memoryNext.dataset.mode ===
+      memoryMode ===
       "puzzle"
     ) {
 
@@ -3144,9 +2822,8 @@ memoryNext.addEventListener(
 
 
       const memories =
-        puzzleSteps[
-          puzzleIndex
-        ].memories;
+        puzzleSteps[puzzleIndex]
+          .memories;
 
 
       if (
@@ -3156,32 +2833,28 @@ memoryNext.addEventListener(
 
         displayPuzzleMemory();
 
+        return;
+
       }
 
-      else {
 
-        puzzleIndex++;
-
-
-        if (
-          puzzleIndex <
-          puzzleSteps.length
-        ) {
-
-          showScene(
-            "matchScene"
-          );
+      puzzleIndex++;
 
 
-          createBoard();
+      if (
+        puzzleIndex <
+        puzzleSteps.length
+      ) {
 
-        }
+        showScene(
+          "matchScene"
+        );
 
-        else {
+        createBoard();
 
-          startFinalMemory();
+      } else {
 
-        }
+        startFinalMemory();
 
       }
 
@@ -3191,43 +2864,78 @@ memoryNext.addEventListener(
     }
 
 
-    finalMemoryIndex++;
-
+    /* FINAL MEMORY BEFORE CHARM */
 
     if (
-      finalMemoryIndex <
-      finalMemoryLines.length
+      memoryMode ===
+      "final"
     ) {
 
-      displayFinalMemory();
+      finalMemoryIndex++;
+
+
+      if (
+        finalMemoryIndex <
+        finalMemoryLines.length
+      ) {
+
+        displayFinalMemory();
+
+      } else {
+
+        showScene(
+          "rememberScene"
+        );
+
+
+        setTimeout(
+          () => {
+
+            const first =
+              document.querySelector(
+                ".missing-letter"
+              );
+
+            if (first) {
+              first.focus();
+            }
+
+          },
+          400
+        );
+
+      }
+
+
+      return;
 
     }
 
-    else {
 
-      showScene(
-        "rememberScene"
-      );
+    /* WARMTH REALISATION */
 
+    if (
+      memoryMode ===
+      "warmth"
+    ) {
 
-      setTimeout(
-        () => {
-
-          const first =
-            document.querySelector(
-              ".missing-letter"
-            );
+      warmthRealisationIndex++;
 
 
-          if (
-            first
-          ) {
-            first.focus();
-          }
+      if (
+        warmthRealisationIndex <
+        warmthRealisationLines.length
+      ) {
 
-        },
-        400
-      );
+        displayWarmthMemory();
+
+      } else {
+
+        memoryMode = "";
+
+        startMagicScene();
+
+      }
 
     }
 
@@ -3235,47 +2943,9 @@ memoryNext.addEventListener(
 );
 
 
-function startFinalMemory() {
-
-  finalMemoryIndex =
-    0;
-
-
-  memoryNext.dataset.mode =
-    "final";
-
-
-  displayFinalMemory();
-
-
-  showScene(
-    "memoryScene"
-  );
-
-}
-
-
-function displayFinalMemory() {
-
-  const line =
-    finalMemoryLines[
-      finalMemoryIndex
-    ];
-
-
-  memoryIcon.textContent =
-    line.icon;
-
-
-  memoryText.textContent =
-    line.text;
-
-}
-
-
-/* ==================================================
-   LETTER PUZZLE
-================================================== */
+/* ==========================================
+   REMEMBER ME
+========================================== */
 
 const letterBoxes =
   Array.from(
@@ -3291,8 +2961,7 @@ const answerFeedback =
   );
 
 
-let rememberSolved =
-  false;
+let rememberSolved = false;
 
 
 letterBoxes.forEach(
@@ -3319,13 +2988,10 @@ letterBoxes.forEach(
             .toUpperCase();
 
 
-        box.value =
-          value;
+        box.value = value;
 
 
-        if (
-          !value
-        ) {
+        if (!value) {
           return;
         }
 
@@ -3338,21 +3004,15 @@ letterBoxes.forEach(
           value !== expected
         ) {
 
-          box
-            .classList
-            .remove(
-              "wrong"
-            );
-
+          box.classList.remove(
+            "wrong"
+          );
 
           void box.offsetWidth;
 
-
-          box
-            .classList
-            .add(
-              "wrong"
-            );
+          box.classList.add(
+            "wrong"
+          );
 
 
           answerFeedback.textContent =
@@ -3362,15 +3022,11 @@ letterBoxes.forEach(
           setTimeout(
             () => {
 
-              box.value =
-                "";
+              box.value = "";
 
-
-              box
-                .classList
-                .remove(
-                  "wrong"
-                );
+              box.classList.remove(
+                "wrong"
+              );
 
             },
             280
@@ -3382,11 +3038,9 @@ letterBoxes.forEach(
         }
 
 
-        box
-          .classList
-          .add(
-            "correct"
-          );
+        box.classList.add(
+          "correct"
+        );
 
 
         answerFeedback.textContent =
@@ -3416,10 +3070,8 @@ letterBoxes.forEach(
       event => {
 
         if (
-          event.key ===
-          "Backspace" &&
-          box.value ===
-          "" &&
+          event.key === "Backspace" &&
+          box.value === "" &&
           index > 0
         ) {
 
@@ -3442,47 +3094,53 @@ function checkLetterPuzzle() {
     letterBoxes.every(
       box =>
         box.value
-          .toUpperCase() ===
+          .toUpperCase()
+        ===
         box.dataset.answer
     );
 
 
-  if (
-    !solved
-  ) {
+  if (!solved) {
     return;
   }
 
 
-  rememberSolved =
-    true;
+  rememberSolved = true;
 
 
   letterBoxes.forEach(
     box => {
 
-      box.disabled =
-        true;
+      box.disabled = true;
 
     }
   );
 
+
+  /*
+     Let Yako see the completed phrase
+     before the scene changes.
+  */
 
   answerFeedback.textContent =
     "...Oh.";
 
 
   setTimeout(
-    startRevealScene,
-    1100
+    () => {
+
+      startRevealScene();
+
+    },
+    1250
   );
 
 }
 
 
-/* ==================================================
+/* ==========================================
    REVEAL
-================================================== */
+========================================== */
 
 const revealLines = [
 
@@ -3507,8 +3165,7 @@ const revealLines = [
 ];
 
 
-let revealIndex =
-  0;
+let revealIndex = 0;
 
 
 const revealText =
@@ -3525,13 +3182,13 @@ const revealNext =
 
 function startRevealScene() {
 
-  revealIndex =
-    0;
-
+  revealIndex = 0;
 
   revealText.textContent =
     revealLines[0];
 
+  revealNext.style.display =
+    "";
 
   showScene(
     "revealScene"
@@ -3557,9 +3214,7 @@ revealNext.addEventListener(
           revealIndex
         ];
 
-    }
-
-    else {
+    } else {
 
       startWaitingScene();
 
@@ -3569,9 +3224,9 @@ revealNext.addEventListener(
 );
 
 
-/* ==================================================
+/* ==========================================
    WAITING
-================================================== */
+========================================== */
 
 const waitingLines = [
 
@@ -3600,8 +3255,7 @@ const waitingLines = [
 ];
 
 
-let waitingIndex =
-  0;
+let waitingIndex = 0;
 
 
 const waitingText =
@@ -3618,13 +3272,10 @@ const waitingNext =
 
 function startWaitingScene() {
 
-  waitingIndex =
-    0;
-
+  waitingIndex = 0;
 
   waitingText.textContent =
     waitingLines[0];
-
 
   showScene(
     "waitingScene"
@@ -3650,9 +3301,7 @@ waitingNext.addEventListener(
           waitingIndex
         ];
 
-    }
-
-    else {
+    } else {
 
       startWarmthScene();
 
@@ -3662,9 +3311,9 @@ waitingNext.addEventListener(
 );
 
 
-/* ==================================================
-   WARMTH
-================================================== */
+/* ==========================================
+   WARMTH GAME
+========================================== */
 
 const warmthField =
   document.getElementById(
@@ -3686,21 +3335,16 @@ const warmCharm =
 
 const orbPositions = [
 
-  [16, 18],
-
-  [73, 15],
-
-  [15, 70],
-
-  [77, 72],
-
-  [48, 14]
+  [13, 16],
+  [72, 14],
+  [11, 69],
+  [76, 70],
+  [47, 10]
 
 ];
 
 
-let collectedWarmth =
-  0;
+let collectedWarmth = 0;
 
 
 function startWarmthScene() {
@@ -3710,12 +3354,16 @@ function startWarmthScene() {
   );
 
 
+  collectedWarmth = 0;
+
+
+  warmCharm.classList.remove(
+    "glowing"
+  );
+
+
   warmthText.textContent =
     "There are little warm pieces everywhere...";
-
-
-  collectedWarmth =
-    0;
 
 
   document
@@ -3723,8 +3371,7 @@ function startWarmthScene() {
       ".warm-orb"
     )
     .forEach(
-      orb =>
-        orb.remove()
+      orb => orb.remove()
     );
 
 
@@ -3750,7 +3397,7 @@ function startWarmthScene() {
 
 
       orb.style.animationDelay =
-        `${index * 0.23}s`;
+        `${index * .23}s`;
 
 
       orb.setAttribute(
@@ -3761,10 +3408,13 @@ function startWarmthScene() {
 
       orb.addEventListener(
         "click",
-        () =>
+        () => {
+
           collectOrb(
             orb
-          ),
+          );
+
+        },
         {
           once: true
         }
@@ -3781,15 +3431,11 @@ function startWarmthScene() {
 }
 
 
-function collectOrb(
-  orb
-) {
+function collectOrb(orb) {
 
-  orb
-    .classList
-    .add(
-      "collected"
-    );
+  orb.classList.add(
+    "collected"
+  );
 
 
   collectedWarmth++;
@@ -3820,11 +3466,9 @@ function collectOrb(
     collectedWarmth >= 3
   ) {
 
-    warmCharm
-      .classList
-      .add(
-        "glowing"
-      );
+    warmCharm.classList.add(
+      "glowing"
+    );
 
   }
 
@@ -3835,7 +3479,11 @@ function collectOrb(
   ) {
 
     setTimeout(
-      startWarmthRealisation,
+      () => {
+
+        startWarmthRealisation();
+
+      },
       900
     );
 
@@ -3844,116 +3492,9 @@ function collectOrb(
 }
 
 
-/* ==================================================
-   WARMTH REALISATION
-================================================== */
-
-const warmthRealisationLines = [
-
-  "Oh.",
-
-  "I think this is what Celluaria left inside me.",
-
-  "I don't really know how much of it there is.",
-
-  "...",
-
-  "But Yako has been waiting here for so long.",
-
-  "Maybe...",
-
-  "Maybe I can use just a tiny bit."
-
-];
-
-
-let warmthRealisationIndex =
-  0;
-
-
-function startWarmthRealisation() {
-
-  warmthRealisationIndex =
-    0;
-
-
-  showScene(
-    "memoryScene"
-  );
-
-
-  memoryNext.dataset.mode =
-    "warmth";
-
-
-  memoryIcon.textContent =
-    "♡";
-
-
-  memoryText.textContent =
-    warmthRealisationLines[0];
-
-}
-
-
-/* ==================================================
-   EXTEND MEMORY BUTTON FOR WARMTH
-================================================== */
-
-memoryNext.addEventListener(
-  "click",
-  warmthMemoryHandler
-);
-
-
-function warmthMemoryHandler(
-  event
-) {
-
-  if (
-    memoryNext.dataset.mode !==
-    "warmth"
-  ) {
-    return;
-  }
-
-
-  event.stopImmediatePropagation();
-
-
-  warmthRealisationIndex++;
-
-
-  if (
-    warmthRealisationIndex <
-    warmthRealisationLines.length
-  ) {
-
-    memoryIcon.textContent =
-      warmthRealisationIndex >= 5
-      ? "✨"
-      : "♡";
-
-
-    memoryText.textContent =
-      warmthRealisationLines[
-        warmthRealisationIndex
-      ];
-
-  }
-
-  else {
-
-    startMagicScene();
-
-  }
-
-}
-
-
-/* ==================================================
+/* ==========================================
    MAGIC
-================================================== */
+========================================== */
 
 const magicText =
   document.getElementById(
@@ -3996,8 +3537,8 @@ async function startMagicScene() {
     await sleep(
       i ===
       magicLines.length - 1
-      ? 1500
-      : 900
+        ? 1500
+        : 900
     );
 
   }
@@ -4017,21 +3558,21 @@ async function startMagicScene() {
 }
 
 
-/* ==================================================
+/* ==========================================
    GIFT
-================================================== */
+========================================== */
+
+const giftThought =
+  document.getElementById(
+    "giftThought"
+  );
+
 
 function showGift() {
 
   showScene(
     "giftScene"
   );
-
-
-  const giftThought =
-    document.getElementById(
-      "giftThought"
-    );
 
 
   giftThought.textContent =
