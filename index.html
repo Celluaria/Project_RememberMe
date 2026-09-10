@@ -88,10 +88,6 @@
       }
     }
 
-    /* -----------------------------------
-       GENERAL BUTTONS
-    ----------------------------------- */
-
     .primary-btn,
     .soft-btn {
       border: 0;
@@ -128,9 +124,7 @@
       transform: translateY(0);
     }
 
-    /* -----------------------------------
-       OPENING
-    ----------------------------------- */
+    /* OPENING */
 
     #opening {
       align-items: center;
@@ -205,9 +199,7 @@
       margin: 0 auto 24px;
     }
 
-    /* -----------------------------------
-       AIRPORT
-    ----------------------------------- */
+    /* AIRPORT */
 
     .airport-header {
       display: flex;
@@ -353,9 +345,7 @@
       margin-top: 12px;
     }
 
-    /* -----------------------------------
-       MATCH GAME
-    ----------------------------------- */
+    /* MATCH GAME */
 
     #matchScene {
       justify-content: center;
@@ -436,9 +426,7 @@
       line-height: 1.5;
     }
 
-    /* -----------------------------------
-       MEMORY
-    ----------------------------------- */
+    /* MEMORY */
 
     #memoryScene {
       justify-content: center;
@@ -466,9 +454,7 @@
       line-height: 1.75;
     }
 
-    /* -----------------------------------
-       REMEMBER ME
-    ----------------------------------- */
+    /* REMEMBER ME */
 
     #rememberScene {
       justify-content: center;
@@ -557,9 +543,7 @@
       margin-top: 18px;
     }
 
-    /* -----------------------------------
-       PLACEHOLDER NEXT
-    ----------------------------------- */
+    /* NEXT */
 
     #nextScene {
       justify-content: center;
@@ -580,10 +564,6 @@
       font-size: 3rem;
       margin-bottom: 22px;
     }
-
-    /* -----------------------------------
-       MOBILE
-    ----------------------------------- */
 
     @media (max-width: 600px) {
       body {
@@ -634,8 +614,6 @@
 
   <main id="game">
 
-    <!-- OPENING -->
-
     <section id="opening" class="scene active">
 
       <div class="tiny-label">
@@ -656,8 +634,6 @@
 
     </section>
 
-
-    <!-- AIRPORT -->
 
     <section id="airportScene" class="scene">
 
@@ -708,8 +684,6 @@
     </section>
 
 
-    <!-- STORY MATCH GAME -->
-
     <section id="matchScene" class="scene">
 
       <h2 class="section-title">
@@ -735,8 +709,6 @@
     </section>
 
 
-    <!-- MEMORY LINE -->
-
     <section id="memoryScene" class="scene">
 
       <div class="memory-card">
@@ -755,8 +727,6 @@
 
     </section>
 
-
-    <!-- REMEMBER ME PUZZLE -->
 
     <section id="rememberScene" class="scene">
 
@@ -809,8 +779,6 @@
     </section>
 
 
-    <!-- NEXT PLACEHOLDER -->
-
     <section id="nextScene" class="scene">
 
       <div class="next-card">
@@ -848,10 +816,6 @@
 
 <script>
 
-/* =========================================
-   SCENE CONTROL
-========================================= */
-
 function showScene(id) {
 
   document.querySelectorAll(".scene").forEach(scene => {
@@ -863,9 +827,7 @@ function showScene(id) {
 }
 
 
-/* =========================================
-   OPENING
-========================================= */
+/* OPENING */
 
 const openingLines = [
   "...",
@@ -908,9 +870,7 @@ openingButton.addEventListener("click", () => {
 });
 
 
-/* =========================================
-   AIRPORT DIALOGUE
-========================================= */
+/* AIRPORT */
 
 const airportLines = [
 
@@ -1000,9 +960,7 @@ airportNext.addEventListener("click", () => {
 });
 
 
-/* =========================================
-   STORY MATCH PUZZLES
-========================================= */
+/* STORY MATCH PUZZLES */
 
 const puzzleSteps = [
 
@@ -1055,11 +1013,11 @@ const puzzleSteps = [
     target: "📓",
 
     board: [
-      ["💾","📓","🐇","📓","💾"],
-      ["🐇","🐙","🐇","💾","📓"],
-      ["✈️","🧵","✈️","🐙","🐇"],
-      ["💾","🐙","✈️","🐙","✈️"],
-      ["✈️","🐇","🐇","🧵","🧵"]
+      ["🧵","📓","🐙","🧵","✈️"],
+      ["📓","🐇","💾","📓","🧵"],
+      ["🐇","📓","💾","🧵","🧵"],
+      ["🐙","💾","🐙","🐙","🐇"],
+      ["🐙","🧵","🐙","💾","📓"]
     ],
 
     line:
@@ -1317,8 +1275,6 @@ function findMatches() {
     new Set();
 
 
-  /* horizontal */
-
   for (
     let row = 0;
     row < size;
@@ -1370,8 +1326,6 @@ function findMatches() {
 
   }
 
-
-  /* vertical */
 
   for (
     let col = 0;
@@ -1518,9 +1472,7 @@ function sleep(ms) {
 }
 
 
-/* =========================================
-   MEMORY SCENE
-========================================= */
+/* MEMORY */
 
 const memoryLines = [
 
@@ -1642,9 +1594,7 @@ memoryNext.addEventListener("click", () => {
 });
 
 
-/* =========================================
-   REMEMBER ME PUZZLE
-========================================= */
+/* REMEMBER ME */
 
 const rememberInput =
   document.getElementById("rememberInput");
