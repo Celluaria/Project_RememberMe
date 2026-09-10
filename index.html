@@ -557,7 +557,7 @@ button {
 }
 
 
-/* emoji selection appears ON charm */
+/* emoji selection moved lower in v11 */
 
 .emoji-puzzle {
   display: none;
@@ -567,7 +567,7 @@ button {
   z-index: 11;
 
   left: 50%;
-  top: 70%;
+  top: calc(70% + 58px);
 
   transform:
     translate(-50%, -50%);
@@ -1008,7 +1008,6 @@ button {
   }
 
 }
-
 </style>
 </head>
 
@@ -1177,8 +1176,6 @@ button {
       class="back-charm-stage">
 
 
-      <!-- BLANK BACK -->
-
       <img
         id="backBlank"
         class="back-layer"
@@ -1186,8 +1183,6 @@ button {
         alt=""
       >
 
-
-      <!-- TEXT ONLY BACK -->
 
       <img
         id="backText"
@@ -1197,8 +1192,6 @@ button {
       >
 
 
-      <!-- COMPLETE BACK -->
-
       <img
         id="backFull"
         class="back-layer"
@@ -1206,8 +1199,6 @@ button {
         alt=""
       >
 
-
-      <!-- USER TYPES ON CHARM -->
 
       <div
         id="rememberInputWrap"
@@ -1226,8 +1217,6 @@ button {
 
       </div>
 
-
-      <!-- EMOJI PUZZLE -->
 
       <div
         id="emojiPuzzle"
@@ -2481,6 +2470,9 @@ function startRememberScene() {
     "show"
   );
 
+  emojiPuzzle.style.opacity =
+    "1";
+
   answerFeedback.textContent = "";
 
   showScene("rememberScene");
@@ -3050,15 +3042,16 @@ async function startMagicScene() {
     magicText.textContent =
       magicLines[i];
 
+
     await sleep(
       i >= 7
-        ? 1000
-        : 850
+        ? 2200
+        : 1800
     );
   }
 
 
-  await sleep(700);
+  await sleep(900);
 
   showGift();
 }
